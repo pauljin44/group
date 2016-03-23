@@ -2,7 +2,9 @@
 <html>
 <head>
     <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
-    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+ 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<script type="text/javascript" src="http://oauth.googlecode.com/svn/code/javascript/oauth.js"></script>
+	<script type="text/javascript" src="http://oauth.googlecode.com/svn/code/javascript/sha1.js"></script>
 
 	<title>This is the group project</title>
 </head>
@@ -39,6 +41,7 @@
 					      ref.authWithOAuthRedirect("facebook", function(error) { /* ... */ });
 					    }
 					  } else if (authData) {
+					  	console.log(authData)
 					    // user authenticated with Firebase
 					  }
 					});
@@ -53,6 +56,65 @@
 	</script>
 
 	<a href="#" id="fbLogin">Facebook Login</a>
+	<div id="yelp">
+		<form>
+			<label for="what">What do you feel like eating?</label>
+			<input id="what"></input>
+			
+			
+			<label for="where">Where do you feel like eating it?</label>
+			<input id="where"></input>
+			<input type="button" id="submit" value="submit"></input><br />
+			<a href = "http://www.yelp.com"> <img src = http://s3-media4.ak.yelpcdn.com/assets/2/www/img/9b7b8f0fecd7/developers/Powered_By_Yelp_Yellow.png>  </a> 
+
+
+		</form>
+	</div>
+
+
+</body>
+<script type="javascript" src="ap.js"></script>
+</html>
+
+
+
+
+
+
+`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 </body>
