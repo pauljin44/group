@@ -80,7 +80,7 @@ $('#submit').on('click', function(){
         console.log(data);
         // var output = prettyPrint(data);
 
-    $("body").append("<h1>The best brunch spots are listed below: </h1>");
+    $("body").append("<h1>The best "+what+" spots are listed below: </h1>");
     $("body").append("<h1>");
     $("body").append(where);
     $("body").append("<\h1>");
