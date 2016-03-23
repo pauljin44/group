@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+
+	<title>This is the group project</title>
+</head>
+<body>
+
+	<script type="text/javascript">
+	debugger;
+
+
+				// Create a callback which logs the current auth state
+		function authDataCallback(authData) {
+		  if (authData) {
+		    console.log("User " + authData.uid + " is logged in with " + authData.provider);
+		  } else {
+		    console.log("User is logged out");
+		  }
+		}
+
+		// Register the callback to be fired every time auth state changes
+		var ref = new Firebase("https://sizzling-heat-1076.firebaseio.com/");
+		ref.onAuth(authDataCallback);
+
+		$(function() {
+			$('#fbLogin').click(function(){
+				debugger;
+
+				var ref = new Firebase("https://sizzling-heat-1076.firebaseio.com");
+				ref.authWithOAuthRedirect("facebook", function(error) {
+				  if (error) {
+				    console.log("Login Failed!", error);
+				  } else {
+				    // We'll never get here, as the page will redirect on success.
+				  }
+				});
+
+			});
+		});
+
+
+
+	</script>
+
+	<a href="#" id="fbLogin">Facebook Login</a>
+
+</body>
+
+<script type="text/javascript" src='ap.js'></script>
+</html>
