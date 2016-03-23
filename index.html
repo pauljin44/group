@@ -9,7 +9,7 @@
 <body>
 
 	<script type="text/javascript">
-	debugger;
+	// debugger;
 
 
 				// Create a callback which logs the current auth state
@@ -27,25 +27,35 @@
 
 		$(function() {
 			$('#fbLogin').click(function(){
-				debugger;
+				// debugger;
 
 				var ref = new Firebase("https://sizzling-heat-1076.firebaseio.com");
-				ref.authWithOAuthRedirect("facebook", function(error) {
-				  if (error) {
-				    console.log("Login Failed!", error);
-				  } else {
-				    // We'll never get here, as the page will redirect on success.
-				  }
-				});
+				// prefer pop-ups, so we don't navigate away from the page
+					ref.authWithOAuthPopup("google", function(error, authData) {
+					  if (error) {
+					    if (error.code === "TRANSPORT_UNAVAILABLE") {
+					      // fall-back to browser redirects, and pick up the session
+					      // automatically when we come back to the origin page
+					      ref.authWithOAuthRedirect("google", function(error) { /* ... */ });
+					    }
+					  } else if (authData) {
+					    // user authenticated with Firebase
+					  }
+					});
 
 			});
 		});
 
 
 
+
+
 	</script>
 
 	<a href="#" id="fbLogin">Facebook Login</a>
+	<h1 id="title">Jaws</h1>
+	<h2 id="plot">short</h2>
+	<img id="image"src="">
 
 </body>
 
