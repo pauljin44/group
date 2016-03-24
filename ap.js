@@ -241,7 +241,7 @@ $('#submit').on('click', function(){
         
         thisURL = window.location.href
         code = thisURL.replace('https://polar-mesa-92767.herokuapp.com/?code=','').replace('#_=_', '')
-        window.location.href = 'https://polar-mesa-92767.herokuapp.com/'
+        // window.location.href = 'https://polar-mesa-92767.herokuapp.com/'
 
 
 
