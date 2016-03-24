@@ -254,12 +254,13 @@ $('#submit').on('click', function(){
 //****************** When you have to code, send it back out to get a token for access ************************       
         
         if (code != 'https://polar-mesa-92767.herokuapp.com/') {
-            
+
             $.ajax({
                     url: getToken,
                     method: 'GET'
                 })
                 .done(function(response) {
+                    Access-Control-Allow-Origin: *
                     console.log('this is access token: ', response.access_token)
                     fourSquareAccessToken = response.access_token;
 
