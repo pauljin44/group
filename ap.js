@@ -257,10 +257,9 @@ $('#submit').on('click', function(){
 
             $.ajax({
                     url: getToken,
-                    method: 'GET'
+                    method: 'GET',
                 })
                 .done(function(response) {
-                    Access-Control-Allow-Origin: *
                     console.log('this is access token: ', response.access_token)
                     fourSquareAccessToken = response.access_token;
 
