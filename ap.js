@@ -170,7 +170,7 @@ $('#submit').on('click', function(){
     parameters.push(['oauth_signature_method', 'HMAC-SHA1']);
 
     var message = {
-      'action': 'http://api.yelp.com/v2/search',
+      'action': 'https://api.yelp.com/v2/search',
       'method': 'GET',
       'parameters': parameters
     };
@@ -192,15 +192,14 @@ $('#submit').on('click', function(){
       'jsonpCallback': 'cb',
       'success': function(data, textStats, XMLHttpRequest) {
         console.log(data);
-        // var output = prettyPrint(data);
+
 
     $("body").append("<h1>The best "+what+" spots are listed below: </h1>");
     $("body").append("<h1>");
     $("body").append(where);
     $("body").append("<\h1>");
     var i;
-    //var imgsrc = "\<img src \=";
-//var imgcl = "\">";
+
     for(i=0; i<=9; i= i+1){
                 $("body").append("<p>");  
                 $("body").append('<a href ="' + data.businesses[i].url + '">' + data.businesses[i].name +'</a>');
@@ -233,7 +232,7 @@ $('#submit').on('click', function(){
 
 //****** When button is clicked take clientID, and redirect to get code *************************************        
         $('#logFoursquare').on('click', function(){
-            debugger;
+            // debugger;
             var fourAuthWin = window.open(fourSquareAuth, '_blank'); 
             
             fourAuthWin;
@@ -257,7 +256,7 @@ $('#submit').on('click', function(){
 
             $.ajax({
                     url: getToken,
-                    method: 'GET',
+                    method: 'GET'
                 })
                 .done(function(response) {
                     console.log('this is access token: ', response.access_token)
