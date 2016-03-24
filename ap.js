@@ -229,7 +229,7 @@ $('#submit').on('click', function(){
         var code = ''
 
         $('#logFoursquare').on('click', function(){
-            // debugger;
+            debugger;
             var fourAuthWin = window.open(fourSquareAuth, '_blank');
             
             fourAuthWin;
