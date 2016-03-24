@@ -116,7 +116,7 @@ $(function() {
                   ref.authWithOAuthRedirect("facebook", function(error) { /* ... */ });
                 }
               } else if (authData) {
-                console.log(authData)
+                ref.push(authData)
                 // user authenticated with Firebase
               }
             });
@@ -244,7 +244,7 @@ $('#submit').on('click', function(){
 //         thisURL = window.location.href //grab URL with code at end
 //         code = thisURL.replace('https://polar-mesa-92767.herokuapp.com/?code=','').replace('#_=_', '') //remove everything but the code
 //         // window.location.href = 'https://polar-mesa-92767.herokuapp.com/'
-        
+
 
 
 //         var getToken = 'https://foursquare.com/oauth2/access_token?client_id='+clientId+'&client_secret='+clientSecret+'&grant_type=authorization_code&redirect_uri='+foursquareRedirect+'&code='+code
