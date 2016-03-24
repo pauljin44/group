@@ -243,8 +243,6 @@ $('#submit').on('click', function(){
 
         
 
-        
-
         var getToken = 'https://foursquare.com/oauth2/access_token?client_id='+clientId+'&client_secret='+clientSecret+'&grant_type=authorization_code&redirect_uri='+foursquareRedirect+'&code='+code
         var fourSquareAccessToken
         $.ajax({
@@ -259,16 +257,16 @@ $('#submit').on('click', function(){
 
 
 
-        var queryURL = 'https://api.foursquare.com/v2/venues/search?ll=40.7,-74&'+clientId+'&client_secret='+clientSecret+'&v=20160323'
+        // var queryURL = 'https://api.foursquare.com/v2/venues/search?ll=40.7,-74&'+clientId+'&client_secret='+clientSecret+'&v=20160323'
 
-        $.ajax({ 
-                url: queryURL,
-                method: 'GET'
-            })
-            .done(function(response) {
-                // debugger;
-                console.log('response: '+response)
-                var results = response.data
-            });
+        // $.ajax({ 
+        //         url: queryURL,
+        //         method: 'GET'
+        //     })
+        //     .done(function(response) {
+        //         // debugger;
+        //         console.log('response: '+response)
+        //         var results = response.data
+        //     });
 
 
