@@ -229,9 +229,8 @@ $('#submit').on('click', function(){
        
 
     $('#logFoursquare').on('click', function(){
-        debugger;
-        var url = $(this).attr(fourSquareAuth);
-        window.open(url, '_blank');
+        // debsugger;
+        window.open(fourSquareAuth, '_blank');
     });
 
 
