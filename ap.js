@@ -221,7 +221,7 @@ $('#submit').on('click', function(){
 
 });
 
-//*************************************** foursquare **********************            
+//*************************************** foursquare ******************************************************            
         var clientId = 'B1I4ZQXNFKNTWZFSJ4R21TOXNAUDZMVZCYWX5QOOY41XAQ5S'
         var clientSecret = 'P0EFXQABILXQM5OI4QPZT42BLV0ML12ROKVZIOQWIQ0X5FBV'
         var foursquareRedirect = 'https://polar-mesa-92767.herokuapp.com'
@@ -229,27 +229,32 @@ $('#submit').on('click', function(){
         // debugger;
         var code = ''
         var thisURL = ''
+        
+
+//****** When button is clicked take clientID, and redirect to get code *************************************        
         $('#logFoursquare').on('click', function(){
-            // debugger;
-            var fourAuthWin = window.open(fourSquareAuth, '_blank');
+            debugger;
+            var fourAuthWin = window.open(fourSquareAuth, '_blank'); 
             
             fourAuthWin;
             return 
             // code = window.location.href.split('code=')
             // code = code[1]            
         });
-        
-        thisURL = window.location.href
-        code = thisURL.replace('https://polar-mesa-92767.herokuapp.com/?code=','').replace('#_=_', '')
+               
+        thisURL = window.location.href //grab URL with code at end
+        code = thisURL.replace('https://polar-mesa-92767.herokuapp.com/?code=','').replace('#_=_', '') //remove everything but the code
         // window.location.href = 'https://polar-mesa-92767.herokuapp.com/'
 
 
 
         var getToken = 'https://foursquare.com/oauth2/access_token?client_id='+clientId+'&client_secret='+clientSecret+'&grant_type=authorization_code&redirect_uri='+foursquareRedirect+'&code='+code
         var fourSquareAccessToken
+
+//****************** When you have to code, send it back out to get a token for access ************************       
         
         if (code != 'https://polar-mesa-92767.herokuapp.com/') {
-
+            
             $.ajax({
                     url: getToken,
                     method: 'GET'
