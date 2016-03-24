@@ -226,11 +226,11 @@ $('#submit').on('click', function(){
         var clientSecret = 'P0EFXQABILXQM5OI4QPZT42BLV0ML12ROKVZIOQWIQ0X5FBV'
         var foursquareRedirect = 'https://polar-mesa-92767.herokuapp.com'
         var fourSquareAuth = 'https://foursquare.com/oauth2/authenticate?client_id='+clientId+'&response_type=code&redirect_uri='+foursquareRedirect
-        debugger;
+        // debugger;
         var code = ''
         var thisURL = ''
         $('#logFoursquare').on('click', function(){
-            debugger;
+            // debugger;
             var fourAuthWin = window.open(fourSquareAuth, '_blank');
             
             fourAuthWin;
