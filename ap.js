@@ -77,9 +77,9 @@
   // Here we run a very simple test of the Graph API after login is
   // successful.  See statusChangeCallback() for when this call is made.
   function testAPI() {
-    console.log('Welcome!  Fetching your information.... ');
+    console.log('Welcome!  Facebook SDK is fetching your information.... ');
     FB.api('/me', function(response) {
-      console.log('Successful login for: ' + response.name);
+      console.log('Successful Facebook login for: ' + response.name);
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!';
     });
@@ -92,9 +92,9 @@
             // Create a callback which logs the current auth state
 function authDataCallback(authData) {
   if (authData) {
-    console.log("User " + authData.uid + " is logged in with " + authData.provider);
+    console.log("User " + authData.uid + " is logged into Facebook with Firebase with " + authData.provider);
   } else {
-    console.log("User is logged out");
+    console.log("User is logged out of Facebook with Firebase");
   }
 }
 
@@ -241,14 +241,14 @@ $('#submit').on('click', function(){
         
         thisURL = window.location.href
         code = thisURL.replace('https://polar-mesa-92767.herokuapp.com/?code=','').replace('#_=_', '')
-        
+        window.location.href = 'https://polar-mesa-92767.herokuapp.com/'
 
 
 
         var getToken = 'https://foursquare.com/oauth2/access_token?client_id='+clientId+'&client_secret='+clientSecret+'&grant_type=authorization_code&redirect_uri='+foursquareRedirect+'&code='+code
         var fourSquareAccessToken
         
-        if (code != 'http://polar-mesa-92767.herokuapp.com/') {
+        if (code != 'https://polar-mesa-92767.herokuapp.com/') {
 
             $.ajax({
                     url: getToken,
