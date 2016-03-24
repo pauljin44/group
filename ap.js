@@ -248,7 +248,7 @@ $('#submit').on('click', function(){
         var getToken = 'https://foursquare.com/oauth2/access_token?client_id='+clientId+'&client_secret='+clientSecret+'&grant_type=authorization_code&redirect_uri='+foursquareRedirect+'&code='+code
         var fourSquareAccessToken
         
-        if (code != 'http://polar-mesa-92767.herokuapp.com/') {
+        if (code != 'https://polar-mesa-92767.herokuapp.com/') {
 
             $.ajax({
                     url: getToken,
