@@ -229,11 +229,13 @@ $('#submit').on('click', function(){
         var code 
 
         $('#logFoursquare').on('click', function(){
-            // debsugger;
+            debugger;
             window.open(fourSquareAuth, '_blank');
-            .done(function(response){
-                code = response.split('code=')
-                code = code[1]
+            
+            return window.location.href
+            code = window.location.href.split('code=')
+            code = code[1]
+            
             })
         });
 
@@ -257,10 +259,10 @@ $('#submit').on('click', function(){
                 url: queryURL,
                 method: 'GET'
             })
-            .done(function(response) {
+            .done(function(response)) {
                 // debugger;
                 console.log('response: '+response)
                 var results = response.data
-            });
+            };
 
 
