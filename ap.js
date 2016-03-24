@@ -226,7 +226,7 @@ $('#submit').on('click', function(){
         var clientSecret = 'P0EFXQABILXQM5OI4QPZT42BLV0ML12ROKVZIOQWIQ0X5FBV'
         var foursquareRedirect = 'https://polar-mesa-92767.herokuapp.com'
         var fourSquareAuth = 'https://foursquare.com/oauth2/authenticate?client_id='+clientId+'&response_type=code&redirect_uri='+foursquareRedirect
-        var code 
+        
 
         $('#logFoursquare').on('click', function(){
             debugger;
@@ -238,12 +238,9 @@ $('#submit').on('click', function(){
             // code = code[1]            
         });
         var thisURL = window.location.href
+        var code = thisURL.replace('https://polar-mesa-92767.herokuapp.com/?code=','').replace('#_=_', '')
         
-        if (thisURL.indexOf('code=') != -1) {
-            var urlIndex = thisURL.search('code=')
 
-            code = thisURL[urlIndex+4]
-            code = code.replace('#_=_', '')
         }
 
         
