@@ -226,15 +226,32 @@ $('#submit').on('click', function(){
         var clientSecret = 'P0EFXQABILXQM5OI4QPZT42BLV0ML12ROKVZIOQWIQ0X5FBV'
         var foursquareRedirect = 'https://polar-mesa-92767.herokuapp.com'
         var fourSquareAuth = 'https://foursquare.com/oauth2/authenticate?client_id='+clientId+'&response_type=code&redirect_uri='+foursquareRedirect
-        var results = 'https://polar-mesa-92767.herokuapp.com/?code=(KEDQNXFGJPXHQ0EAFVOU2FJKVNDXJOOC4YKDX4NZUMGUWE00)#_=_'
+        var code 
 
-    $('#logFoursquare').on('click', function(){
-        // debsugger;
-        window.open(fourSquareAuth, '_blank');
-    });
+        $('#logFoursquare').on('click', function(){
+            // debsugger;
+            window.open(fourSquareAuth, '_blank');
+            .done(function(response){
+                code = response.split('code=')
+                code = code[1]
+            })
+        });
+
+        var getToken = 'https://foursquare.com/oauth2/access_token?client_id='+clientId+'&client_secret='+clientSecret+'&grant_type=authorization_code&redirect_uri='+foursquareRedirect+'&code='+code
+        var fourSquareAccessToken
+        $.ajax({
+                url: getToken,
+                method: 'GET'
+            })
+            .done(function(response)) {
+                console.log('this is access token: ', response.access_token)
+                fourSquareAccessToken = response.access_token;
+
+            }
 
 
-            var queryURL = 'https://api.foursquare.com/v2/venues/search?ll=40.7,-74&'+clientId+'&client_secret='+clientSecret+'&v=20160323'
+
+        var queryURL = 'https://api.foursquare.com/v2/venues/search?ll=40.7,-74&'+clientId+'&client_secret='+clientSecret+'&v=20160323'
 
         $.ajax({ 
                 url: queryURL,
