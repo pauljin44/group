@@ -221,4 +221,19 @@ $('#submit').on('click', function(){
 
 });
 
-//********************************************************
+//*************************************** foursquare **********************
+
+            var queryURL = 'https://api.foursquare.com/v2/venues/search?ll=40.7,-74&'+clientId+'&'+clientSecret+'='+clientSecret+'&v=20160323'
+            var clientId = 'B1I4ZQXNFKNTWZFSJ4R21TOXNAUDZMVZCYWX5QOOY41XAQ5S'
+            var clientSecret = 'P0EFXQABILXQM5OI4QPZT42BLV0ML12ROKVZIOQWIQ0X5FBV'
+        $.ajax({ 
+                url: queryURL,
+                method: 'GET'
+            })
+            .done(function(response) {
+
+                console.log(response)
+                var results = response.data
+            });
+
+
