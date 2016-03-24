@@ -241,7 +241,7 @@ $('#submit').on('click', function(){
         var code = thisURL.replace('https://polar-mesa-92767.herokuapp.com/?code=','').replace('#_=_', '')
         
 
-        }
+        
 
         
 
