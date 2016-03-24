@@ -245,11 +245,11 @@ $('#submit').on('click', function(){
                 url: getToken,
                 method: 'GET'
             })
-            .done(function(response)) {
+            .done(function(response) {
                 console.log('this is access token: ', response.access_token)
                 fourSquareAccessToken = response.access_token;
 
-            }
+            });
 
 
 
@@ -259,10 +259,10 @@ $('#submit').on('click', function(){
                 url: queryURL,
                 method: 'GET'
             })
-            .done(function(response)) {
+            .done(function(response) {
                 // debugger;
                 console.log('response: '+response)
                 var results = response.data
-            };
+            });
 
 
