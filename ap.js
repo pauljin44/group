@@ -236,7 +236,7 @@ $('#submit').on('click', function(){
             code = window.location.href.split('code=')
             code = code[1]
             
-            })
+            
         });
 
         var getToken = 'https://foursquare.com/oauth2/access_token?client_id='+clientId+'&client_secret='+clientSecret+'&grant_type=authorization_code&redirect_uri='+foursquareRedirect+'&code='+code
