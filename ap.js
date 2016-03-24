@@ -230,7 +230,8 @@ $('#submit').on('click', function(){
 
     $('#logFoursquare').on('click', function(){
         debugger;
-        $('logFoursquare').attr('href', fourSquareAuth)
+        var url = $(this).attr(fourSquareAuth);
+        window.open(url, '_blank');
     });
 
 
