@@ -221,9 +221,19 @@ $('#submit').on('click', function(){
 
 });
 
-//*************************************** foursquare **********************
-            var clientId = 'B1I4ZQXNFKNTWZFSJ4R21TOXNAUDZMVZCYWX5QOOY41XAQ5S'
-            var clientSecret = 'P0EFXQABILXQM5OI4QPZT42BLV0ML12ROKVZIOQWIQ0X5FBV'
+//*************************************** foursquare **********************            
+        var clientId = 'B1I4ZQXNFKNTWZFSJ4R21TOXNAUDZMVZCYWX5QOOY41XAQ5S'
+        var clientSecret = 'P0EFXQABILXQM5OI4QPZT42BLV0ML12ROKVZIOQWIQ0X5FBV'
+        var foursquareRedirect = 'https://polar-mesa-92767.herokuapp.com'
+        var fourSquareAuth = 'https://foursquare.com/oauth2/authenticate?client_id='+clientId+'&response_type=code&redirect_uri='+foursquareRedirect
+       
+
+    $('#logFoursquare').on('click', function(){
+        debugger;
+        $('logFoursquare').attr('href', fourSquareAuth)
+    });
+
+
             var queryURL = 'https://api.foursquare.com/v2/venues/search?ll=40.7,-74&'+clientId+'&client_secret='+clientSecret+'&v=20160323'
 
         $.ajax({ 
