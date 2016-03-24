@@ -241,8 +241,8 @@ $('#submit').on('click', function(){
                 method: 'GET'
             })
             .done(function(response) {
-                debugger;
-                console.log(response)
+                // debugger;
+                console.log('response: '+response)
                 var results = response.data
             });
 
