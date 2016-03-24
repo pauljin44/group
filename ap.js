@@ -95,7 +95,8 @@ function authDataCallback(authData) {
     console.log("User " + authData.uid + " is logged into Facebook with Firebase with " + authData.provider);
     var ref = new Firebase("https://sizzling-heat-1076.firebaseio.com");
     user = {
-       authData.uid: authData.provider
+       id: authData.uid 
+       provider: authData.provider
     }
     ref.push(user)
   } else {
