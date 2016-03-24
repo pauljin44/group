@@ -230,14 +230,23 @@ $('#submit').on('click', function(){
 
         $('#logFoursquare').on('click', function(){
             debugger;
-            window.open(fourSquareAuth, '_blank');
+            var fourAuthWin = window.open(fourSquareAuth, '_blank');
             
-            return window.location.href
-            code = window.location.href.split('code=')
-            code = code[1]
-            
-            
+            fourAuthWin;
+            return 
+            // code = window.location.href.split('code=')
+            // code = code[1]            
         });
+        var thisURL = window.location.href
+        
+        if (thisURL.indexOf('code=') != -1) {
+            var urlIndex = thisURL.search('code=')
+
+            code = thisURL[urlIndex+4]
+            code = code.replace('#_=_', '')
+        }
+
+        
 
         var getToken = 'https://foursquare.com/oauth2/access_token?client_id='+clientId+'&client_secret='+clientSecret+'&grant_type=authorization_code&redirect_uri='+foursquareRedirect+'&code='+code
         var fourSquareAccessToken
