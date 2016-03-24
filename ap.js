@@ -86,13 +86,18 @@
   }
 
 
-////***************************** firebase facebook user auth ******************************************
+//***************************** firebase facebook user auth ******************************************
 
 
             // Create a callback which logs the current auth state
 function authDataCallback(authData) {
   if (authData) {
     console.log("User " + authData.uid + " is logged into Facebook with Firebase with " + authData.provider);
+    var ref = new Firebase("https://sizzling-heat-1076.firebaseio.com");
+    user = {
+       authData.uid: authData.provider
+    }
+    ref.push(user)
   } else {
     console.log("User is logged out of Facebook with Firebase");
   }
@@ -116,7 +121,6 @@ $(function() {
                   ref.authWithOAuthRedirect("facebook", function(error) { /* ... */ });
                 }
               } else if (authData) {
-                ref.push(authData)
                 // user authenticated with Firebase
               }
             });
