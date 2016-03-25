@@ -65,6 +65,7 @@
 
 FB.getLoginStatus(function(response) {
   if (response.status === 'connected') {
+    console.log(response);
     console.log('Logged in.');
   }
   else {
