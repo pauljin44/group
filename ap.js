@@ -79,8 +79,9 @@
   function testAPI() {
     console.log('Welcome!  Facebook SDK is fetching your information.... ');
     FB.api('/me', function(response) {
-        console.log(response)
+        console.log(response) //
       console.log('Successful Facebook login for: ' + response.name);
+      console.log(response.email)
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!';
     });
