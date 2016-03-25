@@ -78,14 +78,14 @@
   // successful.  See statusChangeCallback() for when this call is made.
   function testAPI() {
     console.log('Welcome!  Facebook SDK is fetching your information.... ');
-    FB.api('/me?fields=id,name,emails,permissions', function(response) {
+    FB.api('/me?fields=id,name,email,permissions,displayname', function(response) {
         console.log(response) //
         console.log('Successful Facebook login for: ' + response.name);
         console.log(response.email)
         document.getElementById('status').innerHTML =
             'Thanks for logging in, ' + response.name + '!';
     },
-    {scope:'emails'}
+    {scope:'email'}
     );
   }
 
