@@ -74,8 +74,10 @@ FB.getLoginStatus(function(response) {
         console.log('Not Logged in.');
 
         FB.login(function(response) {
-                    if (response.authResponse) {
+                                    console.log("return from login");
+
                         console.log(response);
+                    if (response.authResponse) {
                         // var uid = response.authResponse.userID;
                         // var accessToken = response.authResponse.accessToken;
                         // getPermissions(uid);
