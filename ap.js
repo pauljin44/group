@@ -102,7 +102,7 @@ FB.getLoginStatus(function(response) {
     // {scope:'email'}
     // );
 
-FB.api('/me', {fields: 'last_name'}, function(response) {
+FB.api('/me', {fields: 'email'}, function(response) {
   console.log(response);
 });
 
