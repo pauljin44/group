@@ -87,7 +87,9 @@
     //     'Thanks for logging in, ' + response.name + '!';
     // });
         FB.api('/me','GET', {"fields":"id,name,email,likes,location"},function(response) {
-          console.log('response is api response', response)
+          var FBresponse = response
+          // for (i=0;i<response.likes.data.length)
+          // var what = 
       });
   }
 
@@ -142,16 +144,7 @@
 
 //****************************************** Yelp ******************************************************       
 
-$('#submit').on('click', function(){
-    
-    var what = "term=" + $(this).text()
-    var where = 'location=' + $(this).text()
-    
-    what = $('#what').val()
-    where = $('#where').val()
-    
-
-
+var runYelp = function() {
 
     var auth = {
   //
@@ -233,16 +226,28 @@ $('#submit').on('click', function(){
     })
 
 
-});
+};
+
+$('#submit').on('click', function(){
+    
+    var what = "term=" + $(this).text()
+    var where = 'location=' + $(this).text()
+    
+    what = $('#what').val()
+    where = $('#where').val()
+    
+    runYelp()
+
+}
 
 //*************************************** foursquare ******************************************************            
-        var clientId = 'B1I4ZQXNFKNTWZFSJ4R21TOXNAUDZMVZCYWX5QOOY41XAQ5S'
-        var clientSecret = 'P0EFXQABILXQM5OI4QPZT42BLV0ML12ROKVZIOQWIQ0X5FBV'
-        var foursquareRedirect = 'https://polar-mesa-92767.herokuapp.com'
-        var fourSquareAuth = 'https://foursquare.com/oauth2/authenticate?client_id='+clientId+'&response_type=code&redirect_uri='+foursquareRedirect
-        // debugger;
-        var code = ''
-        var thisURL = ''
+        // var clientId = 'B1I4ZQXNFKNTWZFSJ4R21TOXNAUDZMVZCYWX5QOOY41XAQ5S'
+        // var clientSecret = 'P0EFXQABILXQM5OI4QPZT42BLV0ML12ROKVZIOQWIQ0X5FBV'
+        // var foursquareRedirect = 'https://polar-mesa-92767.herokuapp.com'
+        // var fourSquareAuth = 'https://foursquare.com/oauth2/authenticate?client_id='+clientId+'&response_type=code&redirect_uri='+foursquareRedirect
+        // // debugger;
+        // var code = ''
+        // var thisURL = ''
         
 
 //****** When button is clicked take clientID, and redirect to get code *************************************        
