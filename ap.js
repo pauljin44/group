@@ -78,7 +78,7 @@
   // successful.  See statusChangeCallback() for when this call is made.
   function testAPI() {
 
-console.log(date.now());
+//console.log(date.now());
 
     FB.login(
         function(response) {
