@@ -102,6 +102,10 @@ FB.getLoginStatus(function(response) {
     // {scope:'email'}
     // );
 
+FB.api('/me', {fields: 'last_name'}, function(response) {
+  console.log(response);
+});
+
 console.log("in testAPI");
 
             // FB.login(function(response){
