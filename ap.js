@@ -238,7 +238,7 @@ $('#submit').on('click', function(){
     
     runYelp()
 
-}
+});
 
 //*************************************** foursquare ******************************************************            
         // var clientId = 'B1I4ZQXNFKNTWZFSJ4R21TOXNAUDZMVZCYWX5QOOY41XAQ5S'
