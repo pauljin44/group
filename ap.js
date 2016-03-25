@@ -4,7 +4,6 @@
 
 //****************************************** Facebook SDK ******************************************************
 
-      testAPI();
 
 
   // This is called with the results from from FB.getLoginStatus().
@@ -61,6 +60,11 @@
   // These three cases are handled in the callback function.
 
   FB.getLoginStatus(function(response) {
+    FB.login(function(response){
+                console.log("in response")
+            console.log(response);
+            }, {scope: 'email'})
+    
     statusChangeCallback(response);
   });
 
