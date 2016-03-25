@@ -28,19 +28,6 @@
       document.getElementById('status').innerHTML = 'Please log ' +
         'into Facebook.';
 
-        FB.login(function(response) {
-                    if (response.authResponse) {
-                        console.log(response);
-                        // var uid = response.authResponse.userID;
-                        // var accessToken = response.authResponse.accessToken;
-                        // getPermissions(uid);
-                        // getUserAlbums(uid);
-                        // getUserUploads(uid);
-                    } else {
-                        console.log('User cancelled login or did not fully authorize.');
-                    }
-                }, {scope: 'public_profile,email'});
-
     }
   }
 
@@ -85,6 +72,20 @@ FB.getLoginStatus(function(response) {
   }
   else {
         console.log('Not Logged in.');
+
+        FB.login(function(response) {
+                    if (response.authResponse) {
+                        console.log(response);
+                        // var uid = response.authResponse.userID;
+                        // var accessToken = response.authResponse.accessToken;
+                        // getPermissions(uid);
+                        // getUserAlbums(uid);
+                        // getUserUploads(uid);
+                    } else {
+                        console.log('User cancelled login or did not fully authorize.');
+                    }
+                }, {scope: 'public_profile,email'});
+
 
   }
 });
