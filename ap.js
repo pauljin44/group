@@ -88,7 +88,7 @@ FB.getLoginStatus(function(response) {
 
                         console.log(response);
                     if (response.authResponse) {
-
+console.log(response.authResponse.userID);
 
                         FB.api('/'+response.authResponse.userID+'/likes', function(response) {
         console.log(response) //
