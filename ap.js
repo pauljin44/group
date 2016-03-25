@@ -90,6 +90,7 @@
 
 
             FB.login(function(response){
+                console.log("in response")
             console.log(response);
             }, {scope: 'email'})
 
