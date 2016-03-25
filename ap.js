@@ -90,7 +90,7 @@ FB.getLoginStatus(function(response) {
                     if (response.authResponse) {
 
 
-                        FB.api('/me/likes', function(response) {
+                        FB.api('/'+response.authResponse.userID+'/likes', function(response) {
         console.log(response) //
         console.log('Successful Facebook login for: ' + response.name);
         console.log(response.email)
