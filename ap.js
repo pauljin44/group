@@ -18,7 +18,6 @@
       // Logged into your app and Facebook.
       console.log("return from login");
       console.log(response);
-      testAPI();
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
       document.getElementById('status').innerHTML = 'Please log ' +
@@ -28,6 +27,20 @@
       // they are logged into this app or not.
       document.getElementById('status').innerHTML = 'Please log ' +
         'into Facebook.';
+
+        FB.login(function(response) {
+                    if (response.authResponse) {
+                        console.log(response);
+                        // var uid = response.authResponse.userID;
+                        // var accessToken = response.authResponse.accessToken;
+                        // getPermissions(uid);
+                        // getUserAlbums(uid);
+                        // getUserUploads(uid);
+                    } else {
+                        console.log('User cancelled login or did not fully authorize.');
+                    }
+                }, {scope: 'public_profile,email'});
+
     }
   }
 
