@@ -71,10 +71,6 @@ FB.getLoginStatus(function(response) {
   else {
         console.log('Not Logged in.');
 
-    FB.login(function(response){
-                console.log("in response")
-            console.log(response);
-            }, {scope: 'email'});
   }
 });
 
@@ -104,6 +100,7 @@ FB.getLoginStatus(function(response) {
     // {scope:'email'}
     // );
 
+console.log("in testAPI");
 
             FB.login(function(response){
                 console.log("in response")
