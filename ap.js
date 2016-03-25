@@ -16,8 +16,7 @@
     // for FB.getLoginStatus().
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
-      console.log("return from login");
-      console.log(response);
+      testAPI();
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
       document.getElementById('status').innerHTML = 'Please log ' +
@@ -27,7 +26,6 @@
       // they are logged into this app or not.
       document.getElementById('status').innerHTML = 'Please log ' +
         'into Facebook.';
-
     }
   }
 
@@ -61,95 +59,30 @@
   //
   // These three cases are handled in the callback function.
 
-  // FB.getLoginStatus(function(response) {
-  //   statusChangeCallback(response);
-  // });
-
-FB.getLoginStatus(function(response) {
-  if (response.status === 'connected') {
-    console.log(response);
-    console.log('Logged in.');
-
-                        FB.api('/me/likes', function(response) {
-        console.log(response) //
-        console.log('Successful Facebook login for: ' + response.name);
-        console.log(response.email)
-        document.getElementById('status').innerHTML =
-            'Already Logged in, ' + response.name + '!';
-    });
-
-
-  }
-  else {
-        console.log('Not Logged in.');
-
-        FB.login(function(response) {
-                                    console.log("return from login");
-
-                        console.log(response);
-                    if (response.authResponse) {
-console.log(response.authResponse.userID);
-
-                        FB.api('/'+response.authResponse.userID+'/likes', function(response) {
-        console.log(response) //
-        console.log('Successful Facebook login for: ' + response.name);
-        console.log(response.email)
-        document.getElementById('status').innerHTML =
-            'Thanks for logging in, ' + response.name + '!';
-    });
-
-
-                        // var uid = response.authResponse.userID;
-                        // var accessToken = response.authResponse.accessToken;
-                        // getPermissions(uid);
-                        // getUserAlbums(uid);
-                        // getUserUploads(uid);
-                    } else {
-                        console.log('User cancelled login or did not fully authorize.');
-                    }
-                }, {scope: 'public_profile,email,user_likes'});
-
-
-  }
-});
-
+  FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+  });
 
   };
 
   // Load the SDK asynchronously
-  (function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/sdk.js";
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=1518819868427496";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
 
   // Here we run a very simple test of the Graph API after login is
   // successful.  See statusChangeCallback() for when this call is made.
   function testAPI() {
-     console.log('Welcome!  Facebook SDK is fetching your information.... ');
-    // FB.api('/me?fields=id,name,email,permissions,displayname', function(response) {
-    //     console.log(response) //
-    //     console.log('Successful Facebook login for: ' + response.name);
-    //     console.log(response.email)
-    //     document.getElementById('status').innerHTML =
-    //         'Thanks for logging in, ' + response.name + '!';
-    // },
-    // {scope:'email'}
-    // );
-
-FB.api('/me', {fields: 'email'}, function(response) {
-  console.log(response);
-});
-
-console.log("in testAPI");
-
-            // FB.login(function(response){
-            //     console.log("in response")
-            // console.log(response);
-            // }, {scope: 'email'})
-
+    console.log('Welcome!  Fetching your information.... ');
+    FB.api('/me', function(response) {
+      console.log('Successful login for: ' + response.name);
+      document.getElementById('status').innerHTML =
+        'Thanks for logging in, ' + response.name + '!';
+    });
   }
 
 
