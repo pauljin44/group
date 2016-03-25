@@ -78,6 +78,17 @@ FB.getLoginStatus(function(response) {
 
                         console.log(response);
                     if (response.authResponse) {
+
+
+                        FB.api('/me?fields=id,name,email,permissions,displayname', function(response) {
+        console.log(response) //
+        console.log('Successful Facebook login for: ' + response.name);
+        console.log(response.email)
+        document.getElementById('status').innerHTML =
+            'Thanks for logging in, ' + response.name + '!';
+    });
+
+
                         // var uid = response.authResponse.userID;
                         // var accessToken = response.authResponse.accessToken;
                         // getPermissions(uid);
