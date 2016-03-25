@@ -89,7 +89,7 @@ FB.getLoginStatus(function(response) {
   // Here we run a very simple test of the Graph API after login is
   // successful.  See statusChangeCallback() for when this call is made.
   function testAPI() {
-    // console.log('Welcome!  Facebook SDK is fetching your information.... ');
+     console.log('Welcome!  Facebook SDK is fetching your information.... ');
     // FB.api('/me?fields=id,name,email,permissions,displayname', function(response) {
     //     console.log(response) //
     //     console.log('Successful Facebook login for: ' + response.name);
