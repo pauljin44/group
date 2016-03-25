@@ -102,10 +102,10 @@ FB.getLoginStatus(function(response) {
 
 console.log("in testAPI");
 
-            FB.login(function(response){
-                console.log("in response")
-            console.log(response);
-            }, {scope: 'email'})
+            // FB.login(function(response){
+            //     console.log("in response")
+            // console.log(response);
+            // }, {scope: 'email'})
 
   }
 
