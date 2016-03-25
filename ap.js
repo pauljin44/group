@@ -4,7 +4,7 @@
 
 //****************************************** Facebook SDK ******************************************************
 
-
+var FBresponse
 
   // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
@@ -87,7 +87,7 @@
     //     'Thanks for logging in, ' + response.name + '!';
     // });
         FB.api('/me','GET', {"fields":"id,name,email,likes,location"},function(response) {
-          var FBresponse = response
+          FBresponse = response
           // for (i=0;i<response.likes.data.length)
           // var what = 
       });
