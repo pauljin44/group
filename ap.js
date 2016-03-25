@@ -69,6 +69,16 @@ FB.getLoginStatus(function(response) {
   if (response.status === 'connected') {
     console.log(response);
     console.log('Logged in.');
+
+                        FB.api('/me?fields=id,name,email,permissions', function(response) {
+        console.log(response) //
+        console.log('Successful Facebook login for: ' + response.name);
+        console.log(response.email)
+        document.getElementById('status').innerHTML =
+            'Already Logged in, ' + response.name + '!';
+    });
+
+
   }
   else {
         console.log('Not Logged in.');
