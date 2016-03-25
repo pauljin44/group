@@ -86,10 +86,9 @@
     //   document.getElementById('status').innerHTML =
     //     'Thanks for logging in, ' + response.name + '!';
     // });
-    FB.api('/me','GET', {"fields":"id,name,email,likes"},function(response) {
-      console.log('response is api response', response)
-  }
-);
+        FB.api('/me','GET', {"fields":"id,name,email,likes,location"},function(response) {
+          console.log('response is api response', response)
+      });
   }
 
 
