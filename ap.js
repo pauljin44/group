@@ -60,6 +60,9 @@
   // These three cases are handled in the callback function.
 
   FB.getLoginStatus(function(response) {
+      if (response.status === 'connected') {
+        var accessToken = response.authResponse.accessToken;
+  } 
     statusChangeCallback(response);
   });
 
