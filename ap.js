@@ -69,7 +69,12 @@ FB.getLoginStatus(function(response) {
     console.log('Logged in.');
   }
   else {
-    FB.login();
+        console.log('Not Logged in.');
+
+    FB.login(function(response){
+                console.log("in response")
+            console.log(response);
+            }, {scope: 'email'});
   }
 });
 
