@@ -98,8 +98,7 @@ var FBresponse;
             }
            var count = 0;
                 for (j=0;j<what.length;j++){
-                    FBwhat = what[i];
-                    FBYelpwhat = FBwhat[j];
+                    FBwhat = what[j][j];
                     FBwhere = where[0];
                     runYelpOnce();
                     console.log(count);
@@ -190,7 +189,7 @@ function runYelpOnce() {
         };
 
         parameters = [];
-        parameters.push(['term', FBYelpwhat]);
+        parameters.push(['term', FBwhat]);
         parameters.push(['location', FBwhere]);
         parameters.push(['callback', 'cb']);
         parameters.push(['oauth_consumer_key', auth.consumerKey]);
@@ -225,7 +224,7 @@ function runYelpOnce() {
             console.log(data);
 
 
-        $("body").append("<h1>The best "+FBYelpwhat+" spots are listed below: </h1>");
+        $("body").append("<h1>The best "+FBwhat+" spots are listed below: </h1>");
         $("body").append("<h1>");
         $("body").append(FBwhere);
         $("body").append("<\h1>");
