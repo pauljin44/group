@@ -96,15 +96,18 @@ var FBresponse
           
           } 
           where.push(response.location.name)
-          for (j=0;j<what.length;j++){
-            what = what[j]
-            where = where
-            runYelpOnce();
-          }
+          checkLikes();
+          
       });
   }
 
-
+function checkLikes() {
+        for (j=0;j<what.length;j++){
+            what = what[j]
+            where = where
+            runYelpOnce();
+        }
+}
 
 
 
