@@ -87,9 +87,9 @@ var FBresponse
     //     'Thanks for logging in, ' + response.name + '!';
     // });
         FB.api('/me','GET', {"fields":"id,name,email,likes,location"},function(response) {
-          FBresponse = response
-          for (i=0;i<20; i++)
-          var what = 
+          // FBresponse = response
+          // for (i=0;i<20; i++)
+          // var what = 
       });
   }
 
