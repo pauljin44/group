@@ -119,48 +119,7 @@ var FBresponse;
 
 
 
-//***************************** firebase facebook user auth ******************************************
 
-
-            // Create a callback which logs the current auth state
-// function authDataCallback(authData) {
-//   if (authData) {
-//     console.log("User " + authData.uid + " is logged into Facebook with Firebase with " + authData.provider);
-//     var ref = new Firebase("https://sizzling-heat-1076.firebaseio.com");
-//     user = {
-//        id: authData.uid, 
-//        provider: authData.provider
-//     }
-//     ref.push(user)
-//   } else {
-//     console.log("User is logged out of Facebook with Firebase");
-//   }
-// }
-
-// // Register the callback to be fired every time auth state changes
-// var ref = new Firebase("https://sizzling-heat-1076.firebaseio.com/");
-// ref.onAuth(authDataCallback);
-
-// $(function() {
-//     $('#fbLogin').click(function(){
-//         // debugger;
-
-//         var ref = new Firebase("https://sizzling-heat-1076.firebaseio.com");
-//         // prefer pop-ups, so we don't navigate away from the page
-//             ref.authWithOAuthPopup("facebook", function(error, authData) {
-//               if (error) {
-//                 if (error.code === "TRANSPORT_UNAVAILABLE") {
-//                   // fall-back to browser redirects, and pick up the session
-//                   // automatically when we come back to the origin page
-//                   ref.authWithOAuthRedirect("facebook", function(error) { /* ... */ });
-//                 }
-//               } else if (authData) {
-//                 // user authenticated with Firebase
-//               }
-//             });
-
-//     });
-// });
 
 
 //****************************************** Yelp ******************************************************       
@@ -224,7 +183,7 @@ function runYelpOnce() {
             console.log(data);
 
 
-        $("body").append("<h1>The best "+FBwhat+" spots are listed below: </h1>");
+        $("body").append("<h1>The best spots based on your likes are below are listed below: </h1>");
         $("body").append("<h1>");
         $("body").append(FBwhere);
         $("body").append("<\h1>");
