@@ -94,19 +94,19 @@ var FBresponse
           what.push(response.likes.data[i].name)
           where.push(response.location.name)
           // where.push(response)
-
+                for (j=0;j<what.length;j++){
+                    what = what[j]
+                    where = where
+                    runYelpOnce();
+                }
           } 
-          checkLikes()
+          // checkLikes()
           
       });
   }
 
 function checkLikes() {
-        for (j=0;j<what.length;j++){
-            what = what[j]
-            where = where
-            runYelpOnce();
-        }
+
 }
 
 
