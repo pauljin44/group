@@ -95,7 +95,7 @@ var FBresponse
           where.push(response.location.name)
           // where.push(response)
                 for (j=0;j<what.length;j++){
-                    FBwhat = what.j
+                    FBwhat = what[j]
                     FBwhere = where
                     runYelpOnce();
                 }
