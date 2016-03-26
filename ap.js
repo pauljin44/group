@@ -143,10 +143,11 @@ var FBresponse
 
 
 //****************************************** Yelp ******************************************************       
-var what
-var when
-var runYelp = function() {
 
+var runYelp = function() {
+    
+    var what = $('#what').val()
+    var where = $('#where').val()
     var auth = {
   //
   // Update with your auth tokens.
@@ -230,12 +231,6 @@ var runYelp = function() {
 };
 
 $('#submit').on('click', function(){
-    
-    var what = "term=" + $(this).text()
-    var where = 'location=' + $(this).text()
-    
-    what = $('#what').val()
-    where = $('#where').val()
     
     runYelp()
 
