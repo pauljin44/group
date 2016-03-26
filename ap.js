@@ -90,11 +90,10 @@ var FBresponse
     //     'Thanks for logging in, ' + response.name + '!';
     // });
         FB.api('/me','GET', {"fields":"id,name,email,likes,location"},function(response) {
-          FBresponse = response
           for (i=0;i<20; i++){
-          FBwhat.push(FBresponse.likes.data[i].name)
-
-          console.log(FBwhat)
+          what.push(response.likes.data[i].name)
+          where.push(response.)
+          console.log(response)
 
           } 
       });
