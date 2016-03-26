@@ -91,7 +91,7 @@ var FBresponse
     // });
         FB.api('/me','GET', {"fields":"id,name,email,likes,location"},function(response) {
           for (i=0;i<20; i++){
-          what.push({i:response.likes.data[i].name})
+          what.push({[i]:response.likes.data[i].name})
           // where.push(response)
           
           } 
