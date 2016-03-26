@@ -143,7 +143,8 @@ var FBresponse
 
 
 //****************************************** Yelp ******************************************************       
-
+var what
+var when
 var runYelp = function() {
 
     var auth = {
