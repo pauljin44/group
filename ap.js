@@ -177,7 +177,7 @@ function runYelpOnce() {
             }
         };
 
-
+        var yelpOnceLimit = 1
 
         var accessor = {
           consumerSecret: auth.consumerSecret,
@@ -192,6 +192,7 @@ function runYelpOnce() {
         parameters.push(['oauth_consumer_secret', auth.consumerSecret]);
         parameters.push(['oauth_token', auth.accessToken]);
         parameters.push(['oauth_signature_method', 'HMAC-SHA1']);
+        parameters.push(['limit', yelpOnceLimit ])
 
         var message = {
           'action': 'https://api.yelp.com/v2/search',
