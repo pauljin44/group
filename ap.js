@@ -101,10 +101,11 @@ var FBresponse;
                     FBYelpwhat = FBwhat[j];
                     FBwhere = where[0];
                     runYelpOnce();
+                    console.log(count);
+                    count++;
                 }
            
-            console.log(count);
-            count++;
+
           } 
           // console.log(response)
           
