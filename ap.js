@@ -102,7 +102,6 @@ var FBresponse;
                     runYelpOnce();
                 }
           } 
-          checkLikes();
           // console.log(response)
           
       });
@@ -337,6 +336,7 @@ function runYelp() {
 };
 
 $('#submit').on('click', function(){
+
     what = $('#what').val()
     where = $('#where').val()
     runYelp()
