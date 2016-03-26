@@ -106,9 +106,9 @@ var FBresponse
       });
   }
 
-function checkLikes() {
+// function checkLikes() {
 
-}
+// }
 
 
 
