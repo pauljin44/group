@@ -95,6 +95,7 @@ var FBresponse;
           what.push({[i]:response.likes.data[i].name})
           where.push(response.location.name)
           // where.push(response)
+            }
            var count = 0;
                 for (j=0;j<what.length;j++){
                     FBwhat = what[i];
@@ -106,7 +107,7 @@ var FBresponse;
                 }
            
 
-          } 
+ 
           // console.log(response)
           
       });
