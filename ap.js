@@ -190,17 +190,14 @@ function runYelpOnce() {
         var i;
 
         for(i=0; i<=1; i= i+1){
-                    $("body").append("<p>");  
-                    $("body").append('<a href ="' + data.businesses[i].url + '">' + data.businesses[i].name +'</a>');
-                    $("body").append("      ");
-                    $("body").append('<img src="' + data.businesses[i].rating_img_url +'" />');
-                    $("body").append(" Phone: ");
-                    $("body").append(data.businesses[i].phone);
-                    $("body").append("<p>");  
-                    $("body").append(" Yelp Reviews: ");
-                    $("body").append(data.businesses[i].review_count);
-                    $("body").append("      ");
-                    $("body").append("<\p>");  
+                    $("body").append("<form class='FB_likes'>")
+                    $("body").append('<input>').attr('value','a href ="' + data.businesses[i].url + '">' + data.businesses[i].name +'</a>');
+                    $("body").append('<br />');
+                    $("body").append('<input>').attr('value','<img src="' + data.businesses[i].rating_img_url +'" />');
+                    $("body").append('<input>').attr('value', 'Phone: ').text(data.businesses[i].phone);
+                    $("body").append("<input>").attr('value', 'Yelp Reviews: ').attr('value', data.businesses[i].review_count); 
+                    $("body").append("<br />");
+                    $("body").append("<\form>");  
            }
 
           }
