@@ -4,10 +4,10 @@
 
 //****************************************** Facebook SDK ******************************************************
 var FBwhat = []
-var FBYelpwhat
+var FBYelpwhat;
 var what = []
 var where = []
-var FBresponse
+var FBresponse;
 
   // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
