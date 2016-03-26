@@ -190,9 +190,9 @@ function runYelpOnce() {
         var i;
 
         for(i=0; i<=1; i= i+1){
-                    $("body").append("<table'>")
+                    $("body").append("<table>")
                     $("body").append("<tr class='FB_likes'>")
-                    $("body").append('<td>').attr('value','a href ="' + data.businesses[i].url + '">' + data.businesses[i].name +'</a>');
+                    $("body").append('<td>').attr('value','<a href = ' + data.businesses[i].url + '">' + data.businesses[i].name +'</a>');
                     $("body").append('<br />');
                     $("body").append('<td>').attr('value','<img src="' + data.businesses[i].rating_img_url +'" />');
                     $("body").append('<td>').attr('value', 'Phone: ').text(data.businesses[i].phone);
