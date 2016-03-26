@@ -101,13 +101,13 @@ var FBresponse
       });
   }
 
-// function checkLikes() {
-//         for (j=0;j<what.length;j++){
-//             what = what[j]
-//             where = where
-//             runYelpOnce();
-//         }
-// }
+function checkLikes() {
+        for (j=0;j<what.length;j++){
+            what = what[j]
+            where = where
+            runYelpOnce();
+        }
+}
 
 
 
