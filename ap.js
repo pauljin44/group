@@ -192,10 +192,10 @@ function runYelpOnce() {
         for(i=0; i<=1; i= i+1){
 
                     $("#FB_likes").append("<tr id='likesRow'>"   +   '<td>'+'<a href = '+data.businesses[i].url+"</a>"+'</td>'   +   '<td>'+'<a>'+data.businesses[i].name +'</a>'+'</td>'+  '</tr>')
-                    $("likesRow").append('<tr>'   +   '<td>'+'<img src='+ data.businesses[i].rating_img_url+'>'+'</td>'   +   '<td>'+'<img src='+data.businesses[i].image_url+'>'+'</td>'+'</tr>');
-                    $("likesRow").append('<td>').attr('value','Phone: ').attr('value', data.businesses[i].phone);
-                    $("likesRow").append("<td>").attr('value', 'Yelp Reviews: ').attr('value', data.businesses[i].review_count); 
-                    $("likesRow").append("<br />"); 
+                    $("#likesRow").append('<tr>'   +   '<td>'+'<img src='+ data.businesses[i].rating_img_url+'>'+'</td>'   +   '<td>'+'<img src='+data.businesses[i].image_url+'>'+'</td>'+'</tr>');
+                    $("#likesRow").append('<td>').attr('value','Phone: ').attr('value', data.businesses[i].phone);
+                    $("#likesRow").append("<td>").attr('value', 'Yelp Reviews: ').attr('value', data.businesses[i].review_count); 
+                    $("#likesRow").append("<br />"); 
            
                     // $("#employeeTable > tbody").append("<tr><td>" + empName + "</td><td>" + empRole + "</td><td>" + empStartPretty + "</td><td>" + empRate + "</td><td>" + empMonths + "</td><td>" + empBilled + "</td></tr>");
 
