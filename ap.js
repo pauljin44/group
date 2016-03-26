@@ -90,6 +90,7 @@ var FBresponse
           FBresponse = response
           for (i=0;i<20; i++)
           var FBwhat = FBresponse.likes.data[i].name
+            console.log(FBresponse)
           console.log(FBwhat) 
       });
   }
