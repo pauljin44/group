@@ -96,7 +96,7 @@ var FBresponse
           
           } 
           where.push(response.location.name)
-          checkLikes()
+          // checkLikes()
           
       });
   }
