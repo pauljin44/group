@@ -96,13 +96,13 @@ var FBresponse;
           where.push(response.location.name)
           // where.push(response)
                 for (j=0;j<what.length;j++){
-                    FBwhat = what[i]
-                    FBYelpwhat = FBwhat.j
-                    FBwhere = where
+                    FBwhat = what[i];
+                    FBYelpwhat = FBwhat.j;
+                    FBwhere = where;
                     runYelpOnce();
                 }
           } 
-          checkLikes()
+          checkLikes();
           // console.log(response)
           
       });
