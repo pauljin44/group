@@ -88,8 +88,8 @@ var FBresponse
     // });
         FB.api('/me','GET', {"fields":"id,name,email,likes,location"},function(response) {
           FBresponse = response
-          // for (i=0;i<response.likes.data.length)
-          // var what = 
+          for (i=0;i<response.likes.data.length; i++)
+          var what = 
       });
   }
 
@@ -144,8 +144,15 @@ var FBresponse
 
 //****************************************** Yelp ******************************************************       
 
-var runYelp = function() {
-
+// var runYelp = function() {
+$('#submit').on('click', function(){
+    
+    var what = "term=" + $(this).text()
+    var where = 'location=' + $(this).text()
+    
+    what = $('#what').val()
+    where = $('#where').val()
+   
     var auth = {
   //
   // Update with your auth tokens.
@@ -226,17 +233,11 @@ var runYelp = function() {
     })
 
 
-};
+// };
 
-$('#submit').on('click', function(){
+
     
-    var what = "term=" + $(this).text()
-    var where = 'location=' + $(this).text()
-    
-    what = $('#what').val()
-    where = $('#where').val()
-    
-    runYelp()
+    // runYelp()
 
 });
 
