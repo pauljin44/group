@@ -3,7 +3,9 @@
 
 
 //****************************************** Facebook SDK ******************************************************
- var FBwhat = []
+var FBwhat = []
+var what = $('#what').val()
+var where = $('#where').val()
 var FBresponse
 
   // This is called with the results from from FB.getLoginStatus().
@@ -152,8 +154,7 @@ var FBresponse
 
 
 var runYelp = function() {
-    var what = $('#what').val()
-    var where = $('#where').val()
+
     
 
     var auth = {
