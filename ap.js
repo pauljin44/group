@@ -193,7 +193,7 @@ function runYelpOnce() {
         parameters.push(['oauth_token', auth.accessToken]);
         parameters.push(['oauth_signature_method', 'HMAC-SHA1']);
         parameters.push(['limit', yelpOnceLimit]);
-        console.log(parameters)
+
 
         var message = {
           'action': 'https://api.yelp.com/v2/search',
