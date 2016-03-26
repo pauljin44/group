@@ -105,7 +105,7 @@ var FBresponse
       // });
 
         console.log(response);
-  }
+  });
 
 function checkLikes() {
 
