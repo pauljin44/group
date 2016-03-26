@@ -90,7 +90,7 @@ var FBresponse
         FB.api('/me','GET', {"fields":"id,name,email,likes,location"},function(response) {
           FBresponse = response
           for (i=0;i<20; i++){
-          FBwhat = FBresponse.likes.data[i].name
+          FBwhat.push(FBresponse.likes.data[i].name)
 
           console.log(FBwhat)
 
