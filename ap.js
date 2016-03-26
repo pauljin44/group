@@ -4,7 +4,7 @@
 
 //****************************************** Facebook SDK ******************************************************
 
-
+var FBresponse
 
   // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
@@ -87,7 +87,9 @@
     //     'Thanks for logging in, ' + response.name + '!';
     // });
         FB.api('/me','GET', {"fields":"id,name,email,likes,location"},function(response) {
-          console.log('response is api response', response)
+          FBresponse = response
+          for (i=0;i<response.likes.data.length; i++)
+          var what = 
       });
   }
 
@@ -142,16 +144,7 @@
 
 //****************************************** Yelp ******************************************************       
 
-$('#submit').on('click', function(){
-    
-    var what = "term=" + $(this).text()
-    var where = 'location=' + $(this).text()
-    
-    what = $('#what').val()
-    where = $('#where').val()
-    
-
-
+var runYelp = function() {
 
     var auth = {
   //
@@ -232,6 +225,18 @@ $('#submit').on('click', function(){
       }
     })
 
+
+};
+
+$('#submit').on('click', function(){
+    
+    var what = "term=" + $(this).text()
+    var where = 'location=' + $(this).text()
+    
+    what = $('#what').val()
+    where = $('#where').val()
+    
+    runYelp()
 
 });
 
