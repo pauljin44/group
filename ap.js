@@ -88,10 +88,11 @@ var FBresponse
     // });
         FB.api('/me','GET', {"fields":"id,name,email,likes,location"},function(response) {
           FBresponse = response
-          for (i=0;i<20; i++)
+          for (i=0;i<20; i++){
           var FBwhat = FBresponse.likes.data[i].name
-            console.log(FBresponse)
-          console.log(FBwhat) 
+
+          console.log(FBwhat)
+          } 
       });
   }
 
