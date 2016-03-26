@@ -101,7 +101,7 @@ var FBresponse;
                     FBwhere = where[0];
                     runYelpOnce();
                 }
-            var count;
+            var count = 0;
             console.log(count)
             count++
           } 
