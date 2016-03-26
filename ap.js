@@ -4,8 +4,8 @@
 
 //****************************************** Facebook SDK ******************************************************
 var FBwhat = []
-var what
-var where
+var what = []
+var where = []
 var FBresponse
 
   // This is called with the results from from FB.getLoginStatus().
@@ -91,7 +91,7 @@ var FBresponse
     // });
         FB.api('/me','GET', {"fields":"id,name,email,likes,location"},function(response) {
           for (i=0;i<20; i++){
-          what.push(response.likes.data[i].name)
+          console.log(response.likes.data[i].name)
           // where.push(response)
           console.log(response.location)
 
