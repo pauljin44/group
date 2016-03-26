@@ -183,7 +183,7 @@ function runYelpOnce() {
             console.log(data);
 
 
-        $("body").append("<h1>The best spots based on your likes are below are listed below: </h1>");
+        // $("body").append("<h1>The best spots based on your likes are below are listed below: </h1>");
         $("body").append("<h1>");
         $("body").append(FBwhere);
         $("body").append("<\h1>");
