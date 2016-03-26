@@ -4,6 +4,7 @@
 
 //****************************************** Facebook SDK ******************************************************
 var FBwhat = []
+var FBYelpwhat
 var what = []
 var where = []
 var FBresponse
@@ -96,7 +97,7 @@ var FBresponse
           // where.push(response)
                 for (j=0;j<what.length;j++){
                     FBwhat = what[i]
-                    FBwhat = FBwhat.j
+                    FBYelpwhat = FBwhat.j
                     FBwhere = where
                     runYelpOnce();
                 }
@@ -184,7 +185,7 @@ function runYelpOnce() {
         };
 
         parameters = [];
-        parameters.push(['term', FBwhat]);
+        parameters.push(['term', FBYelpwhat]);
         parameters.push(['location', FBwhere]);
         parameters.push(['callback', 'cb']);
         parameters.push(['oauth_consumer_key', auth.consumerKey]);
@@ -217,7 +218,7 @@ function runYelpOnce() {
             console.log(data);
 
 
-        $("body").append("<h1>The best "+FBwhat+" spots are listed below: </h1>");
+        $("body").append("<h1>The best "+FBYelpwhat+" spots are listed below: </h1>");
         $("body").append("<h1>");
         $("body").append(FBwhere);
         $("body").append("<\h1>");
