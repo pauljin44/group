@@ -153,7 +153,7 @@ var FBresponse
 
 
 
-var runYelp = function() {
+function runYelp() {
 
     
 
