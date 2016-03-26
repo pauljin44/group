@@ -87,9 +87,10 @@ var FBresponse
     //     'Thanks for logging in, ' + response.name + '!';
     // });
         FB.api('/me','GET', {"fields":"id,name,email,likes,location"},function(response) {
-          // FBresponse = response
-          // for (i=0;i<20; i++)
-          // var what = 
+          FBresponse = response
+          for (i=0;i<20; i++)
+          var FBwhat = FBresponse.likes.data[i].name
+          console.log(FBwhat) 
       });
   }
 
@@ -144,10 +145,11 @@ var FBresponse
 
 //****************************************** Yelp ******************************************************       
 
-var what = $('#what').val()
-var where = $('#where').val()
+
 
 var runYelp = function() {
+    var what = $('#what').val()
+    var where = $('#where').val()
     
 
     var auth = {
