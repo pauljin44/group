@@ -190,15 +190,14 @@ function runYelpOnce() {
         var i;
 
         for(i=0; i<=1; i= i+1){
-                    $("body").append("<table>")
-                    $("body").append("<tr class='FB_likes'>")
-                    $("body").append('<td>').attr('value','<a href = ' + data.businesses[i].url + '">' + data.businesses[i].name +'</a>');
-                    $("body").append('<br />');
-                    $("body").append('<td>').attr('value','<img src="' + data.businesses[i].rating_img_url +'" />');
-                    $("body").append('<td>').attr('value', 'Phone: ').text(data.businesses[i].phone);
-                    $("body").append("<td>").attr('value', 'Yelp Reviews: ').attr('value', data.businesses[i].review_count); 
-                    $("body").append("<br />");
-                    $("body").append("<\table>");  
+
+                    $("#FB_likes").append("<tr id='likesRow'>")
+                    $("likesRow").append('<td>').attr('value','<a href = ' + data.businesses[i].url + '">' + data.businesses[i].name +'</a>');
+                    $("likesRow").append('<br />');
+                    $("likesRow").append('<td>').attr('value','<img src="' + data.businesses[i].rating_img_url +'" />');
+                    $("likesRow").append('<td>').attr('value', 'Phone: ').attr('value', data.businesses[i].phone);
+                    $("likesRow").append("<td>").attr('value', 'Yelp Reviews: ').attr('value', data.businesses[i].review_count); 
+                    $("likesRow").append("<br />"); 
            }
 
           }
