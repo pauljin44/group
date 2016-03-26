@@ -88,8 +88,8 @@ var FBresponse
     // });
         FB.api('/me','GET', {"fields":"id,name,email,likes,location"},function(response) {
           FBresponse = response
-          for (i=0;i<response.likes.data.length; i++)
-          var what = 
+          // for (i=0;i<response.likes.data.length; i++)
+          // var what = 
       });
   }
 
