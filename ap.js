@@ -221,7 +221,7 @@ function runYelpOnce() {
         $("body").append("<\h1>");
         var i;
 
-        for(i=0; i<=1; i= i+1){
+        for(i=0; i<=9; i= i+1){
                     $("body").append("<p>");  
                     $("body").append('<a href ="' + data.businesses[i].url + '">' + data.businesses[i].name +'</a>');
                     $("body").append("      ");
