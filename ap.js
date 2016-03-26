@@ -94,9 +94,9 @@ var FBresponse
           what.push(response.likes.data[i].name)
           where.push(response.location.name)
           // where.push(response)
-          checkLikes()
+
           } 
-          
+          checkLikes()
           
       });
   }
