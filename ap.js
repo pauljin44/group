@@ -78,10 +78,13 @@ var userLikes = []
 				FB.api('/me','GET', {"fields":"id,name,email,likes,location"},function(response) {
 					console.log('This is FB Graph API response: ', response);
 					
-					for (h=0;h<response.likes.data.length;h++){
+					if (response.likes.data.length != undefined){
+						for (h=0;h<response.likes.data.length;h++){
 						// var userLikes = []
 						 userLikes.push(response.likes.data[h].name)
+						}
 					}
+
 					
 					var facebookUserProfile = {
 						userID: response.id,
