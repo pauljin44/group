@@ -78,10 +78,11 @@ var userLikes = []
 					console.log('This is FB Graph API response: ', response);
 					
 					var facebookUserProfile = {
-						userID: response.id,
-						userName: response.name,
-						userEmail: response.email,
-
+						response.name = {
+							userID: response.id,
+							userName: response.name,
+							userEmail: response.email
+						}
 					}
 
 					var newFirebaseUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users");
