@@ -78,7 +78,7 @@ var userLikes = []
 					console.log('This is FB Graph API response: ', response);
 					userName = response.name
 					var facebookUserProfile = {
-						 userName = {
+						 userName :{
 							userID: response.id,
 							userEmail: response.email
 						}
@@ -95,7 +95,7 @@ var userLikes = []
 					if (response.likes.data.length != undefined){
 						for (h=0;h<response.likes.data.length;h++){
 						// var userLikes = []
-						 userLikes.push(response.likes.data[h].name)
+						 userLikes.push(response.likes.data[h].name);
 						}
 					}
 
