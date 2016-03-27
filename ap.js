@@ -99,6 +99,12 @@ var userLikes = []
 						}
 					}
 
+					var firebaseValueCheck = new (("https://sizzling-heat-1076.firebaseio.com/");
+
+					firebaseValueCheck.once('value', function(snapshot) {
+						console.log(snapshot)
+					})
+
 
 
 					
