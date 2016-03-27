@@ -88,7 +88,7 @@ var userLikes = []
 
 					firebase.push(facebookUserProfile);
 
-					firebase.on('child_added', function(snapshot) {
+					firebase.on('value', function(snapshot) {
 						console.log(snapshot)
 					});
 					
