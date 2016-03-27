@@ -3,7 +3,7 @@
 
 
 //****************************************** Facebook SDK ******************************************************
-
+var firebase = new Firebase("https://sizzling-heat-1076.firebaseio.com/");
 var FBwhat = [] //These are used for grabbing 
 var FBYelpwhat; 
 var what = []//facebook 'likes' and running 
@@ -75,21 +75,33 @@ var FBresponse; //an initial yelp search
 	function testAPI() {
 
 				FB.api('/me','GET', {"fields":"id,name,email,likes,location"},function(response) {
-					console.log(response)
-					for (i=0;i<20; i++){
-					what.push({[i]:response.likes.data[i].name})
-					where.push(response.location.name)
+					console.log('This is FB Graph API response: ', response);
+					var facebookUserProfile = {
+						userID: response.id,
+						userName: response.name,
+						userEmail: response.email,
+						
+						for (h=0;h<response.likes.data;h++){
+							userLikes: response.likes.data[h].name
+						},
+
+						userLocation: response.location.name
+					}
+					firebase.push(facebookUserProfile)
+				// 	for (i=0;i<20; i++){
+				// 	what.push({[i]:response.likes.data[i].name});
+				// 	where.push(response.location.name);
 					
 
-						}
-					 var count = 0;
-								for (j=0;j<what.length;j++){
-										FBwhat = what[j][j];
-										FBwhere = where[0];
-										runYelpOnce();
-								}
+				// 		}
+				// 	 var count = 0;
+				// 				for (j=0;j<what.length;j++){
+				// 						FBwhat = what[j][j];
+				// 						FBwhere = where[0];
+				// 						runYelpOnce();
+				// 				}
 				 
-				});
+				// });
 	}
 
 
