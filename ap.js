@@ -79,10 +79,10 @@ var userLikes = []
 
 					var facebookUserProfile = {
 						userID: response.id,
-						userEmail: response.email
+						userEmail: response.email 
 					}
 
-					var newFirebaseUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/"+response.name);
+					var newFirebaseUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+response.name);
 					
 					newFirebaseUser.set(facebookUserProfile);
 
