@@ -11,89 +11,70 @@ var where = []
 var FBresponse; //an initial yelp search 
 
 
-		window.fbAsyncInit = function() {
-	FB.init({
-		appId      : '1518819868427496',
-		cookie     : true,  // enable cookies to allow the server to access 
-												// the session
-		xfbml      : true,  // parse social plugins on this page
-		version    : 'v2.5' // use graph api version 2.5
-	});
+
+	window.fbAsyncInit = function() {
+		
+		FB.init({
+			appId      : '1518819868427496',
+			cookie     : true,  // enable cookies to allow the server to access the session
+													
+			xfbml      : true,  // parse social plugins on this page
+			version    : 'v2.5' // use graph api version 2.5
+		});
+
+			// Load the SDK asynchronously
+		(function(d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) return;
+			js = d.createElement(s); js.id = id;
+			js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=1518819868427496";
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+
+
 
 
 
 	// The response object is returned with a status field that lets the app know the current login status of the person.
 		 
-	function checkLoginState() {
+		function checkLoginState() {
+			FB.getLoginStatus(function(response) {
+				statusChangeCallback(response);
+			});
+		}
+
+
+		function statusChangeCallback(response) {
+			console.log('statusChangeCallback');
+			console.log(response);
+
+			if (response.status === 'connected') {
+				
+				testAPI();
+			} else if (response.status === 'not_authorized') {
+				
+				document.getElementById('status').innerHTML = 'Please log ' +
+					'into this app.';
+			} else {
+
+				document.getElementById('status').innerHTML = 'Please log ' +
+					'into Facebook.';
+			}
+		}
+
 		FB.getLoginStatus(function(response) {
+				if (response.status === 'connected') {
+					var accessToken = response.authResponse.accessToken;
+		} 
 			statusChangeCallback(response);
 		});
-	}
-
-
-	function statusChangeCallback(response) {
-		console.log('statusChangeCallback');
-		console.log(response);
-
-		if (response.status === 'connected') {
-			
-			testAPI();
-		} else if (response.status === 'not_authorized') {
-			
-			document.getElementById('status').innerHTML = 'Please log ' +
-				'into this app.';
-		} else {
-
-			document.getElementById('status').innerHTML = 'Please log ' +
-				'into Facebook.';
-		}
-	}
-
-
-
-
-
-
-	// Now that we've initialized the JavaScript SDK, we call 
-	// FB.getLoginStatus().  This function gets the state of the
-	// person visiting this page and can return one of three states to
-	// the callback you provide.  They can be:
-	//
-	// 1. Logged into your app ('connected')
-	// 2. Logged into Facebook, but not your app ('not_authorized')
-	// 3. Not logged into Facebook and can't tell if they are logged into
-	//    your app or not.
-	//
-	// These three cases are handled in the callback function.
-
-	FB.getLoginStatus(function(response) {
-			if (response.status === 'connected') {
-				var accessToken = response.authResponse.accessToken;
-	} 
-		statusChangeCallback(response);
-	});
 
 	};
 
-	// Load the SDK asynchronously
-(function(d, s, id) {
-	var js, fjs = d.getElementsByTagName(s)[0];
-	if (d.getElementById(id)) return;
-	js = d.createElement(s); js.id = id;
-	js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=1518819868427496";
-	fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
+	
 
-	// Here we run a very simple test of the Graph API after login is
-	// successful.  See statusChangeCallback() for when this call is made.
- 
 	function testAPI() {
-		// console.log('Welcome!  Fetching your information.... ');
-		// FB.api('/me', function(response) {
-		//   console.log('Successful login for: ' + response.name);
-		//   document.getElementById('status').innerHTML =
-		//     'Thanks for logging in, ' + response.name + '!';
-		// });
+
 				FB.api('/me','GET', {"fields":"id,name,email,likes,location"},function(response) {
 					for (i=0;i<20; i++){
 					what.push({[i]:response.likes.data[i].name})
@@ -120,11 +101,9 @@ var FBresponse; //an initial yelp search
 
 //****************************************** Yelp ******************************************************       
 
-function runYelpOnce() {
+function runYelpOnce() { //The function runs one time for every FB 'like'
 						var auth = {
-			//
-			// Update with your auth tokens.
-			//
+
 						consumerKey: "6D8kU6kuztsql0mF5fn1pQ",
 						consumerSecret: "ySNfoa-0ET1HGydX3o8Y7Bk1Cjk",
 						accessToken: "zV2TRcSIOG20IQjyXKOTWt4WKVKjX-c-",
@@ -301,63 +280,5 @@ $('#submit').on('click', function(){
 
 });
 
-//*************************************** foursquare ******************************************************            
-				// var clientId = 'B1I4ZQXNFKNTWZFSJ4R21TOXNAUDZMVZCYWX5QOOY41XAQ5S'
-				// var clientSecret = 'P0EFXQABILXQM5OI4QPZT42BLV0ML12ROKVZIOQWIQ0X5FBV'
-				// var foursquareRedirect = 'https://polar-mesa-92767.herokuapp.com'
-				// var fourSquareAuth = 'https://foursquare.com/oauth2/authenticate?client_id='+clientId+'&response_type=code&redirect_uri='+foursquareRedirect
-				// // debugger;
-				// var code = ''
-				// var thisURL = ''
-				
-
-//****** When button is clicked take clientID, and redirect to get code *************************************        
-//         $('#logFoursquare').on('click', function(){
-//             // debugger;
-//             var fourAuthWin = window.open(fourSquareAuth, '_blank'); 
-						
-//             fourAuthWin;
-//             return 
-//             // code = window.location.href.split('code=')
-//             // code = code[1]            
-//         });
-							 
-//         thisURL = window.location.href //grab URL with code at end
-//         code = thisURL.replace('https://polar-mesa-92767.herokuapp.com/?code=','').replace('#_=_', '') //remove everything but the code
-//         // window.location.href = 'https://polar-mesa-92767.herokuapp.com/'
-
-
-
-//         var getToken = 'https://foursquare.com/oauth2/access_token?client_id='+clientId+'&client_secret='+clientSecret+'&grant_type=authorization_code&redirect_uri='+foursquareRedirect+'&code='+code
-//         var fourSquareAccessToken
-
-// //****************** When you have to code, send it back out to get a token for access ************************       
-				
-//         if (code != 'https://polar-mesa-92767.herokuapp.com/') {
-
-//             $.ajax({
-//                     url: getToken,
-//                     method: 'GET'
-//                 })
-//                 .done(function(response) {
-//                     console.log('this is access token: ', response.access_token)
-//                     fourSquareAccessToken = response.access_token;
-
-//                 });
-//         }
-
-
-
-//         // var queryURL = 'https://api.foursquare.com/v2/venues/search?ll=40.7,-74&'+clientId+'&client_secret='+clientSecret+'&v=20160323'
-
-//         // $.ajax({ 
-//         //         url: queryURL,
-//         //         method: 'GET'
-//         //     })
-//         //     .done(function(response) {
-//         //         // debugger;
-//         //         console.log('response: '+response)
-//         //         var results = response.data
-//         //     });
 
 
