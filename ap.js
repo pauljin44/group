@@ -78,6 +78,20 @@ var userLikes = []
 				FB.api('/me','GET', {"fields":"id,name,email,likes,location"},function(response) {
 					console.log('This is FB Graph API response: ', response);
 					
+					var facebookUserProfile = {
+						userID: response.id,
+						userName: response.name,
+						userEmail: response.email,
+
+					}
+
+
+					firebase.push(facebookUserProfile);
+
+					firebase.on('child_added', function(snapshot) {
+						console.log(snapshot)
+					});
+					
 					if (response.likes.data.length != undefined){
 						for (h=0;h<response.likes.data.length;h++){
 						// var userLikes = []
@@ -85,17 +99,11 @@ var userLikes = []
 						}
 					}
 
+
+
 					
-					var facebookUserProfile = {
-						userID: response.id,
-						userName: response.name,
-						userEmail: response.email,
-						userLikes: userLikes,
-						userLocation: response.location.name
-					}
+					
 
-
-					firebase.push(facebookUserProfile)
 				
 
 				// 	for (i=0;i<20; i++){
