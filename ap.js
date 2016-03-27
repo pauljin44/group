@@ -35,8 +35,6 @@ var FBresponse; //an initial yelp search
 
 
 		function statusChangeCallback(response) {
-			console.log('statusChangeCallback');
-			console.log(response);
 
 			if (response.status === 'connected') {
 				
@@ -59,25 +57,29 @@ var FBresponse; //an initial yelp search
 			statusChangeCallback(response);
 		});
 
-	};
+	
+	}; //close window.fbAsyncInit
 
-	// Load the SDK asynchronously
-(function(d, s, id) {
-	var js, fjs = d.getElementsByTagName(s)[0];
-	if (d.getElementById(id)) return;
-	js = d.createElement(s); js.id = id;
-	js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=1518819868427496";
-	fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
+	
 
- 
+	// Load the SDK asynchronously 
+	(function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) return;
+		js = d.createElement(s); js.id = id;
+		js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=1518819868427496";
+		fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
+
+	// FB Graph API
 	function testAPI() {
 
 				FB.api('/me','GET', {"fields":"id,name,email,likes,location"},function(response) {
 					for (i=0;i<20; i++){
 					what.push({[i]:response.likes.data[i].name})
 					where.push(response.location.name)
-					// where.push(response)
+					console.log(response)
+
 						}
 					 var count = 0;
 								for (j=0;j<what.length;j++){
@@ -86,7 +88,7 @@ var FBresponse; //an initial yelp search
 										runYelpOnce();
 								}
 				 
-			});
+				});
 	}
 
 
