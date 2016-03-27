@@ -72,13 +72,14 @@ var FBresponse; //an initial yelp search
 	}(document, 'script', 'facebook-jssdk'));
 
 	// FB Graph API
+var userLikes = []
 	function testAPI() {
 
 				FB.api('/me','GET', {"fields":"id,name,email,likes,location"},function(response) {
 					console.log('This is FB Graph API response: ', response);
 					
 					for (h=0;h<response.likes.data.length;h++){
-						var userLikes = []
+						// var userLikes = []
 						 userLikes = response.likes.data[h].name
 					}
 					
