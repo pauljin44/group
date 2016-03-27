@@ -86,7 +86,7 @@ var FBresponse; //an initial yelp search
 						userID: response.id,
 						userName: response.name,
 						userEmail: response.email,
-						userLikes: userLikes
+						userLikes: userLikes,
 						userLocation: response.location.name
 					}
 
