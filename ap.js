@@ -75,10 +75,11 @@ var FBresponse; //an initial yelp search
 	function testAPI() {
 
 				FB.api('/me','GET', {"fields":"id,name,email,likes,location"},function(response) {
+					console.log(response)
 					for (i=0;i<20; i++){
 					what.push({[i]:response.likes.data[i].name})
 					where.push(response.location.name)
-					console.log(response)
+					
 
 						}
 					 var count = 0;
@@ -158,10 +159,6 @@ function runYelpOnce() { //The function runs one time for every FB 'like'
 						// console.log(data);
 
 
-				// $("body").append("<h1>The best spots based on your likes are below are listed below: </h1>");
-				// $("body").append("<h1>");
-				// $("body").append(FBwhere);
-				// $("body").append("<\h1>");
 				var i;
 
 				for(i=0; i<=1; i= i+1){
@@ -172,7 +169,7 @@ function runYelpOnce() { //The function runs one time for every FB 'like'
 										$("#likesRow").append("<td>").attr('value', 'Yelp Reviews: ').attr('value', data.businesses[i].review_count); 
 										$("#likesRow").append("<br />"); 
 					 
-										// $("#employeeTable > tbody").append("<tr><td>" + empName + "</td><td>" + empRole + "</td><td>" + empStartPretty + "</td><td>" + empRate + "</td><td>" + empMonths + "</td><td>" + empBilled + "</td></tr>");
+										
 
 					 }
 
