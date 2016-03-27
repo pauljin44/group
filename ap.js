@@ -76,9 +76,9 @@ var userLikes = []
 
 				FB.api('/me','GET', {"fields":"id,name,email,likes,location"},function(response) {
 					console.log('This is FB Graph API response: ', response);
-					userName = response.name
+					var userName = response.name
 					var facebookUserProfile = {
-						 userName :{
+						 userName = {
 							userID: response.id,
 							userEmail: response.email
 						}
