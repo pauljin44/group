@@ -86,9 +86,9 @@ var userLikes = []
 					}
 
 
-					firebase.update(facebookUserProfile);
+					newFirebaseUser.update(facebookUserProfile);
 
-					firebase.on('value', function(snapshot) {
+					newFirebaseUser.on('value', function(snapshot) {
 						console.log(snapshot.val())
 					});
 					
