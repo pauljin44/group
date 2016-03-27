@@ -107,7 +107,8 @@ var FBresponse; //an initial yelp search
 				// 						runYelpOnce();
 				// 				}
 				 
-				// });
+				});
+	
 	}
 
 
