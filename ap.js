@@ -71,7 +71,7 @@ var FBresponse; //an initial yelp search
 	}(document, 'script', 'facebook-jssdk'));
 
 	// FB Graph API
-var userLikes = []
+	var userLikes = []
 	function testAPI() {
 
 				FB.api('/me','GET', {"fields":"id,name,email,likes,location,friendlists{name}"},function(response) {
@@ -102,9 +102,6 @@ var userLikes = []
 
 					firebaseValueCheck.once('value', function(snapshot) {
 						console.log(snapshot.val());
-
-
-						// if (snapshot.val().)
 					})
 
 
@@ -114,18 +111,18 @@ var userLikes = []
 
 				
 
-				// 	for (i=0;i<20; i++){
-				// 	what.push({[i]:response.likes.data[i].name});
-				// 	where.push(response.location.name);
+					for (i=0;i<20; i++){
+					what.push({[i]:response.likes.data[i].name});
+					where.push(response.location.name);
 					
 
-				// 		}
-				// 	 var count = 0;
-				// 				for (j=0;j<what.length;j++){
-				// 						FBwhat = what[j][j];
-				// 						FBwhere = where[0];
-				// 						runYelpOnce();
-				// 				}
+						}
+					 var count = 0;
+								for (j=0;j<what.length;j++){
+										FBwhat = what[j][j];
+										FBwhere = where[0];
+										runYelpOnce();
+								}
 				 
 				});
 	
