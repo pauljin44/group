@@ -76,18 +76,24 @@ var FBresponse; //an initial yelp search
 
 				FB.api('/me','GET', {"fields":"id,name,email,likes,location"},function(response) {
 					console.log('This is FB Graph API response: ', response);
+					
+					for (h=0;h<response.likes.data;h++){
+						var userLikes = []
+						 userLikes = response.likes.data[h].name
+					}
+					
 					var facebookUserProfile = {
 						userID: response.id,
 						userName: response.name,
 						userEmail: response.email,
-						
-						for (h=0;h<response.likes.data;h++){
-							userLikes: response.likes.data[h].name
-						},
-
+						userLikes: userLikes
 						userLocation: response.location.name
 					}
+
+
 					firebase.push(facebookUserProfile)
+				
+
 				// 	for (i=0;i<20; i++){
 				// 	what.push({[i]:response.likes.data[i].name});
 				// 	where.push(response.location.name);
