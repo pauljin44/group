@@ -84,7 +84,7 @@ var userLikes = []
 
 					}
 
-					var newFirebaseUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/user-"+response.name);
+					var newFirebaseUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users");
 					
 					newFirebaseUser.update(facebookUserProfile);
 
@@ -102,7 +102,9 @@ var userLikes = []
 					var firebaseValueCheck = new Firebase("https://sizzling-heat-1076.firebaseio.com/");
 
 					firebaseValueCheck.once('value', function(snapshot) {
-						console.log(snapshot)
+						console.log(snapshot.val());
+
+						// if (snapshot.val().)
 					})
 
 
