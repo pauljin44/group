@@ -3,118 +3,114 @@
 
 
 //****************************************** Facebook SDK ******************************************************
-var FBwhat = []
-var FBYelpwhat;
-var what = []
+
+var FBwhat = [] //These are used for grabbing 
+var FBYelpwhat; 
+var what = []//facebook 'likes' and running 
 var where = []
-var FBresponse;
+var FBresponse; //an initial yelp search 
 
-  // This is called with the results from from FB.getLoginStatus().
-  function statusChangeCallback(response) {
-    console.log('statusChangeCallback');
-    console.log(response);
-    // The response object is returned with a status field that lets the
-    // app know the current login status of the person.
-    // Full docs on the response object can be found in the documentation
-    // for FB.getLoginStatus().
-    if (response.status === 'connected') {
-      // Logged into your app and Facebook.
-      testAPI();
-    } else if (response.status === 'not_authorized') {
-      // The person is logged into Facebook, but not your app.
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'into this app.';
-    } else {
-      // The person is not logged into Facebook, so we're not sure if
-      // they are logged into this app or not.
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'into Facebook.';
-    }
-  }
 
-  // This function is called when someone finishes with the Login
-  // Button.  See the onlogin handler attached to it in the sample
-  // code below.
-  function checkLoginState() {
-    FB.getLoginStatus(function(response) {
-      statusChangeCallback(response);
-    });
-  }
+		window.fbAsyncInit = function() {
+	FB.init({
+		appId      : '1518819868427496',
+		cookie     : true,  // enable cookies to allow the server to access 
+												// the session
+		xfbml      : true,  // parse social plugins on this page
+		version    : 'v2.5' // use graph api version 2.5
+	});
 
-  window.fbAsyncInit = function() {
-  FB.init({
-    appId      : '1518819868427496',
-    cookie     : true,  // enable cookies to allow the server to access 
-                        // the session
-    xfbml      : true,  // parse social plugins on this page
-    version    : 'v2.5' // use graph api version 2.5
-  });
 
-  // Now that we've initialized the JavaScript SDK, we call 
-  // FB.getLoginStatus().  This function gets the state of the
-  // person visiting this page and can return one of three states to
-  // the callback you provide.  They can be:
-  //
-  // 1. Logged into your app ('connected')
-  // 2. Logged into Facebook, but not your app ('not_authorized')
-  // 3. Not logged into Facebook and can't tell if they are logged into
-  //    your app or not.
-  //
-  // These three cases are handled in the callback function.
 
-  FB.getLoginStatus(function(response) {
-      if (response.status === 'connected') {
-        var accessToken = response.authResponse.accessToken;
-  } 
-    statusChangeCallback(response);
-  });
+	// The response object is returned with a status field that lets the app know the current login status of the person.
+		 
+	function checkLoginState() {
+		FB.getLoginStatus(function(response) {
+			statusChangeCallback(response);
+		});
+	}
 
-  };
 
-  // Load the SDK asynchronously
+	function statusChangeCallback(response) {
+		console.log('statusChangeCallback');
+		console.log(response);
+
+		if (response.status === 'connected') {
+			
+			testAPI();
+		} else if (response.status === 'not_authorized') {
+			
+			document.getElementById('status').innerHTML = 'Please log ' +
+				'into this app.';
+		} else {
+
+			document.getElementById('status').innerHTML = 'Please log ' +
+				'into Facebook.';
+		}
+	}
+
+
+
+
+
+
+	// Now that we've initialized the JavaScript SDK, we call 
+	// FB.getLoginStatus().  This function gets the state of the
+	// person visiting this page and can return one of three states to
+	// the callback you provide.  They can be:
+	//
+	// 1. Logged into your app ('connected')
+	// 2. Logged into Facebook, but not your app ('not_authorized')
+	// 3. Not logged into Facebook and can't tell if they are logged into
+	//    your app or not.
+	//
+	// These three cases are handled in the callback function.
+
+	FB.getLoginStatus(function(response) {
+			if (response.status === 'connected') {
+				var accessToken = response.authResponse.accessToken;
+	} 
+		statusChangeCallback(response);
+	});
+
+	};
+
+	// Load the SDK asynchronously
 (function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=1518819868427496";
-  fjs.parentNode.insertBefore(js, fjs);
+	var js, fjs = d.getElementsByTagName(s)[0];
+	if (d.getElementById(id)) return;
+	js = d.createElement(s); js.id = id;
+	js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=1518819868427496";
+	fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 
-  // Here we run a very simple test of the Graph API after login is
-  // successful.  See statusChangeCallback() for when this call is made.
+	// Here we run a very simple test of the Graph API after login is
+	// successful.  See statusChangeCallback() for when this call is made.
  
-  function testAPI() {
-    // console.log('Welcome!  Fetching your information.... ');
-    // FB.api('/me', function(response) {
-    //   console.log('Successful login for: ' + response.name);
-    //   document.getElementById('status').innerHTML =
-    //     'Thanks for logging in, ' + response.name + '!';
-    // });
-        FB.api('/me','GET', {"fields":"id,name,email,likes,location"},function(response) {
-          for (i=0;i<20; i++){
-          what.push({[i]:response.likes.data[i].name})
-          where.push(response.location.name)
-          // where.push(response)
-            }
-           var count = 0;
-                for (j=0;j<what.length;j++){
-                    FBwhat = what[j][j];
-                    FBwhere = where[0];
-                    runYelpOnce();
-                    console.log(count);
-                    count++;
-                }
-           
+	function testAPI() {
+		// console.log('Welcome!  Fetching your information.... ');
+		// FB.api('/me', function(response) {
+		//   console.log('Successful login for: ' + response.name);
+		//   document.getElementById('status').innerHTML =
+		//     'Thanks for logging in, ' + response.name + '!';
+		// });
+				FB.api('/me','GET', {"fields":"id,name,email,likes,location"},function(response) {
+					for (i=0;i<20; i++){
+					what.push({[i]:response.likes.data[i].name})
+					where.push(response.location.name)
+					// where.push(response)
+						}
+					 var count = 0;
+								for (j=0;j<what.length;j++){
+										FBwhat = what[j][j];
+										FBwhere = where[0];
+										runYelpOnce();
+								}
+				 
+			});
+	}
 
- 
-          // console.log(response)
-          
-      });
-  }
 
-// function checkLikes() {
-
-// }
 
 
 
@@ -125,87 +121,87 @@ var FBresponse;
 //****************************************** Yelp ******************************************************       
 
 function runYelpOnce() {
-            var auth = {
-      //
-      // Update with your auth tokens.
-      //
-            consumerKey: "6D8kU6kuztsql0mF5fn1pQ",
-            consumerSecret: "ySNfoa-0ET1HGydX3o8Y7Bk1Cjk",
-            accessToken: "zV2TRcSIOG20IQjyXKOTWt4WKVKjX-c-",
-            // This example is a proof of concept, for how to use the Yelp v2 API with javascript.
-            // You wouldn't actually want to expose your access token secret like this in a real application.
-            accessTokenSecret: "vo_ufN9gSTYcqrUFjLcVfKYjXkM",
-            serviceProvider: {
-                signatureMethod: "HMAC-SHA1"
-            }
-        };
+						var auth = {
+			//
+			// Update with your auth tokens.
+			//
+						consumerKey: "6D8kU6kuztsql0mF5fn1pQ",
+						consumerSecret: "ySNfoa-0ET1HGydX3o8Y7Bk1Cjk",
+						accessToken: "zV2TRcSIOG20IQjyXKOTWt4WKVKjX-c-",
+						// This example is a proof of concept, for how to use the Yelp v2 API with javascript.
+						// You wouldn't actually want to expose your access token secret like this in a real application.
+						accessTokenSecret: "vo_ufN9gSTYcqrUFjLcVfKYjXkM",
+						serviceProvider: {
+								signatureMethod: "HMAC-SHA1"
+						}
+				};
 
-        var yelpOnceLimit = 1
+				var yelpOnceLimit = 1
 
-        var accessor = {
-          consumerSecret: auth.consumerSecret,
-          tokenSecret: auth.accessTokenSecret
-        };
+				var accessor = {
+					consumerSecret: auth.consumerSecret,
+					tokenSecret: auth.accessTokenSecret
+				};
 
-        parameters = [];
-        parameters.push(['term', FBwhat]);
-        parameters.push(['location', FBwhere]);
-        parameters.push(['callback', 'cb']);
-        parameters.push(['oauth_consumer_key', auth.consumerKey]);
-        parameters.push(['oauth_consumer_secret', auth.consumerSecret]);
-        parameters.push(['oauth_token', auth.accessToken]);
-        parameters.push(['oauth_signature_method', 'HMAC-SHA1']);
-        parameters.push(['limit', yelpOnceLimit]);
-
-
-        var message = {
-          'action': 'https://api.yelp.com/v2/search',
-          'method': 'GET',
-          'parameters': parameters
-        };
-
-        OAuth.setTimestampAndNonce(message);
-        OAuth.SignatureMethod.sign(message, accessor);
-
-        var parameterMap = OAuth.getParameterMap(message.parameters);
-        parameterMap.oauth_signature = OAuth.percentEncode(parameterMap.oauth_signature)
-        console.log(parameterMap);
-
-        var bestRestaurant = "Some random restaurant";
-
-        $.ajax({
-          'url': message.action,
-          'data': parameterMap,
-          'cache': true,
-          'dataType': 'jsonp',
-          'jsonpCallback': 'cb',
-          'success': function(data, textStats, XMLHttpRequest) {
-            console.log(data);
+				parameters = [];
+				parameters.push(['term', FBwhat]);
+				parameters.push(['location', FBwhere]);
+				parameters.push(['callback', 'cb']);
+				parameters.push(['oauth_consumer_key', auth.consumerKey]);
+				parameters.push(['oauth_consumer_secret', auth.consumerSecret]);
+				parameters.push(['oauth_token', auth.accessToken]);
+				parameters.push(['oauth_signature_method', 'HMAC-SHA1']);
+				parameters.push(['limit', yelpOnceLimit]);
 
 
-        // $("body").append("<h1>The best spots based on your likes are below are listed below: </h1>");
-        // $("body").append("<h1>");
-        // $("body").append(FBwhere);
-        // $("body").append("<\h1>");
-        var i;
+				var message = {
+					'action': 'https://api.yelp.com/v2/search',
+					'method': 'GET',
+					'parameters': parameters
+				};
 
-        for(i=0; i<=1; i= i+1){
+				OAuth.setTimestampAndNonce(message);
+				OAuth.SignatureMethod.sign(message, accessor);
 
-                    $("#FB_likes").append("<tr class='likesRow'>"   +   '<td>'+'<a href = '+data.businesses[i].url+"</a>"+'</td>'   +   '<td>'+'<a>'+data.businesses[i].name +'</a>'+'</td>'+  '</tr>')
-                    $("#likesRow").append('<tr>'   +   '<td>'+'<img src='+ data.businesses[i].rating_img_url+'>'+'</td>'   +   '<td>'+'<img src='+data.businesses[i].image_url+'>'+'</td>'+'</tr>');
-                    $("#likesRow").append('<td>').attr('value','Phone: ').attr('value', data.businesses[i].phone);
-                    $("#likesRow").append("<td>").attr('value', 'Yelp Reviews: ').attr('value', data.businesses[i].review_count); 
-                    $("#likesRow").append("<br />"); 
-           
-                    // $("#employeeTable > tbody").append("<tr><td>" + empName + "</td><td>" + empRole + "</td><td>" + empStartPretty + "</td><td>" + empRate + "</td><td>" + empMonths + "</td><td>" + empBilled + "</td></tr>");
+				var parameterMap = OAuth.getParameterMap(message.parameters);
+				parameterMap.oauth_signature = OAuth.percentEncode(parameterMap.oauth_signature)
+				console.log(parameterMap);
 
-           }
+				var bestRestaurant = "Some random restaurant";
 
-          }
-        })
+				$.ajax({
+					'url': message.action,
+					'data': parameterMap,
+					'cache': true,
+					'dataType': 'jsonp',
+					'jsonpCallback': 'cb',
+					'success': function(data, textStats, XMLHttpRequest) {
+						console.log(data);
 
 
-    };
+				// $("body").append("<h1>The best spots based on your likes are below are listed below: </h1>");
+				// $("body").append("<h1>");
+				// $("body").append(FBwhere);
+				// $("body").append("<\h1>");
+				var i;
+
+				for(i=0; i<=1; i= i+1){
+
+										$("#FB_likes").append("<tr class='likesRow'>"   +   '<td>'+'<a href = '+data.businesses[i].url+"</a>"+'</td>'   +   '<td>'+'<a>'+data.businesses[i].name +'</a>'+'</td>'+  '</tr>')
+										$("#likesRow").append('<tr>'   +   '<td>'+'<img src='+ data.businesses[i].rating_img_url+'>'+'</td>'   +   '<td>'+'<img src='+data.businesses[i].image_url+'>'+'</td>'+'</tr>');
+										$("#likesRow").append('<td>').attr('value','Phone: ').attr('value', data.businesses[i].phone);
+										$("#likesRow").append("<td>").attr('value', 'Yelp Reviews: ').attr('value', data.businesses[i].review_count); 
+										$("#likesRow").append("<br />"); 
+					 
+										// $("#employeeTable > tbody").append("<tr><td>" + empName + "</td><td>" + empRole + "</td><td>" + empStartPretty + "</td><td>" + empRate + "</td><td>" + empMonths + "</td><td>" + empBilled + "</td></tr>");
+
+					 }
+
+					}
+				})
+
+
+		};
 
 
 
@@ -213,119 +209,119 @@ function runYelpOnce() {
 
 function runYelp() {
 
-    
+		
 
-    var auth = {
-  //
-  // Update with your auth tokens.
-  //
-        consumerKey: "6D8kU6kuztsql0mF5fn1pQ",
-        consumerSecret: "ySNfoa-0ET1HGydX3o8Y7Bk1Cjk",
-        accessToken: "zV2TRcSIOG20IQjyXKOTWt4WKVKjX-c-",
-        // This example is a proof of concept, for how to use the Yelp v2 API with javascript.
-        // You wouldn't actually want to expose your access token secret like this in a real application.
-        accessTokenSecret: "vo_ufN9gSTYcqrUFjLcVfKYjXkM",
-        serviceProvider: {
-            signatureMethod: "HMAC-SHA1"
-        }
-    };
-
-
-
-    var accessor = {
-      consumerSecret: auth.consumerSecret,
-      tokenSecret: auth.accessTokenSecret
-    };
-
-    parameters = [];
-    parameters.push(['term', what]);
-    parameters.push(['location', where]);
-    parameters.push(['callback', 'cb']);
-    parameters.push(['oauth_consumer_key', auth.consumerKey]);
-    parameters.push(['oauth_consumer_secret', auth.consumerSecret]);
-    parameters.push(['oauth_token', auth.accessToken]);
-    parameters.push(['oauth_signature_method', 'HMAC-SHA1']);
-
-    var message = {
-      'action': 'https://api.yelp.com/v2/search',
-      'method': 'GET',
-      'parameters': parameters
-    };
-
-    OAuth.setTimestampAndNonce(message);
-    OAuth.SignatureMethod.sign(message, accessor);
-
-    var parameterMap = OAuth.getParameterMap(message.parameters);
-    parameterMap.oauth_signature = OAuth.percentEncode(parameterMap.oauth_signature)
-    console.log(parameterMap);
-
-    var bestRestaurant = "Some random restaurant";
-
-    $.ajax({
-      'url': message.action,
-      'data': parameterMap,
-      'cache': true,
-      'dataType': 'jsonp',
-      'jsonpCallback': 'cb',
-      'success': function(data, textStats, XMLHttpRequest) {
-        console.log(data);
+		var auth = {
+	//
+	// Update with your auth tokens.
+	//
+				consumerKey: "6D8kU6kuztsql0mF5fn1pQ",
+				consumerSecret: "ySNfoa-0ET1HGydX3o8Y7Bk1Cjk",
+				accessToken: "zV2TRcSIOG20IQjyXKOTWt4WKVKjX-c-",
+				// This example is a proof of concept, for how to use the Yelp v2 API with javascript.
+				// You wouldn't actually want to expose your access token secret like this in a real application.
+				accessTokenSecret: "vo_ufN9gSTYcqrUFjLcVfKYjXkM",
+				serviceProvider: {
+						signatureMethod: "HMAC-SHA1"
+				}
+		};
 
 
-    $("body").append("<h1>The best "+what+" spots are listed below: </h1>");
-    $("body").append("<h1>");
-    $("body").append(where);
-    $("body").append("<\h1>");
-    var i;
 
-    for(i=0; i<=9; i= i+1){
-                $("body").append("<p>");  
-                $("body").append('<a href ="' + data.businesses[i].url + '">' + data.businesses[i].name +'</a>');
-                $("body").append("      ");
-                $("body").append('<img src="' + data.businesses[i].rating_img_url +'" />');
-                $("body").append(" Phone: ");
-                $("body").append(data.businesses[i].phone);
-                $("body").append("<p>");  
-                $("body").append(" Yelp Reviews: ");
-                $("body").append(data.businesses[i].review_count);
-                $("body").append("      ");
-                $("body").append("<\p>");  
-       }
+		var accessor = {
+			consumerSecret: auth.consumerSecret,
+			tokenSecret: auth.accessTokenSecret
+		};
 
-      }
-    })
+		parameters = [];
+		parameters.push(['term', what]);
+		parameters.push(['location', where]);
+		parameters.push(['callback', 'cb']);
+		parameters.push(['oauth_consumer_key', auth.consumerKey]);
+		parameters.push(['oauth_consumer_secret', auth.consumerSecret]);
+		parameters.push(['oauth_token', auth.accessToken]);
+		parameters.push(['oauth_signature_method', 'HMAC-SHA1']);
+
+		var message = {
+			'action': 'https://api.yelp.com/v2/search',
+			'method': 'GET',
+			'parameters': parameters
+		};
+
+		OAuth.setTimestampAndNonce(message);
+		OAuth.SignatureMethod.sign(message, accessor);
+
+		var parameterMap = OAuth.getParameterMap(message.parameters);
+		parameterMap.oauth_signature = OAuth.percentEncode(parameterMap.oauth_signature)
+		console.log(parameterMap);
+
+		var bestRestaurant = "Some random restaurant";
+
+		$.ajax({
+			'url': message.action,
+			'data': parameterMap,
+			'cache': true,
+			'dataType': 'jsonp',
+			'jsonpCallback': 'cb',
+			'success': function(data, textStats, XMLHttpRequest) {
+				console.log(data);
+
+
+		$("body").append("<h1>The best "+what+" spots are listed below: </h1>");
+		$("body").append("<h1>");
+		$("body").append(where);
+		$("body").append("<\h1>");
+		var i;
+
+		for(i=0; i<=9; i= i+1){
+								$("body").append("<p>");  
+								$("body").append('<a href ="' + data.businesses[i].url + '">' + data.businesses[i].name +'</a>');
+								$("body").append("      ");
+								$("body").append('<img src="' + data.businesses[i].rating_img_url +'" />');
+								$("body").append(" Phone: ");
+								$("body").append(data.businesses[i].phone);
+								$("body").append("<p>");  
+								$("body").append(" Yelp Reviews: ");
+								$("body").append(data.businesses[i].review_count);
+								$("body").append("      ");
+								$("body").append("<\p>");  
+			 }
+
+			}
+		})
 
 
 };
 
 $('#submit').on('click', function(){
 
-    what = $('#what').val()
-    where = $('#where').val()
-    runYelp()
+		what = $('#what').val()
+		where = $('#where').val()
+		runYelp()
 
 });
 
 //*************************************** foursquare ******************************************************            
-        // var clientId = 'B1I4ZQXNFKNTWZFSJ4R21TOXNAUDZMVZCYWX5QOOY41XAQ5S'
-        // var clientSecret = 'P0EFXQABILXQM5OI4QPZT42BLV0ML12ROKVZIOQWIQ0X5FBV'
-        // var foursquareRedirect = 'https://polar-mesa-92767.herokuapp.com'
-        // var fourSquareAuth = 'https://foursquare.com/oauth2/authenticate?client_id='+clientId+'&response_type=code&redirect_uri='+foursquareRedirect
-        // // debugger;
-        // var code = ''
-        // var thisURL = ''
-        
+				// var clientId = 'B1I4ZQXNFKNTWZFSJ4R21TOXNAUDZMVZCYWX5QOOY41XAQ5S'
+				// var clientSecret = 'P0EFXQABILXQM5OI4QPZT42BLV0ML12ROKVZIOQWIQ0X5FBV'
+				// var foursquareRedirect = 'https://polar-mesa-92767.herokuapp.com'
+				// var fourSquareAuth = 'https://foursquare.com/oauth2/authenticate?client_id='+clientId+'&response_type=code&redirect_uri='+foursquareRedirect
+				// // debugger;
+				// var code = ''
+				// var thisURL = ''
+				
 
 //****** When button is clicked take clientID, and redirect to get code *************************************        
 //         $('#logFoursquare').on('click', function(){
 //             // debugger;
 //             var fourAuthWin = window.open(fourSquareAuth, '_blank'); 
-            
+						
 //             fourAuthWin;
 //             return 
 //             // code = window.location.href.split('code=')
 //             // code = code[1]            
 //         });
-               
+							 
 //         thisURL = window.location.href //grab URL with code at end
 //         code = thisURL.replace('https://polar-mesa-92767.herokuapp.com/?code=','').replace('#_=_', '') //remove everything but the code
 //         // window.location.href = 'https://polar-mesa-92767.herokuapp.com/'
@@ -336,7 +332,7 @@ $('#submit').on('click', function(){
 //         var fourSquareAccessToken
 
 // //****************** When you have to code, send it back out to get a token for access ************************       
-        
+				
 //         if (code != 'https://polar-mesa-92767.herokuapp.com/') {
 
 //             $.ajax({
