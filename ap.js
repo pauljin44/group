@@ -76,17 +76,18 @@ var userLikes = []
 
 				FB.api('/me','GET', {"fields":"id,name,email,likes,location"},function(response) {
 					console.log('This is FB Graph API response: ', response);
-					var userName = response.name
+					var userName = 
 					var facebookUserProfile = {
-						 userName = {
-							userID: response.id,
-							userEmail: response.email
-						}
+							users: {
+								userID: response.id,
+								userEmail: response.email
+							}
+
 					}
 
-					var newFirebaseUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users");
+					var newFirebaseUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+response.name);
 					
-					newFirebaseUser.update(facebookUserProfile);
+					newFirebaseUser.set(facebookUserProfile);
 
 					newFirebaseUser.on('value', function(snapshot) {
 						console.log(snapshot.val())
