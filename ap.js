@@ -3,7 +3,7 @@
 
 
 //****************************************** Facebook SDK ******************************************************
-var firebase = new Firebase("https://sizzling-heat-1076.firebaseio.com/");
+var newFirebaseUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/user");
 var FBwhat = [] //These are used for grabbing 
 var FBYelpwhat; 
 var what = []//facebook 'likes' and running 
@@ -86,10 +86,10 @@ var userLikes = []
 					}
 
 
-					firebase.push(facebookUserProfile);
+					firebase.update(facebookUserProfile);
 
 					firebase.on('value', function(snapshot) {
-						console.log(snapshot)
+						console.log(snapshot.val())
 					});
 					
 					if (response.likes.data.length != undefined){
