@@ -165,7 +165,7 @@ function runYelpOnce() {
 
 				var parameterMap = OAuth.getParameterMap(message.parameters);
 				parameterMap.oauth_signature = OAuth.percentEncode(parameterMap.oauth_signature)
-				console.log(parameterMap);
+				// console.log(parameterMap);
 
 				var bestRestaurant = "Some random restaurant";
 
@@ -176,7 +176,7 @@ function runYelpOnce() {
 					'dataType': 'jsonp',
 					'jsonpCallback': 'cb',
 					'success': function(data, textStats, XMLHttpRequest) {
-						console.log(data);
+						// console.log(data);
 
 
 				// $("body").append("<h1>The best spots based on your likes are below are listed below: </h1>");
