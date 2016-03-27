@@ -80,7 +80,7 @@ var userLikes = []
 					
 					for (h=0;h<response.likes.data.length;h++){
 						// var userLikes = []
-						 userLikes = response.likes.data[h].name
+						 userLikes.push(response.likes.data[h].name)
 					}
 					
 					var facebookUserProfile = {
