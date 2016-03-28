@@ -199,7 +199,11 @@ function runYelpOnce() { //The function runs one time for every FB 'like'
 			'success': function(data, textStats, XMLHttpRequest) {
 				// console.log(data);
 
-
+		$("#searches").append("<h1 class='panel-title'>The best "+what+" spots are listed below: </h1>");
+		$("#searches").append("<h1>");
+		$("#searches").append(where);
+		$("#searches").append("<\h1>");
+		
 		var i;
 
 		for(i=0; i<=1; i= i+1){
@@ -283,10 +287,10 @@ function runYelp() {
 				console.log(data);
 
 
-		$("body").append("<h1>The best "+what+" spots are listed below: </h1>");
-		$("body").append("<h1>");
-		$("body").append(where);
-		$("body").append("<\h1>");
+		$("#searches").append("<h1 class='panel-title'>The best "+what+" spots are listed below: </h1>");
+		$("#searches").append("<h1>");
+		$("#searches").append(where);
+		$("#searches").append("<\h1>");
 		var i;
 
 		for(i=0; i<=9; i++){
