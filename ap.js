@@ -114,8 +114,8 @@ var FBresponse; //an initial yelp search
 						}
 					 var count = 0;
 								for (j=0;j<what.length;j++){
-										FBwhat = what[j][j];
-										FBwhere = where[0];
+										FBwhat.push(what[j][j]);
+										FBwhere.push(where[0]);
 										runYelpOnce();
 								}
 				 
