@@ -8,6 +8,17 @@
     padding: 5px;
 }
 
+#yelpSearches {
+	height: 200px;
+	overflow: scroll;
+
+}
+
 td {
 	text-align: center;
 }
+
+td img {
+	margin: 5px;
+}
+
