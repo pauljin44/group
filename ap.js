@@ -89,6 +89,9 @@ $('#yelpSearches').hide();
 
 					FB.api(fbAllFriendsList, function(response) {
 							console.log(response);
+							for (x=0;x<response.data.length;x++) {
+								allFriends.push(response.data[x].name)
+							}
 					});
 
 
