@@ -199,14 +199,11 @@ function runYelpOnce() { //The function runs one time for every FB 'like'
 			'success': function(data, textStats, XMLHttpRequest) {
 				// console.log(data);
 
-		$("#searches").append("<h1 class='panel-title'>The best "+what+" spots are listed below: </h1>");
-		$("#searches").append("<h1>");
-		$("#searches").append(where);
-		$("#searches").append("<\h1>");
+		$("#searches").append("<h1 class='panel-title'>The best "+FBwhat+" spots in "+FBwhere+" are listed below: </h1>");
 		
 		var i;
 
-		for(i=0; i<=1; i= i+1){
+		for(i=0; i<=1; i= i+1){ 
 
 			$("#searches").append("<tr class="+i+">"+'<td>'+'<a href='+data.businesses[i].url+">"+data.businesses[i].name +"</a>"+'</td>'+'</tr>');
 			$("."+i).append('<tr>'   +   '<td>'+'<img src='+ data.businesses[i].rating_img_url+'>'+'</td>'   +   '<td>'+'<img src='+data.businesses[i].image_url+'>'+'</td>'+'</tr>');
@@ -287,10 +284,8 @@ function runYelp() {
 				console.log(data);
 
 
-		$("#searches").append("<h1 class='panel-title'>The best "+what+" spots are listed below: </h1>");
-		$("#searches").append("<h1>");
-		$("#searches").append(where);
-		$("#searches").append("<\h1>");
+		$("#searches").append("<h1 class='panel-title'>The best "+what+" spots in "+where+" are listed below: </h1>");
+		
 		var i;
 
 		for(i=0; i<=9; i++){
