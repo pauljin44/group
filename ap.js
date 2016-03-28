@@ -84,8 +84,8 @@ $('#yelpSearches').hide();
           fbPaging = response.invitable_friends.paging.next
           console.log(typeof fbPaging);
           console.log(fbPaging);
-          fbPaging.split('')
-          console.log(typeof fbPaging);
+          var fbPagingArray = fbPaging.split('')
+          console.log(typeof fbPagingArray);
           var n = fbPaging.search('limit=')
 					
 
