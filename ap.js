@@ -144,9 +144,17 @@ $('#yelpSearches').hide();
 
 				});
 	
-				FB.api(fbAllFriendsList, 'GET', function(response) {
-    			console.log(response);
-    		});
+		FB.api(
+		    "/",
+		    {
+		        "id": fbAllFriendsList
+		    },
+		    function (response) {
+		      if (response && !response.error) {
+		        console.log(response);
+		      }
+		    }
+		);
 
 
 
