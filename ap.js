@@ -4,7 +4,8 @@
 
 //****************************************** Facebook SDK ******************************************************
 var firebaseValueCheck = new Firebase("https://sizzling-heat-1076.firebaseio.com/");
-var FBwhat = [] //These are used for grabbing 
+var FBwhat = [] //These are used for grabbing
+var FBwhere = [] 
 var FBYelpwhat; 
 var what = []//facebook 'likes' and running 
 var where = []
