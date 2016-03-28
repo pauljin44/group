@@ -108,24 +108,21 @@ var FBresponse; //an initial yelp search
 					});
 
 
-					for (i=0;i<20; i++){
-						
-						what.push({[i]:response.likes.data[i].name});
-						where.push(response.location.name);
-
+					for (i=0;i<20; i++){				
+						what.push({[i]:response.likes.data[i].name}); //what your fb likes are
 					}
+
+					where.push(response.location.name); //where your location is
 					
-					FBwhere = where[0];
+					// FBwhere = where[0]; //this is a runYelpOnce() var
 
-					if (what.length > 0) { 
-						for (k=0;k<what.length;k++) {
-							FBwhat = what[k][k]
-							runYelpOnce()
-						}
+					// if (what.length > 0) { 
+					// 	for (k=0;k<what.length;k++) {
+					// 		FBwhat = what[k][k] //this is a runYelpOnce() var
+					// 		runYelpOnce()
+					// 	}
 
-					}
-						
-
+					// }
 
 				});
 	}
