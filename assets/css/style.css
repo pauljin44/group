@@ -11,6 +11,7 @@
 #yelpSearches {
 	height: 200px;
 	overflow: scroll;
+	background-color: #ccc;
 
 }
 
