@@ -91,7 +91,6 @@ var allFriends = [];
 					FB.api(fbAllFriendsList, function(response) {
 							console.log(response);
 							for (x=0;x<response.data.length;x++) {
-								debugger;
 								allFriends.push(response.data[x].name);
 
 							}
