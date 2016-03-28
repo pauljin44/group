@@ -80,11 +80,13 @@ $('#yelpSearches').hide();
 				FB.api('/me','GET', {"fields":"id,name,email,likes,friends,invitable_friends{name,limit=5000},location"},function(response) {
 					console.log('This is FB Graph API response: ', response);
 					
-						console.log(response.invitable_friends.paging.next)
-						fbPaging = response.invitable_friends.paging.next
-						fbPaging.split('')
-						console.log(fbPaging);
-						var n = fbPaging.search('limit=')
+          console.log(response.invitable_friends.paging.next)
+          fbPaging = response.invitable_friends.paging.next
+          console.log(typeof fbPaging);
+          console.log(fbPaging);
+          fbPaging.split('')
+          console.log(typeof fbPaging);
+          var n = fbPaging.search('limit=')
 					
 
 					var facebookUserProfile = {
