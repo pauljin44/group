@@ -291,7 +291,7 @@ function runYelp() {
 
 		for(i=0; i<=9; i++){
 			$("#searches").append("<tr class="+i+">"+'<td>'+'<a href='+data.businesses[i].url+">"+data.businesses[i].name +"</a>"+'</td>');
-			$("."+i).append('<td>'+'<img src='+ data.businesses[i].rating_img_url+'>'+'</td>'   +   '<td>'+'<img src='+data.businesses[i].image_url+'>'+'</td>');
+			$("."+i).append('<td>'+'<img src='+ data.businesses[i].rating_img_url+'>'+'</td>');
 			$("."+i).append('<td>Phone: '+data.businesses[i].phone+'</td>');
 			$("."+i).append('<td>Yelp Reviews: '+data.businesses[i].review_count+'</td>'+'</tr>'); 
 			$("."+i).append("<br />"); 
