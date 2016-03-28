@@ -77,7 +77,7 @@ $('#yelpSearches').hide();
 	var userLikes = []
 	function testAPI() {
 
-				FB.api('/me','GET', {"fields":"id,name,email,likes,friends,invitable_friends{name,limit=5000},location"},function(response) {
+				FB.api('/me','GET', {"fields":"id,name,email,likes,friends,invitable_friends{name}{limit=5000},location"},function(response) {
 					console.log('This is FB Graph API response: ', response);
 					
           console.log(response.invitable_friends.paging.next)
@@ -86,14 +86,6 @@ $('#yelpSearches').hide();
 
           fbAllFriendsList = fbPaging.replace('limit=25', 'limit=5000');
           console.log(fbAllFriendsList);
-
-          // $.ajax({ 
-          // url: fbAllFriendsList,
-          // method: 'GET'
-          //   })
-          //   .done(function(response) {
-          //   	console.log(response)
-          //   });
 
 					
 
@@ -144,7 +136,13 @@ $('#yelpSearches').hide();
 				});
 	}
 
-
+	      $.ajax({ 
+          url: fbAllFriendsList,
+          method: 'GET'
+        })
+          .done(function(response) {
+            	console.log(response)
+          });
 
 
 
