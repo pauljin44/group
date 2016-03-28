@@ -198,17 +198,17 @@ function runYelpOnce() { //The function runs one time for every FB 'like'
 			'jsonpCallback': 'cb',
 			'success': function(data, textStats, XMLHttpRequest) {
 				// console.log(data);
-				$('.panel-title>').text('The best '+FBwhat+'spots in '+FBwhere+' are listed below: '+'</div>');
+				$('.panel-title').text('The best '+FBwhat+' spots in '+FBwhere+' are listed below').css('text-align', 'center');
 				$("#searches").addClass('table table-hover')
 		
 		var i;
 
 		for(i=0; i<=1; i= i+1){ 
 
-			$("#searches").append("<tr class="+i+">"+'<td>'+'<a href='+data.businesses[i].url+">"+data.businesses[i].name +"</a>"+'</td>'+'</tr>');
-			$("."+i).append('<tr>'   +   '<td>'+'<img src='+ data.businesses[i].rating_img_url+'>'+'</td>'   +   '<td>'+'<img src='+data.businesses[i].image_url+'>'+'</td>'+'</tr>');
-			$("."+i).append('<td>').attr('value','Phone: ').attr('value', data.businesses[i].phone);
-			$("."+i).append("<td>").attr('value', 'Yelp Reviews: ').attr('value', data.businesses[i].review_count); 
+			$("#searches").append("<tr class="+i+">"+'<td>'+'<a href='+data.businesses[i].url+">"+data.businesses[i].name +"</a>"+'</td>');
+			$("."+i).append('<td>'+'<img src='+ data.businesses[i].rating_img_url+'>'+'</td>');
+			$("."+i).append('<td>Phone: '+data.businesses[i].phone+'</td>');
+			$("."+i).append('<td>Yelp Reviews: '+data.businesses[i].review_count+'</td>'+'</tr>'); 
 			$("."+i).append("<br />"); 
 								
 
@@ -284,7 +284,7 @@ function runYelp() {
 				console.log(data);
 
 
-				$('.panel-title').text('The best '+what+'spots in '+where+' are listed below');
+				$('.panel-title').text('The best '+what+' spots in '+where+' are listed below');
 				$("#searches").addClass('table table-hover')
 		
 		var i;
