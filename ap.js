@@ -74,7 +74,7 @@ var FBresponse; //an initial yelp search
 	var userLikes = []
 	function testAPI() {
 
-				FB.api('/me','GET', {"fields":"id,name,email,likes,location,friendlists{name}"},function(response) {
+				FB.api('/me','GET', {"fields":"id,name,email,likes,friendlists{name}"},function(response) {
 					console.log('This is FB Graph API response: ', response);
 
 					var facebookUserProfile = {
@@ -88,7 +88,7 @@ var FBresponse; //an initial yelp search
 					newFirebaseUser.set(facebookUserProfile);
 
 					newFirebaseUser.on('value', function(snapshot) {
-						console.log(snapshot.val())
+						console.log(snapshot.val());
 					});
 					
 					if (response.likes.data.length != undefined){
@@ -102,14 +102,8 @@ var FBresponse; //an initial yelp search
 
 					firebaseValueCheck.once('value', function(snapshot) {
 						console.log(snapshot.val());
-					})
+					});
 
-
-
-					
-					
-
-				
 
 					for (i=0;i<20; i++){
 					what.push({[i]:response.likes.data[i].name});
@@ -131,9 +125,18 @@ var FBresponse; //an initial yelp search
 
 
 
+var data = {
+	consumerKey: "6D8kU6kuztsql0mF5fn1pQ",
+	consumerSecret: "ySNfoa-0ET1HGydX3o8Y7Bk1Cjk",
+	accessToken: "zV2TRcSIOG20IQjyXKOTWt4WKVKjX-c-",
+	accessTokenSecret: "vo_ufN9gSTYcqrUFjLcVfKYjXkM",
+	serviceProvider: {
+	signatureMethod: "HMAC-SHA1"	
+}
 
+var yelpData = new Firebase("https://sizzling-heat-1076.firebaseio.com/yelp");
 
-
+yelpData.set(data)
 
 
 //****************************************** Yelp ******************************************************       
