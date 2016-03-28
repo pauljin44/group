@@ -284,7 +284,7 @@ function runYelp() {
 				console.log(data);
 
 
-				$('.panel-title>').val('The best '+what+'spots in '+where+' are listed below: '+'</div>');
+				$('.panel-title>').text('The best '+what+'spots in '+where+' are listed below: '+'</div>');
 				$("#searches").addClass('table table-hover')
 		
 		var i;
@@ -292,8 +292,8 @@ function runYelp() {
 		for(i=0; i<=9; i++){
 			$("#searches").append("<tr class="+i+">"+'<td>'+'<a href='+data.businesses[i].url+">"+data.businesses[i].name +"</a>"+'</td>'+'</tr>');
 			$("."+i).append('<tr>'   +   '<td>'+'<img src='+ data.businesses[i].rating_img_url+'>'+'</td>'   +   '<td>'+'<img src='+data.businesses[i].image_url+'>'+'</td>'+'</tr>');
-			$("."+i).append('<td>').attr('value','Phone: ').attr('value', data.businesses[i].phone);
-			$("."+i).append("<td>").attr('value', 'Yelp Reviews: ').attr('value', data.businesses[i].review_count); 
+			$("."+i).append('<td>Phone: '+data.businesses[i].phone+'</td>');
+			$("."+i).append('<td>Yelp Reviews: '+data.businesses[i].review_count+'</td>'); 
 			$("."+i).append("<br />"); 
 			 }
 
