@@ -87,6 +87,8 @@ $('#yelpSearches').hide();
           fbAllFriendsList = fbPaging.replace('limit=25', 'limit=5000');
           console.log(fbAllFriendsList);
 
+
+
 					
 
 					var facebookUserProfile = {
@@ -134,15 +136,17 @@ $('#yelpSearches').hide();
 					// }
 
 				});
-	}
 
-	      $.ajax({ 
+				$.ajax({ 
           url: fbAllFriendsList,
           method: 'GET'
         })
           .done(function(response) {
             	console.log(response)
-          });
+        });
+	}
+
+
 
 
 
