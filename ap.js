@@ -116,12 +116,17 @@ var FBresponse; //an initial yelp search
 					
 					var count = 0;
 						
-						FBwhere.push(where[0]);
+
+						
 						for (j=0;j<what.length;j++){
 								FBwhat.push(what[j][j]);
-								runYelpOnce();
 						}
-					
+						
+						FBwhere.push(where[0]);
+
+						for (k=0;k<FBwhat.length;k++){
+							runYelpOnce()
+						}
 
 
 				 
