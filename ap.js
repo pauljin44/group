@@ -40,13 +40,7 @@ var FBresponse; //an initial yelp search
 			if (response.status === 'connected') {
 				
 				testAPI();
-					if (what.length > 0) { 
-						for (k=0;k<what.length;k++) {
-							FBwhat = what[k][k]
-							runYelpOnce()
-						}
 
-					}
 			} else if (response.status === 'not_authorized') {
 				
 				document.getElementById('status').innerHTML = 'Please log ' +
@@ -120,8 +114,18 @@ var FBresponse; //an initial yelp search
 						where.push(response.location.name);
 
 					}
-						
+					
 					FBwhere = where[0];
+
+					if (what.length > 0) { 
+						for (k=0;k<what.length;k++) {
+							FBwhat = what[k][k]
+							runYelpOnce()
+						}
+
+					}
+						
+
 
 				});
 	}
