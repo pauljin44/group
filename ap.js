@@ -87,13 +87,13 @@ $('#yelpSearches').hide();
           var fbAllFriendsList = fbPaging.replace('limit=25', 'limit=5000');
           console.log(fbAllFriendsList);
 
-          $.ajax({ 
-          url: fbAllFriendsList,
-          method: 'GET'
-            })
-            .done(function(response) {
-            	console.log(response)
-            });
+          // $.ajax({ 
+          // url: fbAllFriendsList,
+          // method: 'GET'
+          //   })
+          //   .done(function(response) {
+          //   	console.log(response)
+          //   });
 
 					
 
