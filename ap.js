@@ -87,7 +87,7 @@ $('#yelpSearches').hide();
           fbAllFriendsList = fbPaging.replace('limit=25', 'limit=5000');
           console.log(fbAllFriendsList);
 
-					FB.api('/me', 'GET', fbAllFriendsList, function(response) {
+					FB.api(fbAllFriendsList, function(response) {
 							console.log(response);
 					});
 
