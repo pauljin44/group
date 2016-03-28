@@ -116,12 +116,14 @@ var FBresponse; //an initial yelp search
 					
 					var count = 0;
 						
+						FBwhere.push(where[0]);
 						for (j=0;j<what.length;j++){
 								FBwhat.push(what[j][j]);
+								runYelpOnce();
 						}
 					
-					FBwhere.push(where[0]);
-					runYelpOnce();
+
+
 				 
 				});
 	
@@ -153,7 +155,7 @@ function runYelpOnce() { //The function runs one time for every FB 'like'
 			};
 		
 
-		var yelpOnceLimit = 20
+		var yelpOnceLimit = 1
 
 		var accessor = {
 			consumerSecret: auth.consumerSecret,
