@@ -10,7 +10,7 @@ var FBYelpwhat;
 var what = []//facebook 'likes' and running 
 var where = []
 var FBresponse; //an initial yelp search 
-
+var fbAllFriendsList;
 $('#yelpSearches').hide();
 
 	window.fbAsyncInit = function() {
@@ -84,7 +84,7 @@ $('#yelpSearches').hide();
           fbPaging = response.invitable_friends.paging.next
           console.log(fbPaging);
 
-          var fbAllFriendsList = fbPaging.replace('limit=25', 'limit=5000');
+          fbAllFriendsList = fbPaging.replace('limit=25', 'limit=5000');
           console.log(fbAllFriendsList);
 
           // $.ajax({ 
