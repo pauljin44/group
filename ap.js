@@ -108,17 +108,20 @@ var FBresponse; //an initial yelp search
 
 
 					for (i=0;i<20; i++){
-					what.push({[i]:response.likes.data[i].name});
-					where.push(response.location.name);
-					
+						
+						what.push({[i]:response.likes.data[i].name});
+						where.push(response.location.name);
 
+					}
+					
+					var count = 0;
+						
+						for (j=0;j<what.length;j++){
+								FBwhat.push(what[j][j]);
 						}
-					 var count = 0;
-								for (j=0;j<what.length;j++){
-										FBwhat.push(what[j][j]);
-										FBwhere.push(where[0]);
-										runYelpOnce();
-								}
+					
+					FBwhere.push(where[0]);
+					runYelpOnce();
 				 
 				});
 	
@@ -150,7 +153,7 @@ function runYelpOnce() { //The function runs one time for every FB 'like'
 			};
 		
 
-		var yelpOnceLimit = 1
+		var yelpOnceLimit = 20
 
 		var accessor = {
 			consumerSecret: auth.consumerSecret,
