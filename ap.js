@@ -82,11 +82,18 @@ $('#yelpSearches').hide();
 					
           console.log(response.invitable_friends.paging.next)
           fbPaging = response.invitable_friends.paging.next
-          console.log(typeof fbPaging);
           console.log(fbPaging);
-          var fbPagingArray = fbPaging.split('')
-          console.log(typeof fbPagingArray);
-          var n = fbPaging.search('limit=')
+
+          var fbAllFriendsList = fbPaging.replace('limit=25', 'limit=5000');
+          console.log(fbAllFriendsList);
+          // var fbPagingArray = fbPaging.split('');
+          // fbPagingArray.splice(341,2,"5","0","0","0");
+          // var fbAllFriendsList = fbPagingArray.join()
+          // for (x=0;x<fbAllFriendsList.length;x++){
+          // 	if(fbAllFriendsList[x] == ','){
+
+          // 	}
+          // }
 					
 
 					var facebookUserProfile = {
