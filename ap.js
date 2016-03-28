@@ -284,7 +284,7 @@ function runYelp() {
 				console.log(data);
 
 
-				$('.panel-title>').text('The best '+FBwhat+'spots in '+FBwhere+' are listed below: '+'</div>');
+				$('.panel-title>').text('The best '+what+'spots in '+where+' are listed below: '+'</div>');
 				$("#searches").addClass('table table-hover')
 		
 		var i;
@@ -301,7 +301,7 @@ function runYelp() {
 		})
 
 	});
-};
+}         //end runYelp() *********************
 
 
 $('#submit').on('click', function(){
