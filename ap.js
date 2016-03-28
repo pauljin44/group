@@ -12,7 +12,7 @@ var where = []
 var FBresponse; //an initial yelp search 
 var fbAllFriendsList;
 $('#yelpSearches').hide();
-var allFriends
+var allFriends = [];
 
 	window.fbAsyncInit = function() {
 		FB.init({
