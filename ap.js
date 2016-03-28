@@ -113,15 +113,13 @@ var FBresponse; //an initial yelp search
 						where.push(response.location.name);
 
 					}
-					
-					var count = 0;
 						
-						FBwhere = where[0];
+					FBwhere = where[0];
 
-						for (k=0;k<FBwhat.length;k++){
+					for (k=0;k<what.length;k++){
 							FBwhat = what[k][k]
 							runYelpOnce()
-						}
+					}
 
 
 				 
