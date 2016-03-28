@@ -38,6 +38,7 @@ var FBresponse; //an initial yelp search
 		function statusChangeCallback(response) {
 
 			if (response.status === 'connected') {
+				$('fb:login-button').hide();
 				
 				testAPI();
 
