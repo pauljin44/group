@@ -8,6 +8,6 @@
     padding: 5px;
 }
 
-tr {
-	width: 30%;
+td {
+	text-align: center;
 }
