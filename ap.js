@@ -77,7 +77,7 @@ var FBresponse; //an initial yelp search
 	var userLikes = []
 	function testAPI() {
 
-				FB.api('/me','GET', {"fields":"id,name,email,likes,friendlists{name},location"},function(response) {
+				FB.api('/me','GET', {"fields":"id,name,email,likes,friends,location"},function(response) {
 					console.log('This is FB Graph API response: ', response);
 
 					var facebookUserProfile = {
