@@ -80,7 +80,7 @@ $('#yelpSearches').hide();
 				FB.api('/me','GET', {"fields":"id,name,email,likes,friends,invitable_friends{name},location"},function(response) {
 					console.log('This is FB Graph API response: ', response);
 
-					console.log(response.invitable_friends.data)
+					console.log(response.invitable_friends.data.name)
 
 					var facebookUserProfile = {
 						userName: response.name,
