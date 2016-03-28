@@ -300,7 +300,7 @@ function runYelp() {
 					}else{
 						isClaimed = 'no'
 					}
-					
+
 					$("#searches").append("<tr class="+i+">"+'<td>'+'<a href='+data.businesses[i].url+">"+data.businesses[i].name +"</a>"+'</td>');
 					$("."+i).append('<td>'+'<img src='+ data.businesses[i].rating_img_url+'>'+'</td>');
 					$("."+i).append('<td>Phone: '+data.businesses[i].phone+'</td>');
@@ -318,6 +318,7 @@ function runYelp() {
 
 $('#submit').on('click', function(){
 
+		$('#searches').clear();
 		what = $('#what').val()
 		where = $('#where').val()
 		$('#yelpSearches').show();
