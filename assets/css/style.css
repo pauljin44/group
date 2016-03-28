@@ -7,3 +7,7 @@
 	border: 6px solid #c41200;
     padding: 5px;
 }
+
+tr {
+	width: 30%;
+}
