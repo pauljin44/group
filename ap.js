@@ -307,7 +307,7 @@ function runYelp() {
 			}
 		})
 
-	}
+	});
 };
 
 
