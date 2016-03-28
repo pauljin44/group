@@ -11,7 +11,7 @@ var what = []//facebook 'likes' and running
 var where = []
 var FBresponse; //an initial yelp search 
 
-
+$('#yelpSearches').hide();
 
 	window.fbAsyncInit = function() {
 		FB.init({
@@ -308,6 +308,7 @@ $('#submit').on('click', function(){
 
 		what = $('#what').val()
 		where = $('#where').val()
+		$('#yelpSearches').show();
 		runYelp()
 
 });
