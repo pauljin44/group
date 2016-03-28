@@ -284,7 +284,7 @@ function runYelp() {
 				console.log(data);
 
 
-				$('.panel panel-success').append('<div class=panel-heading>'+'The best '+FBwhat+'spots in '+FBwhere+' are listed below: '+'</div>');
+				$('.panel panel-success').append('<div class=panel-heading>'+'The best '+what+'spots in '+where+' are listed below: '+'</div>');
 				$("#searches").addClass('table table-hover')
 		
 		var i;
