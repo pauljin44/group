@@ -283,7 +283,7 @@ function runYelp() {
 				console.log(data);
 
 
-		$("#searches").append("<h1 class='panel-title'>The best "+what+" spots in "+where+" are listed below: </h1>");
+		$("#searches").addClass('table table-hover').append("<h1 class='panel-title'>The best "+FBwhat+" spots in "+FBwhere+" are listed below: </h1>");
 		
 		var i;
 
