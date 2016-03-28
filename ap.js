@@ -203,13 +203,14 @@ function runYelpOnce() { //The function runs one time for every FB 'like'
 		
 				var i;
 
-				if (data.businesses[i].is_claimed) {
-					var isClaimed = 'yes'		
-				}else{
-					isClaimed = 'no'
-				}
-
 				for(i=0; i<=9; i++){
+
+					if (data.businesses[i].is_claimed) {
+						var isClaimed = 'yes'		
+					}else{
+						isClaimed = 'no'
+					}
+
 					$("#searches").append("<tr class="+i+">"+'<td>'+'<a href='+data.businesses[i].url+">"+data.businesses[i].name +"</a>"+'</td>');
 					$("."+i).append('<td>'+'<img src='+ data.businesses[i].rating_img_url+'>'+'</td>');
 					$("."+i).append('<td>Phone: '+data.businesses[i].phone+'</td>');
@@ -292,13 +293,14 @@ function runYelp() {
 				
 				var i;
 
-				if (data.businesses[i].is_claimed) {
-					var isClaimed = 'yes'		
-				}else{
-					isClaimed = 'no'
-				}
-
 				for(i=0; i<=9; i++){
+					
+					if (data.businesses[i].is_claimed) {
+						var isClaimed = 'yes'		
+					}else{
+						isClaimed = 'no'
+					}
+					
 					$("#searches").append("<tr class="+i+">"+'<td>'+'<a href='+data.businesses[i].url+">"+data.businesses[i].name +"</a>"+'</td>');
 					$("."+i).append('<td>'+'<img src='+ data.businesses[i].rating_img_url+'>'+'</td>');
 					$("."+i).append('<td>Phone: '+data.businesses[i].phone+'</td>');
