@@ -284,7 +284,7 @@ function runYelp() {
 				console.log(data);
 
 
-				$('.panel-title').text('The best '+what+' spots in '+where+' are listed below');
+				$('.panel-title').text('The best '+what+' spots in '+where+' are listed below').css('text-align', 'center');
 				$("#searches").addClass('table table-hover')
 		
 		var i;
