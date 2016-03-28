@@ -12,6 +12,7 @@ var where = []
 var FBresponse; //an initial yelp search 
 var fbAllFriendsList;
 $('#yelpSearches').hide();
+var allFriends
 
 	window.fbAsyncInit = function() {
 		FB.init({
@@ -90,7 +91,7 @@ $('#yelpSearches').hide();
 					FB.api(fbAllFriendsList, function(response) {
 							console.log(response);
 							for (x=0;x<response.data.length;x++) {
-								allFriends.push(response.data[x].name)
+								var allFriends.push(response.data[x].name)
 							}
 					});
 
