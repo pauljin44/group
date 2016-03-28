@@ -231,20 +231,17 @@ function runYelp() {
 
 		
 
-		var auth = {
-	//
-	// Update with your auth tokens.
-	//
-				consumerKey: "6D8kU6kuztsql0mF5fn1pQ",
-				consumerSecret: "ySNfoa-0ET1HGydX3o8Y7Bk1Cjk",
-				accessToken: "zV2TRcSIOG20IQjyXKOTWt4WKVKjX-c-",
-				// This example is a proof of concept, for how to use the Yelp v2 API with javascript.
-				// You wouldn't actually want to expose your access token secret like this in a real application.
-				accessTokenSecret: "vo_ufN9gSTYcqrUFjLcVfKYjXkM",
+	firebaseValueCheck.once('value', function(snapshot) {
+			var auth = {
+
+				consumerKey: snapshot.val().yelp.consumerKey,
+				consumerSecret: snapshot.val().yelp.consumerSecret,
+				accessToken: snapshot.val().yelp.accessToken,
+				accessTokenSecret: snapshot.val().yelp.accessTokenSecret,
 				serviceProvider: {
-						signatureMethod: "HMAC-SHA1"
-				}
-		};
+						signatureMethod: snapshot.val().yelp.serviceProvider.signatureMethod
+					}
+			};
 
 
 
@@ -310,8 +307,9 @@ function runYelp() {
 			}
 		})
 
-
+	}
 };
+
 
 $('#submit').on('click', function(){
 
