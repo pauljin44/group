@@ -226,9 +226,9 @@ function runYelpOnce() { //The function runs one time for every FB 'like'
 		});
 
 
-	}
+	});
 
-}); //end runYelpOnce *************************
+}; //end runYelpOnce *************************
 
 
 
