@@ -87,13 +87,17 @@ $('#yelpSearches').hide();
           fbAllFriendsList = fbPaging.replace('limit=25', 'limit=5000');
           console.log(fbAllFriendsList);
 
-        // $.ajax({ 
-        //   url: fbAllFriendsList,
-        //   method: 'GET'
-        // })
-        //   .done(function(response) {
-        //     	console.log(response)
-        // });
+					FB.api(
+					    "/",
+					    {
+					        "id": fbAllFriendsList
+					    },
+					    function (response) {
+					      if (response && !response.error) {
+					        console.log(response);
+					      }
+					    }
+					);
 
 
 					
@@ -144,17 +148,7 @@ $('#yelpSearches').hide();
 
 				});
 	
-		FB.api(
-		    "/",
-		    {
-		        "id": fbAllFriendsList
-		    },
-		    function (response) {
-		      if (response && !response.error) {
-		        console.log(response);
-		      }
-		    }
-		);
+
 
 
 
