@@ -283,15 +283,15 @@ function runYelp() {
 				console.log(data);
 
 
-		$("#searches").addClass('table table-hover').append("<h1 class='panel-title'>The best "+what+" spots in "+where+" are listed below: </h1>");
+		$("#searches").addClass('table table-hover').append("<h3 class='panel-title'><strong>The best "+what+" spots in "+where+" are listed below: <strong></h1>");
 		
 		var i;
 
 		for(i=0; i<=9; i++){
-			$("#searches").append("<tr class="+i+">"+'<td>'+'<a href='+data.businesses[i].url+">"+data.businesses[i].name +"</a>"+'</td>'+'<td>'+'<img src='+ data.businesses[i].rating_img_url+'>'+'</td>'+'<td>'+'<img src='+data.businesses[i].image_url+'>'+'</td>'+(('<td>').attr('value','Phone: ').attr('value', data.businesses[i].phone))+(("<td>").attr('value', 'Yelp Reviews: ').attr('value', data.businesses[i].review_count))+'</tr>');
-			// $("."+i).append('<tr></tr>');
-			// $("."+i).append;
-			// $("."+i).append; 
+			$("#searches").append("<tr class="+i+">"+'<td>'+'<a href='+data.businesses[i].url+">"+data.businesses[i].name +"</a>"+'</td>'+'</tr>');
+			$("."+i).append('<tr>'   +   '<td>'+'<img src='+ data.businesses[i].rating_img_url+'>'+'</td>'   +   '<td>'+'<img src='+data.businesses[i].image_url+'>'+'</td>'+'</tr>');
+			$("."+i).append('<td>').attr('value','Phone: ').attr('value', data.businesses[i].phone);
+			$("."+i).append("<td>").attr('value', 'Yelp Reviews: ').attr('value', data.businesses[i].review_count); 
 			$("."+i).append("<br />"); 
 			 }
 
