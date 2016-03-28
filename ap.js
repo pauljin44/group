@@ -92,9 +92,9 @@ $('#yelpSearches').hide();
 					    {
 					        "id": fbAllFriendsList
 					    },
-					    function (response) {
+					    function (allFriends) {
 					      if (response && !response.error) {
-					        console.log(response);
+					        console.log(allFriends);
 					      }
 					    }
 					);
