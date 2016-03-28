@@ -125,14 +125,6 @@ var FBresponse; //an initial yelp search
 
 
 
-
-
-
-//****************************************** Yelp ******************************************************       
-
-function runYelpOnce() { //The function runs one time for every FB 'like'
-
-
 var data = {
 	consumerKey: "6D8kU6kuztsql0mF5fn1pQ",
 	consumerSecret: "ySNfoa-0ET1HGydX3o8Y7Bk1Cjk",
@@ -146,6 +138,17 @@ var data = {
 var yelpData = new Firebase("https://sizzling-heat-1076.firebaseio.com/yelp");
 
 yelpData.set(data)
+
+
+
+
+
+//****************************************** Yelp ******************************************************       
+
+function runYelpOnce() { //The function runs one time for every FB 'like'
+
+
+
 
 
 						var auth = {
