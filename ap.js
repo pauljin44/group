@@ -3,7 +3,9 @@
 
 
 //****************************************** Facebook SDK ******************************************************
-var FBwhat = [] //These are used for grabbing 
+var firebaseValueCheck = new Firebase("https://sizzling-heat-1076.firebaseio.com/");
+var FBwhat = [] //These are used for grabbing
+var FBwhere = [] 
 var FBYelpwhat; 
 var what = []//facebook 'likes' and running 
 var where = []
@@ -38,6 +40,7 @@ var FBresponse; //an initial yelp search
 			if (response.status === 'connected') {
 				
 				testAPI();
+
 			} else if (response.status === 'not_authorized') {
 				
 				document.getElementById('status').innerHTML = 'Please log ' +
@@ -71,23 +74,24 @@ var FBresponse; //an initial yelp search
 	}(document, 'script', 'facebook-jssdk'));
 
 	// FB Graph API
-var userLikes = []
+	var userLikes = []
 	function testAPI() {
 
-				FB.api('/me','GET', {"fields":"id,name,email,likes,location"},function(response) {
+				FB.api('/me','GET', {"fields":"id,name,email,likes,friendlists{name},location"},function(response) {
 					console.log('This is FB Graph API response: ', response);
 
 					var facebookUserProfile = {
+						userName: response.name,
 						userID: response.id,
 						userEmail: response.email 
 					}
 
-					var newFirebaseUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+response.name);
+					var newFirebaseUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+response.id);
 					
 					newFirebaseUser.set(facebookUserProfile);
 
 					newFirebaseUser.on('value', function(snapshot) {
-						console.log(snapshot.val())
+						console.log(snapshot.val());
 					});
 					
 					if (response.likes.data.length != undefined){
@@ -97,37 +101,33 @@ var userLikes = []
 						}
 					}
 
-					var firebaseValueCheck = new Firebase("https://sizzling-heat-1076.firebaseio.com/");
+
 
 					firebaseValueCheck.once('value', function(snapshot) {
 						console.log(snapshot.val());
-
-						// if (snapshot.val().)
-					})
+					});
 
 
+					for (i=0;i<20; i++){				
+						what.push({[i]:response.likes.data[i].name}); //what your fb likes are
+					}
 
+					where.push(response.location.name); //where your location is
 					
-					
+					// FBwhere = where[0]; //this is a runYelpOnce() var
 
-				
+					// if (what.length > 0) { 
+					// 	for (k=0;k<what.length;k++) {
+					// 		FBwhat = what[k][k] //this is a runYelpOnce() var
+					// 		runYelpOnce()
+					// 	}
 
-				// 	for (i=0;i<20; i++){
-				// 	what.push({[i]:response.likes.data[i].name});
-				// 	where.push(response.location.name);
-					
+					// }
 
-				// 		}
-				// 	 var count = 0;
-				// 				for (j=0;j<what.length;j++){
-				// 						FBwhat = what[j][j];
-				// 						FBwhere = where[0];
-				// 						runYelpOnce();
-				// 				}
-				 
 				});
-	
 	}
+
+
 
 
 
@@ -140,81 +140,88 @@ var userLikes = []
 //****************************************** Yelp ******************************************************       
 
 function runYelpOnce() { //The function runs one time for every FB 'like'
-						var auth = {
 
-						consumerKey: "6D8kU6kuztsql0mF5fn1pQ",
-						consumerSecret: "ySNfoa-0ET1HGydX3o8Y7Bk1Cjk",
-						accessToken: "zV2TRcSIOG20IQjyXKOTWt4WKVKjX-c-",
-						// This example is a proof of concept, for how to use the Yelp v2 API with javascript.
-						// You wouldn't actually want to expose your access token secret like this in a real application.
-						accessTokenSecret: "vo_ufN9gSTYcqrUFjLcVfKYjXkM",
-						serviceProvider: {
-								signatureMethod: "HMAC-SHA1"
-						}
-				};
-
-				var yelpOnceLimit = 1
-
-				var accessor = {
-					consumerSecret: auth.consumerSecret,
-					tokenSecret: auth.accessTokenSecret
-				};
-
-				parameters = [];
-				parameters.push(['term', FBwhat]);
-				parameters.push(['location', FBwhere]);
-				parameters.push(['callback', 'cb']);
-				parameters.push(['oauth_consumer_key', auth.consumerKey]);
-				parameters.push(['oauth_consumer_secret', auth.consumerSecret]);
-				parameters.push(['oauth_token', auth.accessToken]);
-				parameters.push(['oauth_signature_method', 'HMAC-SHA1']);
-				parameters.push(['limit', yelpOnceLimit]);
+	
 
 
-				var message = {
-					'action': 'https://api.yelp.com/v2/search',
-					'method': 'GET',
-					'parameters': parameters
-				};
+	firebaseValueCheck.once('value', function(snapshot) {
+			var auth = {
 
-				OAuth.setTimestampAndNonce(message);
-				OAuth.SignatureMethod.sign(message, accessor);
-
-				var parameterMap = OAuth.getParameterMap(message.parameters);
-				parameterMap.oauth_signature = OAuth.percentEncode(parameterMap.oauth_signature)
-				// console.log(parameterMap);
-
-				var bestRestaurant = "Some random restaurant";
-
-				$.ajax({
-					'url': message.action,
-					'data': parameterMap,
-					'cache': true,
-					'dataType': 'jsonp',
-					'jsonpCallback': 'cb',
-					'success': function(data, textStats, XMLHttpRequest) {
-						// console.log(data);
-
-
-				var i;
-
-				for(i=0; i<=1; i= i+1){
-
-										$("#FB_likes").append("<tr class='likesRow'>"   +   '<td>'+'<a href = '+data.businesses[i].url+"</a>"+'</td>'   +   '<td>'+'<a>'+data.businesses[i].name +'</a>'+'</td>'+  '</tr>')
-										$("#likesRow").append('<tr>'   +   '<td>'+'<img src='+ data.businesses[i].rating_img_url+'>'+'</td>'   +   '<td>'+'<img src='+data.businesses[i].image_url+'>'+'</td>'+'</tr>');
-										$("#likesRow").append('<td>').attr('value','Phone: ').attr('value', data.businesses[i].phone);
-										$("#likesRow").append("<td>").attr('value', 'Yelp Reviews: ').attr('value', data.businesses[i].review_count); 
-										$("#likesRow").append("<br />"); 
-					 
-										
-
-					 }
-
+				consumerKey: snapshot.val().yelp.consumerKey,
+				consumerSecret: snapshot.val().yelp.consumerSecret,
+				accessToken: snapshot.val().yelp.accessToken,
+				accessTokenSecret: snapshot.val().yelp.accessTokenSecret,
+				serviceProvider: {
+						signatureMethod: snapshot.val().yelp.serviceProvider.signatureMethod
 					}
-				})
+			};
+		
 
+		var yelpOnceLimit = 1
 
+		var accessor = {
+			consumerSecret: auth.consumerSecret,
+			tokenSecret: auth.accessTokenSecret
 		};
+
+		parameters = [];
+		parameters.push(['term', FBwhat]);
+		parameters.push(['location', FBwhere]);
+		parameters.push(['callback', 'cb']);
+		parameters.push(['oauth_consumer_key', auth.consumerKey]);
+		parameters.push(['oauth_consumer_secret', auth.consumerSecret]);
+		parameters.push(['oauth_token', auth.accessToken]);
+		parameters.push(['oauth_signature_method', 'HMAC-SHA1']);
+		parameters.push(['limit', yelpOnceLimit]);
+
+
+		var message = {
+			'action': 'https://api.yelp.com/v2/search',
+			'method': 'GET',
+			'parameters': parameters
+		};
+
+		OAuth.setTimestampAndNonce(message);
+		OAuth.SignatureMethod.sign(message, accessor);
+
+		var parameterMap = OAuth.getParameterMap(message.parameters);
+		parameterMap.oauth_signature = OAuth.percentEncode(parameterMap.oauth_signature)
+		// console.log(parameterMap);
+
+		var bestRestaurant = "Some random restaurant";
+
+		$.ajax({
+			'url': message.action,
+			'data': parameterMap,
+			'cache': true,
+			'dataType': 'jsonp',
+			'jsonpCallback': 'cb',
+			'success': function(data, textStats, XMLHttpRequest) {
+				// console.log(data);
+
+
+		var i;
+
+		for(i=0; i<=1; i= i+1){
+
+								$("#FB_likes").append("<tr class='likesRow'>"   +   '<td>'+'<a href = '+data.businesses[i].url+"</a>"+'</td>'   +   '<td>'+'<a>'+data.businesses[i].name +'</a>'+'</td>'+  '</tr>')
+								$("#likesRow").append('<tr>'   +   '<td>'+'<img src='+ data.businesses[i].rating_img_url+'>'+'</td>'   +   '<td>'+'<img src='+data.businesses[i].image_url+'>'+'</td>'+'</tr>');
+								$("#likesRow").append('<td>').attr('value','Phone: ').attr('value', data.businesses[i].phone);
+								$("#likesRow").append("<td>").attr('value', 'Yelp Reviews: ').attr('value', data.businesses[i].review_count); 
+								$("#likesRow").append("<br />"); 
+			 
+								
+
+			 }
+
+			}
+		
+		});
+
+
+	});
+
+} //end runYelpOnce *************************
 
 
 
@@ -224,20 +231,17 @@ function runYelp() {
 
 		
 
-		var auth = {
-	//
-	// Update with your auth tokens.
-	//
-				consumerKey: "6D8kU6kuztsql0mF5fn1pQ",
-				consumerSecret: "ySNfoa-0ET1HGydX3o8Y7Bk1Cjk",
-				accessToken: "zV2TRcSIOG20IQjyXKOTWt4WKVKjX-c-",
-				// This example is a proof of concept, for how to use the Yelp v2 API with javascript.
-				// You wouldn't actually want to expose your access token secret like this in a real application.
-				accessTokenSecret: "vo_ufN9gSTYcqrUFjLcVfKYjXkM",
+	firebaseValueCheck.once('value', function(snapshot) {
+			var auth = {
+
+				consumerKey: snapshot.val().yelp.consumerKey,
+				consumerSecret: snapshot.val().yelp.consumerSecret,
+				accessToken: snapshot.val().yelp.accessToken,
+				accessTokenSecret: snapshot.val().yelp.accessTokenSecret,
 				serviceProvider: {
-						signatureMethod: "HMAC-SHA1"
-				}
-		};
+						signatureMethod: snapshot.val().yelp.serviceProvider.signatureMethod
+					}
+			};
 
 
 
@@ -303,8 +307,9 @@ function runYelp() {
 			}
 		})
 
-
+	});
 };
+
 
 $('#submit').on('click', function(){
 
