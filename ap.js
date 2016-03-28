@@ -95,6 +95,7 @@ $('#yelpSearches').hide();
 					    function (allFriends) {
 					      if ( allFriends && !allFriends.error) {
 					        console.log(allFriends);
+					        debugger;
 					      }
 					    }
 					);
