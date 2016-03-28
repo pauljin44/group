@@ -318,7 +318,7 @@ function runYelp() {
 
 $('#submit').on('click', function(){
 
-		$('#searches').clear();
+		$('#searches').empty();
 		what = $('#what').val()
 		where = $('#where').val()
 		$('#yelpSearches').show();
