@@ -119,17 +119,12 @@ var FBresponse; //an initial yelp search
 
 						
 						for (j=0;j<what.length;j++){
-								FBwhat.push(what[j][j]);
-						}
-						
-						FBwhere.push(where[0]);
-
-						for (k=0;k<FBwhat.length;k++){
-							runYelpOnce()
+								FBwhat = what[j][j];
+								FBwhere = where[0];
+								runYelpOnce()
 						}
 
-
-				 
+				
 				});
 	
 	}
