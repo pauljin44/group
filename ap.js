@@ -201,18 +201,21 @@ function runYelpOnce() { //The function runs one time for every FB 'like'
 				$('.panel-title').text('The best '+FBwhat+' spots in '+FBwhere+' are listed below').css('text-align', 'center');
 				$("#searches").addClass('table table-hover')
 		
-		var i;
+				var i;
 
-		for(i=0; i<=1; i= i+1){ 
+				if (data.businesses[i].is_claimed) {
+					var isClaimed = 'yes'		
+				}else{
+					isClaimed = 'no'
+				}
 
-			$("#searches").append("<tr class="+i+">"+'<td>'+'<a href='+data.businesses[i].url+">"+data.businesses[i].name +"</a>"+'</td>');
-			$("."+i).append('<td>'+'<img src='+ data.businesses[i].rating_img_url+'>'+'</td>');
-			$("."+i).append('<td>Phone: '+data.businesses[i].phone+'</td>');
-			$("."+i).append('<td>Yelp Reviews: '+data.businesses[i].review_count+'</td>'+'</tr>'); 
-			$("."+i).append("<br />"); 
-								
-
-			 }
+				for(i=0; i<=9; i++){
+					$("#searches").append("<tr class="+i+">"+'<td>'+'<a href='+data.businesses[i].url+">"+data.businesses[i].name +"</a>"+'</td>');
+					$("."+i).append('<td>'+'<img src='+ data.businesses[i].rating_img_url+'>'+'</td>');
+					$("."+i).append('<td>Phone: '+data.businesses[i].phone+'</td>');
+					$("."+i).append('<td>Is this claimed by owner: '+isClaimed+'</td>'+'</tr>'); 
+					$("."+i).append("<br />"); 
+				}
 
 			}
 		
@@ -281,24 +284,31 @@ function runYelp() {
 			'dataType': 'jsonp',
 			'jsonpCallback': 'cb',
 			'success': function(data, textStats, XMLHttpRequest) {
-				console.log(data);
+			console.log(data);
 
 
 				$('.panel-title').text('The best '+what+' spots in '+where+' are listed below').css('text-align', 'center');
 				$("#searches").addClass('table table-hover')
-		
-		var i;
+				
+				var i;
 
-		for(i=0; i<=9; i++){
-			$("#searches").append("<tr class="+i+">"+'<td>'+'<a href='+data.businesses[i].url+">"+data.businesses[i].name +"</a>"+'</td>');
-			$("."+i).append('<td>'+'<img src='+ data.businesses[i].rating_img_url+'>'+'</td>');
-			$("."+i).append('<td>Phone: '+data.businesses[i].phone+'</td>');
-			$("."+i).append('<td>Yelp Reviews: '+data.businesses[i].is_claimed+'</td>'+'</tr>'); 
-			$("."+i).append("<br />"); 
-			 }
+				if (data.businesses[i].is_claimed) {
+					var isClaimed = 'yes'		
+				}else{
+					isClaimed = 'no'
+				}
+
+				for(i=0; i<=9; i++){
+					$("#searches").append("<tr class="+i+">"+'<td>'+'<a href='+data.businesses[i].url+">"+data.businesses[i].name +"</a>"+'</td>');
+					$("."+i).append('<td>'+'<img src='+ data.businesses[i].rating_img_url+'>'+'</td>');
+					$("."+i).append('<td>Phone: '+data.businesses[i].phone+'</td>');
+					$("."+i).append('<td>Is this claimed by owner: '+isClaimed+'</td>'+'</tr>'); 
+					$("."+i).append("<br />"); 
+				}
 
 			}
-		})
+		
+		});
 
 	});
 }         //end runYelp() *********************
