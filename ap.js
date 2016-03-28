@@ -114,15 +114,15 @@ var FBresponse; //an initial yelp search
 
 					where.push(response.location.name); //where your location is
 					
-					// FBwhere = where[0]; //this is a runYelpOnce() var
+					FBwhere = where[0]; //this is a runYelpOnce() var
 
-					// if (what.length > 0) { 
-					// 	for (k=0;k<what.length;k++) {
-					// 		FBwhat = what[k][k] //this is a runYelpOnce() var
-					// 		runYelpOnce()
-					// 	}
+					if (what.length > 0) { 
+						for (k=0;k<what.length;k++) {
+							FBwhat = what[k][k] //this is a runYelpOnce() var
+							runYelpOnce()
+						}
 
-					// }
+					}
 
 				});
 	}
