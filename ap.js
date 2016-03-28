@@ -132,7 +132,7 @@ var data = {
 	accessTokenSecret: "vo_ufN9gSTYcqrUFjLcVfKYjXkM",
 	serviceProvider: {
 	signatureMethod: "HMAC-SHA1"	
-};
+}
 
 var yelpData = new Firebase("https://sizzling-heat-1076.firebaseio.com/yelp");
 
