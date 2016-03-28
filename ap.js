@@ -145,7 +145,7 @@ $('#yelpSearches').hide();
 				});
 
 				FB.api(fbAllFriendsList, 'GET', function(response) {
-    			console.log(JSON.stringify(response));
+    			console.log(response);
     		});
 });
 
