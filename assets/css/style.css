@@ -1,14 +1,20 @@
 #fbWrapper {
+	width: 50%;
+	float: left;
 	border: 14px solid #6077b9;
     padding: 5px;
 }
 
 #yelp {
+	width: 50%;
+	float: left;
 	border: 6px solid #c41200;
     padding: 5px;
 }
 
 #yelpSearches {
+	width: 50%;
+	float: left;		
 	height: 200px;
 	overflow: scroll;
 	background-color: #ccc;
