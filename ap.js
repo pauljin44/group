@@ -81,6 +81,8 @@ $('#yelpSearches').hide();
 					console.log('This is FB Graph API response: ', response);
 					
 						console.log(response.invitable_friends.paging.next)
+						fbPaging = response.invitable_friends.paging.next
+						var n = fbPaging.search('limit=')
 					
 
 					var facebookUserProfile = {
