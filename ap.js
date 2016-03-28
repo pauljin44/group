@@ -198,8 +198,7 @@ function runYelpOnce() { //The function runs one time for every FB 'like'
 			'jsonpCallback': 'cb',
 			'success': function(data, textStats, XMLHttpRequest) {
 				// console.log(data);
-
-		$("#searches").append("<h1 class='panel-title'>The best "+FBwhat+" spots in "+FBwhere+" are listed below: </h1>");
+				$("#searches").addClass('table table-hover').append("<h1 class='panel-title'>The best "+FBwhat+" spots in "+FBwhere+" are listed below: </h1>");
 		
 		var i;
 
