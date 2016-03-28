@@ -93,7 +93,7 @@ $('#yelpSearches').hide();
 					        "id": fbAllFriendsList
 					    },
 					    function (allFriends) {
-					      if (response && !response.error) {
+					      if ( allFriends && !allFriends.error) {
 					        console.log(allFriends);
 					      }
 					    }
