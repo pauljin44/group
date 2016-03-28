@@ -290,7 +290,7 @@ function runYelp() {
 		$("body").append("<\h1>");
 		var i;
 
-		for(i=0; i<=9; i= i+1){
+		for(i=0; i<=9; i++){
 								$("#searches").append("<tr class="i">"+'<td>'+'<a href='+data.businesses[i].url+"</a>"+'</td>'+'<td>'+'<a>'+data.businesses[i].name +'</a>'+'</td>'+'</tr>');
 								$("."+i).append('<tr>'   +   '<td>'+'<img src='+ data.businesses[i].rating_img_url+'>'+'</td>'   +   '<td>'+'<img src='+data.businesses[i].image_url+'>'+'</td>'+'</tr>');
 								$("."+i).append('<td>').attr('value','Phone: ').attr('value', data.businesses[i].phone);
