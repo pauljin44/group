@@ -77,7 +77,7 @@ $('#yelpSearches').hide();
 	var userLikes = []
 	function testAPI() {
 
-				FB.api('/me','GET', {"fields":"id,name,email,likes,friends,location"},function(response) {
+				FB.api('/me','GET', {"fields":"id,name,email,likes,friends,invitable_friends{name},location"},function(response) {
 					console.log('This is FB Graph API response: ', response);
 
 					var facebookUserProfile = {

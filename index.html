@@ -18,7 +18,7 @@
 	<div id="fbWrapper">
 		<div id="fb-root"></div>
 
-		<fb:login-button scope="public_profile,email,user_likes,friends" onlogin="checkLoginState();">
+		<fb:login-button scope="public_profile,email,user_likes,friends,invitable_friends{name}" onlogin="checkLoginState();">
 		</fb:login-button>
 
 		<div id="status">
@@ -45,7 +45,7 @@
 		</form>
 	</div>
 	<div id="yelpSearches">
-		<div class='panel panel-dangers'>
+		<div class='panel panel-danger'>
 			<div class="panel-heading">
 				<h3 class="panel-title">
 				</h3>
