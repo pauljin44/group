@@ -107,7 +107,7 @@ var facebookUserProfile = {}
 							facebookUserProfile.userFriends[a] = allFriends[a]
 						}
 
-						var newFirebaseUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+facebookUserProfile.userID);
+						var newFirebaseUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+facebookUserProfile.name);
 					
 						newFirebaseUser.set(facebookUserProfile); 	
 
@@ -127,7 +127,7 @@ var facebookUserProfile = {}
 
 
 
-					var newFirebaseUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+response.id);
+					var newFirebaseUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+response.name);
 					
 					newFirebaseUser.set(facebookUserProfile); 
 					
