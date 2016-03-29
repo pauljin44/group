@@ -133,28 +133,15 @@ var facebookUserProfile = {}
 					
 					
 
-					if (response.likes.data.length != undefined){ 
-						for (h=0;h<response.likes.data.length;h++){
+					if (response.likes.data.length != undefined) { 
+						
+						for (h=0;h<response.likes.data.length;h++) {
 						// var userLikes = []
 						 userLikes.push(response.likes.data[h].name);
 						}
 					}
 
-
-
-					firebaseValueCheck.once('value', function(snapshot) {
-						console.log(snapshot.val());
-					});
-
-
-					for (i=0;i<20; i++){				
-						what.push({[i]:response.likes.data[i].name}); //what your fb likes are
-					}
-
 					where.push(response.location.name); //where your location is
-					
-					FBwhere = where[0]; //this is a runYelpOnce() var
-
 
 
 				});
@@ -163,13 +150,7 @@ var facebookUserProfile = {}
 
 
 	}	
-					if (what.length > 0) { 
-						for (k=0;k<what.length;k++) {
-							FBwhat = what[k][k] //this is a runYelpOnce() var
-							runYelpOnce()
-						}
 
-					}
 					
 		
 					
@@ -280,6 +261,15 @@ function runYelpOnce() { //The function runs one time for every FB 'like'
 
 } //end runYelpOnce *************************
 
+FBwhere = where[0]; //this is a runYelpOnce() var
+
+if (userLikes.length > 0) { 
+	for (k=0;k<what.length;k++) {
+		FBwhat = userLikes[k] //this is a runYelpOnce() var
+		runYelpOnce()
+	}
+
+}
 
 
 //************************************************************************************************************************************
