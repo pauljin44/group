@@ -11,10 +11,12 @@ var what = []//facebook 'likes' and running
 var where = []
 var FBresponse; //an initial yelp search 
 var fbAllFriendsList;
-$('#yelpSearches').hide();
 var allFriends = [];
 var fbPaging;
 var counter = 0
+var userLikes = []
+$('#yelpSearches').hide();
+
 
 	window.fbAsyncInit = function() {
 		FB.init({
@@ -77,7 +79,7 @@ var counter = 0
 	}(document, 'script', 'facebook-jssdk'));
 
 	// FB Graph API
-	var userLikes = []
+	
 	function testAPI() {
 
 				FB.api('/me','GET', {"fields":"id,name,email,likes,friends,invitable_friends{name},location"},function(response) {
@@ -107,7 +109,7 @@ var counter = 0
 					where.push(response.location.name); //where your location is
 
 				}); //ends first FB.api
-}
+
 				
 
 				debugger;
@@ -140,7 +142,7 @@ var counter = 0
 				var newFirebaseUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+response.id);
 				debugger;	
 				newFirebaseUser.set(facebookUserProfile); //this can come out
-
+}
 
 
 	
