@@ -108,7 +108,7 @@ var allFriends = [];
 					}
 
 					for(a=0;a<allFriends.length;a++){
-							facebookUserProfile.userFriends = [a]: allFriends[a];
+							facebookUserProfile.userFriends = {[a]: allFriends[a]};
 					}
 
 					var newFirebaseUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+response.id);
