@@ -107,7 +107,7 @@ var facebookUserProfile = {}
 							facebookUserProfile.userFriends[a] = allFriends[a]
 						}
 
-						var newFirebaseUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+facebookUserProfile.name);
+						var newFirebaseUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+facebookUserProfile.userName);
 					
 						newFirebaseUser.set(facebookUserProfile); 	
 
