@@ -77,32 +77,28 @@ var allFriends = [];
 	// FB Graph API
 	var userLikes = []
 	function testAPI() {
-				
 
-				FB.api('/me','GET', {"fields":'invitable_friends{name}'},function(response) {
+				FB.api('/me','GET', {"fields":"id,name,email,likes,friends,invitable_friends{name},location"},function(response) {
+					console.log('This is FB Graph API response: ', response);
+					
           console.log(response.invitable_friends.paging.next)
           fbPaging = response.invitable_friends.paging.next
           console.log(fbPaging);
+
           fbAllFriendsList = fbPaging.replace('limit=25', 'limit=5000');
           console.log(fbAllFriendsList);
-				});
-				
-				
+
+					FB.api(fbAllFriendsList, function(response) {
+							console.log(response);
+							for (x=0;x<response.data.length;x++) {
+								allFriends.push(response.data[x].name);
+
+							}
+					});
 
 
-				FB.api(fbAllFriendsList, function(response) {
-						debugger;
-						console.log(response);
-						for (x=0;x<response.data.length;x++) {
-							allFriends.push(response.data[x].name);
 
-						}
-				});				
-
-
-				FB.api('/me','GET', {"fields":"id,name,email,likes,friends,location"},function(response) {
-					console.log('This is FB Graph API response: ', response);
-	
+					
 
 					var facebookUserProfile = {
 						userName: response.name,
