@@ -98,13 +98,15 @@ var facebookUserProfile = {}
 						
 						for (x=0;x<response.data.length;x++) {
 							allFriends.push(response.data[x].name);
+							allFriendImg.push(response.data[x].picture.data.url)
+
 
 						}
 						
 						for(a=0;a<allFriends.length;a++){ 
 							// debugger;
 
-							facebookUserProfile.userFriends[a] = allFriends[a]
+							facebookUserProfile.userFriends[a] = [allFriends[a], allFriendImg[a]]
 						}
 
 						var newFirebaseUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+facebookUserProfile.userName);
