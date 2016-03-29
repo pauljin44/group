@@ -157,20 +157,19 @@ var facebookUserProfile = {}
 
 
 
-					}
-
 				});
 
 
 
 
-	}
-
+	}	
 					if (what.length > 0) { 
 						for (k=0;k<what.length;k++) {
 							FBwhat = what[k][k] //this is a runYelpOnce() var
 							runYelpOnce()
 						}
+
+					}
 					
 		
 					
