@@ -99,7 +99,7 @@ var facebookUserProfile = {}
 						}
 						
 						for(a=0;a<allFriends.length;a++){ 
-							debugger;
+							// debugger;
 
 							facebookUserProfile.userFriends[a] = allFriends[a]
 						}
