@@ -16,7 +16,7 @@ var allFriendImg = [];
 var fbPaging;
 var facebookUserProfile = {}
 
-	$('#yelpSearches').hide();
+	
 
 
 
@@ -174,7 +174,8 @@ var facebookUserProfile = {}
 
 
 	}	
-
+	
+	$('#yelpSearches').hide();
 					
 		
 					
