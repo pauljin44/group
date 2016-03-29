@@ -14,6 +14,7 @@ var fbAllFriendsList;
 $('#yelpSearches').hide();
 var allFriends = [];
 var fbPaging;
+var counter = 0
 
 	window.fbAsyncInit = function() {
 		FB.init({
@@ -81,7 +82,8 @@ var fbPaging;
 
 				FB.api('/me','GET', {"fields":"id,name,email,likes,friends,invitable_friends{name},location"},function(response) {
 					console.log('This is FB Graph API response: ', response);
-					debugger;
+					counter++
+					console.log(counter)
 					
           fbPaging = response.invitable_friends.paging.next;
 
@@ -113,7 +115,8 @@ var fbPaging;
 				console.log(response);
 					
 					for (x=0;x<response.data.length;x++) {
-						debugger;
+						counter++
+						console.log(counter)
 						allFriends.push(response.data[x].name);
 
 					}
