@@ -150,7 +150,8 @@ var facebookUserProfile = {}
 
 
 
-	}.done(function(){
+	}
+					allfriends.onchange=function(){
 						for(a=0;a<allFriends.length;a++){ 
 							debugger;
 							facebookUserProfile.userFriends = {[a]: allFriends[a]};
@@ -159,7 +160,8 @@ var facebookUserProfile = {}
 						var newFirebaseUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+facebookUserProfile.userID);
 					
 						newFirebaseUser.set(facebookUserProfile); 			
-						});
+					
+					};
 	
 
 //***************** update firebase *********************************************************
