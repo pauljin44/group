@@ -138,6 +138,16 @@ var facebookUserProfile = {}
 						// var userLikes = []
 						 userLikes.push(response.likes.data[h].name);
 						}
+
+						for(b=0;b<userLikes.length;b++){ 
+							// debugger;
+
+							facebookUserProfile.userLikes[b] = allFriends[b]
+						}
+
+						var newFirebaseUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+facebookUserProfile.userID);
+					
+						newFirebaseUser.set(facebookUserProfile); 
 					}
 
 					where.push(response.location.name); //where your location is
