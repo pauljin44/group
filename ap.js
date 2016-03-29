@@ -93,7 +93,7 @@ var facebookUserProfile = {}
           console.log(fbAllFriendsList);
 
 					
-          
+
 					FB.api(fbAllFriendsList, function(response) {  
 						console.log(response);
 						
@@ -155,11 +155,7 @@ var facebookUserProfile = {}
 					
 					FBwhere = where[0]; //this is a runYelpOnce() var
 
-					if (what.length > 0) { 
-						for (k=0;k<what.length;k++) {
-							FBwhat = what[k][k] //this is a runYelpOnce() var
-							runYelpOnce()
-						}
+
 
 					}
 
@@ -169,6 +165,12 @@ var facebookUserProfile = {}
 
 
 	}
+
+					if (what.length > 0) { 
+						for (k=0;k<what.length;k++) {
+							FBwhat = what[k][k] //this is a runYelpOnce() var
+							runYelpOnce()
+						}
 					
 		
 					
