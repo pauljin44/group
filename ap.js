@@ -13,6 +13,7 @@ var FBresponse; //an initial yelp search
 var fbAllFriendsList;
 $('#yelpSearches').hide();
 var allFriends = [];
+var fbPaging;
 
 	window.fbAsyncInit = function() {
 		FB.init({
@@ -81,46 +82,13 @@ var allFriends = [];
 				FB.api('/me','GET', {"fields":"id,name,email,likes,friends,invitable_friends{name},location"},function(response) {
 					console.log('This is FB Graph API response: ', response);
 					
-          console.log(response.invitable_friends.paging.next)
           fbPaging = response.invitable_friends.paging.next
-          console.log(fbPaging);
 
           fbAllFriendsList = fbPaging.replace('limit=25', 'limit=5000');
-          console.log(fbAllFriendsList);
-
-					FB.api(fbAllFriendsList, function(response) {
-							console.log(response);
-							for (x=0;x<response.data.length;x++) {
-								allFriends.push(response.data[x].name);
-
-							}
-					});
-
-
-
+					
 					
 
-					var facebookUserProfile = {
-						userName: response.name,
-						userID: response.id,
-						userEmail: response.email,
-						userFriends: {}
-					}
-
-					for(a=0;a<allFriends.length;a++){
-						debugger;
-							facebookUserProfile.userFriends = {[a]: allFriends[a]};
-					}
-
-					var newFirebaseUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+response.id);
-					
-					newFirebaseUser.set(facebookUserProfile);
-
-					newFirebaseUser.on('value', function(snapshot) {
-						console.log(snapshot.val());
-					});
-					
-					if (response.likes.data.length != undefined){
+					if (response.likes.data.length != undefined){ //first FB.api
 						for (h=0;h<response.likes.data.length;h++){
 						// var userLikes = []
 						 userLikes.push(response.likes.data[h].name);
@@ -128,31 +96,44 @@ var allFriends = [];
 					}
 
 
-
-					firebaseValueCheck.once('value', function(snapshot) {
-						console.log(snapshot.val());
-					});
-
-
 					for (i=0;i<20; i++){				
 						what.push({[i]:response.likes.data[i].name}); //what your fb likes are
-					}
+					}																										//this stay in
 
 					where.push(response.location.name); //where your location is
+
+				}); //ends first FB.api
+
+				
+
+
+				FB.api(fbAllFriendsList, function(response) { //this can come out 
+				console.log(response);
 					
-					// FBwhere = where[0]; //this is a runYelpOnce() var
+					for (x=0;x<response.data.length;x++) {
+						allFriends.push(response.data[x].name);
 
-					// if (what.length > 0) { 
-					// 	for (k=0;k<what.length;k++) {
-					// 		FBwhat = what[k][k] //this is a runYelpOnce() var
-					// 		runYelpOnce()
-					// 	}
+					}
 
-					// }
+				}); //ends seccond FB.api
+				
 
-				});
-	
 
+				var facebookUserProfile = { //this can come out
+					userName: response.name,
+					userID: response.id,
+					userEmail: response.email,
+					userFriends: {}
+				}
+
+				for(a=0;a<allFriends.length;a++){ //this can come out
+						debugger;
+							facebookUserProfile.userFriends = {[a]: allFriends[a]};
+				}
+					
+				var newFirebaseUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+response.id);
+					
+				newFirebaseUser.set(facebookUserProfile); //this can come out
 
 
 
