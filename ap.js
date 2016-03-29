@@ -88,12 +88,25 @@ var facebookUserProfile = {}
           fbAllFriendsList = fbPaging.replace('limit=25', 'limit=5000');
           console.log(fbAllFriendsList);
 
-					FB.api(fbAllFriendsList, function(response) {  
-							console.log(response);
-							for (x=0;x<response.data.length;x++) {
-								allFriends.push(response.data[x].name);
+					
 
-							}
+					FB.api(fbAllFriendsList, function(response) {  
+						console.log(response);
+						
+						for (x=0;x<response.data.length;x++) {
+							allFriends.push(response.data[x].name);
+
+						}
+						
+						for(a=0;a<allFriends.length;a++){ 
+							debugger;
+							facebookUserProfile.userFriends = {[a]: allFriends[a]};
+						}
+
+						var newFirebaseUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+facebookUserProfile.userID);
+					
+						newFirebaseUser.set(facebookUserProfile); 	
+
 					});
 
 
@@ -151,17 +164,10 @@ var facebookUserProfile = {}
 
 
 	}
-					allfriends.onchange=function(){
-						for(a=0;a<allFriends.length;a++){ 
-							debugger;
-							facebookUserProfile.userFriends = {[a]: allFriends[a]};
-						}
-
-						var newFirebaseUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+facebookUserProfile.userID);
 					
-						newFirebaseUser.set(facebookUserProfile); 			
+		
 					
-					};
+					
 	
 
 //***************** update firebase *********************************************************
