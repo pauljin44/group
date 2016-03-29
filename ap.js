@@ -146,7 +146,7 @@ var facebookUserProfile = {}
 							facebookUserProfile.userLikes[b] = userLikes[b]
 						}
 
-						var newFirebaseUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+facebookUserProfile.userID);
+						var newFirebaseUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+facebookUserProfile.userName);
 					
 						newFirebaseUser.set(facebookUserProfile); 
 					}
