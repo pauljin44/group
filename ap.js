@@ -122,6 +122,7 @@ var facebookUserProfile = {}
 						userID: response.id,
 						userEmail: response.email,
 						userFriends: {}
+						userLikes: {}
 					}
 
 
@@ -142,7 +143,7 @@ var facebookUserProfile = {}
 						for(b=0;b<userLikes.length;b++){ 
 							// debugger;
 
-							facebookUserProfile.userLikes[b] = allFriends[b]
+							facebookUserProfile.userLikes[b] = userLikes[b]
 						}
 
 						var newFirebaseUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+facebookUserProfile.userID);
