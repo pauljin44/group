@@ -121,7 +121,7 @@ var facebookUserProfile = {}
 						userName: response.name,
 						userID: response.id,
 						userEmail: response.email,
-						userFriends: {}
+						userFriends: {},
 						userLikes: {}
 					}
 
