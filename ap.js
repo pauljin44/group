@@ -81,6 +81,17 @@ $('#yelpSearches').hide();
 	// FB Graph API
 	
 	function testAPI() {
+				FB.api(fbAllFriendsList, function(response) { //this can come out 
+				console.log(response);
+					
+					for (x=0;x<response.data.length;x++) {
+						counter++
+						console.log(counter)
+						allFriends.push(response.data[x].name);
+
+					}
+
+				}); 
 
 				FB.api('/me','GET', {"fields":"id,name,email,likes,friends,invitable_friends{name},location"},function(response) {
 					console.log('This is FB Graph API response: ', response);
@@ -110,20 +121,7 @@ $('#yelpSearches').hide();
 
 				}); //ends first FB.api
 
-				
-
-				debugger;
-				FB.api(fbAllFriendsList, function(response) { //this can come out 
-				console.log(response);
-					
-					for (x=0;x<response.data.length;x++) {
-						counter++
-						console.log(counter)
-						allFriends.push(response.data[x].name);
-
-					}
-
-				}); //ends seccond FB.api
+			
 				
 
 				debugger;
