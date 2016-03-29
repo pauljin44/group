@@ -86,7 +86,7 @@ var allFriends = [];
 
           fbAllFriendsList = fbPaging.replace('limit=25', 'limit=5000');
           console.log(fbAllFriendsList);
-				}
+				});
 				
 				FB.api(fbAllFriendsList, function(response) {
 						console.log(response);
