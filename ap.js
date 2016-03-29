@@ -87,10 +87,9 @@ var facebookUserProfile = {}
 					console.log('This is FB Graph API response: ', response);
 					
           fbPaging = response.invitable_friends.paging.next
-          console.log(fbPaging);
+
 
           fbAllFriendsList = fbPaging.replace('limit=25', 'limit=5000');
-          console.log(fbAllFriendsList);
 
 					
 
@@ -144,17 +143,17 @@ var facebookUserProfile = {}
 					where.push(response.location.name); //where your location is
 
 
-				})
+				}); //end Graph api
 				
-				FBwhere = where[0]; //this is a runYelpOnce() var
+				// FBwhere = where[0]; //this is a runYelpOnce() var
 
-					if (userLikes.length > 0) { 
-						for (k=0;k<what.length;k++) {
-							FBwhat = userLikes[k] //this is a runYelpOnce() var
-							runYelpOnce()
-						}
+				// 	if (userLikes.length > 0) { 
+				// 		for (k=0;k<what.length;k++) {
+				// 			FBwhat = userLikes[k] //this is a runYelpOnce() var
+				// 			runYelpOnce()
+				// 		}
 
-					}
+				// 	}
 
 
 
