@@ -1,105 +1,60 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
- 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-	<script type="text/javascript" src="https://oauth.googlecode.com/svn/code/javascript/oauth.js"></script>
-	<script type="text/javascript" src="https://oauth.googlecode.com/svn/code/javascript/sha1.js"></script>
-	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<html>
+		<head>
+		    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+		 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+			<script type="text/javascript" src="https://oauth.googlecode.com/svn/code/javascript/oauth.js"></script>
+			<script type="text/javascript" src="https://oauth.googlecode.com/svn/code/javascript/sha1.js"></script>
+			<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+			<!-- Latest compiled and minified CSS -->
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
-	<!-- Latest compiled and minified JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+			<!-- Latest compiled and minified JavaScript -->
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
-	<title>This is the group project</title>
-</head>
-<body>
-	<div id="fbWrapper">
-		<div id="fb-root"></div>
+			<title>This is the group project</title>
+		</head>
+		<body>
+			<div id="fbWrapper">
+				<div id="fb-root"></div>
 
-		<fb:login-button scope="public_profile,email,user_likes,friends,invitable_friends{name}?limit=5000" onlogin="checkLoginState();">
-		</fb:login-button>
+				<fb:login-button scope="public_profile,email,user_likes,friends,invitable_friends{name}?limit=5000" onlogin="checkLoginState();">
+				</fb:login-button>
 
-		<div id="status">
-		</div>
+				<div id="status">
+				</div>
 
-		<div class="fb-like" data-href="http://polar-mesa-92767.herokuapp.com/" data-layout="standard" data-action="like" data-show-faces="false" data-share="false"></div>
+				<div class="fb-like" data-href="http://polar-mesa-92767.herokuapp.com/" data-layout="standard" data-action="like" data-show-faces="false" data-share="false"></div>
 
-		
-		<div class="fb-login-button" data-max-rows="1" data-size="small" data-show-faces="true" data-auto-logout-link="true"></div>
+				
+				<div class="fb-login-button" data-max-rows="1" data-size="small" data-show-faces="true" data-auto-logout-link="true"></div>
 
-	</div>
-	
-	<div id="yelp">
-		<form>
-			<label for="what">What are you looking for?</label>
-			<input id="what"></input></br>
-			
-			
-			<label for="where">Where do want to find it?</label>
-			<input id="where"></input><br />
-			<input type="button" id="submit" value="submit"></input><br />
-			<img src="assets/images/yelp.png">
-
-		</form>
-	</div>
-	<div id="yelpSearches">
-		<div class='panel panel-danger'>
-			<div class="panel-heading">
-				<h3 class="panel-title">
-				</h3>
 			</div>
-  			<div class="panel-body">
-				<table id="searches"></table>
+			
+			<div id="yelp">
+				<form>
+					<label for="what">What are you looking for?</label>
+					<input id="what"></input></br>
+					
+					
+					<label for="where">Where do want to find it?</label>
+					<input id="where"></input><br />
+					<input type="button" id="submit" value="submit"></input><br />
+					<img src="assets/images/yelp.png">
+
+				</form>
 			</div>
-		</div>
-	</div>
-	
-		
-	
-
-
-</body>
-<script type="javascript" src="assets/javascript/ap.js"></script>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</body>
-
-<script type="text/javascript" src='ap.js'></script>
-</html>
+			<div id="yelpSearches">
+				<div class='panel panel-danger'>
+					<div class="panel-heading">
+						<h3 class="panel-title">
+						</h3>
+					</div>
+		  			<div class="panel-body">
+						<table id="searches"></table>
+					</div>
+				</div>
+			</div>
+		</body>
+		<script type="javascript" src="assets/javascript/ap.js"></script>
+	</html>
