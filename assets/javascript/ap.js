@@ -12,6 +12,7 @@ var where = []
 var FBresponse; 
 var fbAllFriendsList;
 var allFriends = [];
+var allFriendImg = [];
 var fbPaging;
 var facebookUserProfile = {}
 
