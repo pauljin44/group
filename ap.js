@@ -103,7 +103,7 @@ var fbPaging;
 					where.push(response.location.name); //where your location is
 
 				}); //ends first FB.api
-
+}
 				
 
 
@@ -132,12 +132,12 @@ var fbPaging;
 				}
 					
 				var newFirebaseUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+response.id);
-					
+				debugger;	
 				newFirebaseUser.set(facebookUserProfile); //this can come out
 
 
 
-	}
+	
 
 
 
