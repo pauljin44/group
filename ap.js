@@ -145,6 +145,15 @@ var facebookUserProfile = {}
 
 					// }
 
+				}).done(function(){
+						for(a=0;a<allFriends.length;a++){ 
+							debugger;
+							facebookUserProfile.userFriends = {[a]: allFriends[a]};
+						}
+
+						var newFirebaseUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+facebookUserProfile.userID);
+					
+						newFirebaseUser.set(facebookUserProfile); 			
 				});
 	
 
@@ -155,14 +164,7 @@ var facebookUserProfile = {}
 
 //***************** update firebase *********************************************************
 		
-		for(a=0;a<allFriends.length;a++){ 
-			debugger;
-			facebookUserProfile.userFriends = {[a]: allFriends[a]};
-		}
 
-		var newFirebaseUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+facebookUserProfile.userID);
-					
-		newFirebaseUser.set(facebookUserProfile); 
 
 
 
