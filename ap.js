@@ -103,7 +103,7 @@ var fbPaging;
 					where.push(response.location.name); //where your location is
 
 				}); //ends first FB.api
-}
+
 				
 
 
@@ -111,6 +111,7 @@ var fbPaging;
 				console.log(response);
 					
 					for (x=0;x<response.data.length;x++) {
+						debugger;
 						allFriends.push(response.data[x].name);
 
 					}
@@ -134,7 +135,7 @@ var fbPaging;
 				var newFirebaseUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+response.id);
 				debugger;	
 				newFirebaseUser.set(facebookUserProfile); //this can come out
-
+}
 
 
 	
