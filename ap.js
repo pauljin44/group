@@ -106,7 +106,7 @@ var fbPaging;
 						userEmail: response.email,
 						userFriends: {}
 					}
-
+					debugger;
 					for(a=0;a<allFriends.length;a++){ //this can come out
 						debugger;
 							facebookUserProfile.userFriends = {[a]: allFriends[a]};
