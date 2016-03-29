@@ -110,36 +110,36 @@ var counter = 0
 
 				
 
-				debugger;
-				FB.api(fbAllFriendsList, function(response) { //this can come out 
-				console.log(response);
+				// debugger;
+				// FB.api(fbAllFriendsList, function(response) { //this can come out 
+				// console.log(response);
 					
-					for (x=0;x<response.data.length;x++) {
-						counter++
-						console.log(counter)
-						allFriends.push(response.data[x].name);
+				// 	for (x=0;x<response.data.length;x++) {
+				// 		counter++
+				// 		console.log(counter)
+				// 		allFriends.push(response.data[x].name);
 
-					}
+				// 	}
 
-				}); //ends seccond FB.api
+				// }); //ends seccond FB.api
 				
 
-				debugger;
-				var facebookUserProfile = { //this can come out
-					userName: response.name,
-					userID: response.id,
-					userEmail: response.email,
-					userFriends: {}
-				}
+				// debugger;
+				// var facebookUserProfile = { //this can come out
+				// 	userName: response.name,
+				// 	userID: response.id,
+				// 	userEmail: response.email,
+				// 	userFriends: {}
+				// }
 
-				for(a=0;a<allFriends.length;a++){ //this can come out
-						debugger;
-							facebookUserProfile.userFriends = {[a]: allFriends[a]};
-				}
+				// for(a=0;a<allFriends.length;a++){ //this can come out
+				// 		debugger;
+				// 			facebookUserProfile.userFriends = {[a]: allFriends[a]};
+				// }
 					
-				var newFirebaseUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+response.id);
-				debugger;	
-				newFirebaseUser.set(facebookUserProfile); //this can come out
+				// var newFirebaseUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+response.id);
+				// debugger;	
+				// newFirebaseUser.set(facebookUserProfile); //this can come out
 }
 
 
