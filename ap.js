@@ -14,7 +14,7 @@ var fbAllFriendsList;
 $('#yelpSearches').hide();
 var allFriends = [];
 var fbPaging;
-
+var facebookUserProfile = {}
 	window.fbAsyncInit = function() {
 		FB.init({
 			appId      : '1518819868427496',
@@ -88,7 +88,7 @@ var fbPaging;
           fbAllFriendsList = fbPaging.replace('limit=25', 'limit=5000');
           console.log(fbAllFriendsList);
 
-					FB.api(fbAllFriendsList, function(response) { //this can come out 
+					FB.api(fbAllFriendsList, function(response) {  
 							console.log(response);
 							for (x=0;x<response.data.length;x++) {
 								allFriends.push(response.data[x].name);
@@ -100,25 +100,25 @@ var fbPaging;
 
 					
 
-					var facebookUserProfile = { //this can come out
+					facebookUserProfile = { 
 						userName: response.name,
 						userID: response.id,
 						userEmail: response.email,
 						userFriends: {}
 					}
-					debugger;
-					for(a=0;a<allFriends.length;a++){ //this can come out
+
+					for(a=0;a<allFriends.length;a++){ 
 						debugger;
 							facebookUserProfile.userFriends = {[a]: allFriends[a]};
 					}
 
 					var newFirebaseUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+response.id);
 					
-					newFirebaseUser.set(facebookUserProfile); //this can come out
+					newFirebaseUser.set(facebookUserProfile); 
 					
 					
 
-					if (response.likes.data.length != undefined){ //this stay in
+					if (response.likes.data.length != undefined){ 
 						for (h=0;h<response.likes.data.length;h++){
 						// var userLikes = []
 						 userLikes.push(response.likes.data[h].name);
