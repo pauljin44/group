@@ -144,6 +144,16 @@ var facebookUserProfile = {}
 					where.push(response.location.name); //where your location is
 
 
+				}).done(function(){
+						FBwhere = where[0]; //this is a runYelpOnce() var
+
+							if (userLikes.length > 0) { 
+								for (k=0;k<what.length;k++) {
+									FBwhat = userLikes[k] //this is a runYelpOnce() var
+									runYelpOnce()
+								}
+
+							}
 				});
 
 
@@ -261,15 +271,7 @@ function runYelpOnce() { //The function runs one time for every FB 'like'
 
 } //end runYelpOnce *************************
 
-FBwhere = where[0]; //this is a runYelpOnce() var
 
-if (userLikes.length > 0) { 
-	for (k=0;k<what.length;k++) {
-		FBwhat = userLikes[k] //this is a runYelpOnce() var
-		runYelpOnce()
-	}
-
-}
 
 
 //************************************************************************************************************************************
