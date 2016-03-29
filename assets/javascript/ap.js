@@ -87,7 +87,7 @@ var facebookUserProfile = {}
 					console.log('This is FB Graph API response: ', response);
 					
           	fbPaging = response.invitable_friends.paging.next
-          	fbFriendImg = response.invitable_friends.data.picture.data.url
+          	// fbFriendImg = response.invitable_friends.data.picture.data.url
 
           	fbAllFriendsList = fbPaging.replace('limit=25', 'limit=5000');
 
