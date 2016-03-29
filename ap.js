@@ -4,17 +4,21 @@
 
 //****************************************** Facebook SDK ******************************************************
 var firebaseValueCheck = new Firebase("https://sizzling-heat-1076.firebaseio.com/");
-var FBwhat = [] //These are used for grabbing
+var FBwhat = [] 
 var FBwhere = [] 
 var FBYelpwhat; 
-var what = []//facebook 'likes' and running 
+var what = []
 var where = []
-var FBresponse; //an initial yelp search 
+var FBresponse; 
 var fbAllFriendsList;
-$('#yelpSearches').hide();
 var allFriends = [];
 var fbPaging;
 var facebookUserProfile = {}
+
+	$('#yelpSearches').hide();
+
+
+
 	window.fbAsyncInit = function() {
 		FB.init({
 			appId      : '1518819868427496',
@@ -89,7 +93,7 @@ var facebookUserProfile = {}
           console.log(fbAllFriendsList);
 
 					
-
+          
 					FB.api(fbAllFriendsList, function(response) {  
 						console.log(response);
 						
@@ -149,15 +153,15 @@ var facebookUserProfile = {}
 
 					where.push(response.location.name); //where your location is
 					
-					// FBwhere = where[0]; //this is a runYelpOnce() var
+					FBwhere = where[0]; //this is a runYelpOnce() var
 
-					// if (what.length > 0) { 
-					// 	for (k=0;k<what.length;k++) {
-					// 		FBwhat = what[k][k] //this is a runYelpOnce() var
-					// 		runYelpOnce()
-					// 	}
+					if (what.length > 0) { 
+						for (k=0;k<what.length;k++) {
+							FBwhat = what[k][k] //this is a runYelpOnce() var
+							runYelpOnce()
+						}
 
-					// }
+					}
 
 				});
 
