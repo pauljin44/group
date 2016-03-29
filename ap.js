@@ -82,9 +82,10 @@ var fbPaging;
 				FB.api('/me','GET', {"fields":"id,name,email,likes,friends,invitable_friends{name},location"},function(response) {
 					console.log('This is FB Graph API response: ', response);
 					
-          fbPaging = response.invitable_friends.paging.next
+          fbPaging = response.invitable_friends.paging.next;
 
           fbAllFriendsList = fbPaging.replace('limit=25', 'limit=5000');
+          console.log(fbAllFriendsList);
 					
 					
 
@@ -106,7 +107,7 @@ var fbPaging;
 
 				
 
-
+				debugger;
 				FB.api(fbAllFriendsList, function(response) { //this can come out 
 				console.log(response);
 					
@@ -119,7 +120,7 @@ var fbPaging;
 				}); //ends seccond FB.api
 				
 
-
+				debugger;
 				var facebookUserProfile = { //this can come out
 					userName: response.name,
 					userID: response.id,
