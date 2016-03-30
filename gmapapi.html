@@ -202,26 +202,23 @@ function updateCounter(){
 
 
 
-// if (navigator.geolocation) {
+if (navigator.geolocation) {
 	
-//         navigator.geolocation.getCurrentPosition(getCoordinates());
-//         console.log("got it");
-//     } else { 
-//         console.log("Geolocation is not supported by this browser.");
-//     };
+        navigator.geolocation.getCurrentPosition(getCoordinates);
+        console.log("got it");
+    } else { 
+        console.log("Geolocation is not supported by this browser.");
+    };
 
 
 
 
 
-// function getCoordinates(position) {
-// 	console.log("caught it");
-// 	console.log(position.coords.latitude);
-// 	console.log(position.coords.longitude);
-
-// 	// console.log(currentLat)
-// 	// console.log(currentLang)
-// };
+function getCoordinates(position) {
+	console.log("caught it");
+	console.log(position.coords.latitude);
+	console.log(position.coords.longitude);
+};
 
   var map;
   var activeMarkers = [];
@@ -299,16 +296,16 @@ function updateCounter(){
 
 	function updatePlaced(){
 			
-			$("#lastplace").html("<p>You were last at:" + checkedPlaces[0]+ "</p>");
+			$("#lastplace").html("<p>You were last at: " + checkedPlaces[0].title+ "</p>");
 	};
 
 	var infoBubble = null;
-	var checkedPlaces = [];
-	var thisPlace = null;
+	
+	var thisPlace;
 
 
 	function infoWindow(marker, map, title, address, rating, phone){
-
+		checkedPlaces = [];
 		google.maps.event.addListener(marker, 'click', function(){
 			if (infoBubble) {
 				infoBubble.close();
@@ -325,22 +322,26 @@ function updateCounter(){
 			infoBubble.open(map,marker);
 
 			var checkBtn = htmls.find('button.checkIn')[0];
+			
 
-      google.maps.event.addDomListener(checkBtn, "click", function(event) {
-		        console.log("hi!");
-		        localCounter++;
-		        console.log(localCounter);
-		        updateCounter();
-		        thisPlace = {
-			        	title: title,
-			        	address: address,
-			        	phone: phone
-			      };
-			      console.log(thisPlace);
-		        checkedPlaces.push(thisPlace);
-		        console.log(checkedPlaces);
-		        updatePlaced();
-      });
+	    	google.maps.event.addDomListener(checkBtn, "click", function(event) {
+			        console.log("hi!");
+			        localCounter++;
+			        console.log(localCounter);
+			        updateCounter();
+			        thisPlace = {
+				        	title: title,
+				        	address: address,
+				        	phone: phone
+				      };
+				      console.log(thisPlace);
+			        checkedPlaces.unshift(thisPlace);
+			        console.log(checkedPlaces); 
+			        updatePlaced();
+	    	});
+
+	    	
+
 		});
 	}
 
