@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+  <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
   <script type="text/javascript" src="https://oauth.googlecode.com/svn/code/javascript/oauth.js"></script>
 	<script type="text/javascript" src="https://oauth.googlecode.com/svn/code/javascript/sha1.js"></script>
@@ -46,6 +47,8 @@
 
     <script>
 
+var firebaseValueCheck = new Firebase("https://sizzling-heat-1076.firebaseio.com/");
+
 $('#submit').on('click', function(){
    
     locations = [];
@@ -61,14 +64,10 @@ $('#submit').on('click', function(){
 
 
     var auth = {
-  //
-  // Update with your auth tokens.
-  //
+
         consumerKey: "6D8kU6kuztsql0mF5fn1pQ",
         consumerSecret: "ySNfoa-0ET1HGydX3o8Y7Bk1Cjk",
         accessToken: "zV2TRcSIOG20IQjyXKOTWt4WKVKjX-c-",
-        // This example is a proof of concept, for how to use the Yelp v2 API with javascript.
-        // You wouldn't actually want to expose your access token secret like this in a real application.
         accessTokenSecret: "vo_ufN9gSTYcqrUFjLcVfKYjXkM",
         serviceProvider: {
             signatureMethod: "HMAC-SHA1"
@@ -173,10 +172,35 @@ $('#submit').on('click', function(){
 
 
 //********************************************************************
-var localCounter = 0;
+
+var localCounter = 0; //initally set to 0
+var checkedPlaces = []
+
+var firebaseValueCheck = new Firebase("https://sizzling-heat-1076.firebaseio.com/");
+	
+	firebaseValueCheck.on('value', function(snapshot){
+		if (snapshot.val().userName != undefined) {
+			localCounter = snapshot.val().userName.count
+		}
+		if (snapshot.val().userName.places != undefined){
+			checkedPlaces = snapshot.val().userName.places
+		}
+
+
+		
+	});
+
+var firebaseCountUp = new Firebase("https://sizzling-heat-1076.firebaseio.com/userName/");
+
 
 function updateCounter(){
-		$("#counter").empty();
+
+		var addCount = {
+			count: localCounter,
+		}
+		
+		firebaseCountUp.update(addCount)
+		$("#counter").empty();		
 		$("#counter").html("<p>You have this many points:" + localCounter+ "</p>");
 
 };
@@ -297,6 +321,41 @@ function getCoordinates(position) {
 	function updatePlaced(){
 			
 			$("#lastplace").html("<p>You were last at: " + checkedPlaces[0].title+ "</p>");
+			
+			var addPlaces = {
+				
+				places: {
+					0: [checkedPlaces[0].title]	
+				}
+				
+			}
+			var firebasePlaceUp = new Firebase("https://sizzling-heat-1076.firebaseio.com/userName/");
+			
+			firebasePlaceUp.once('value', function(snapshot){
+				debugger;
+				if (snapshot.val().places == undefined){
+					firebasePlaceUp.update(addPlaces)
+
+				}else{
+					for(i=0;i<snapshot.val().places.length;i++){
+						addPlaces = {
+
+								[i+1]: checkedPlaces[0].title
+							} 							
+						} 
+
+						var firebasePlaceDown = new Firebase("https://sizzling-heat-1076.firebaseio.com/userName/places");
+								
+
+						firebasePlaceDown.update(addPlaces)
+					}
+
+
+				
+			});
+			
+			
+
 	};
 
 	var infoBubble = null;
