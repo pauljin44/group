@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script type="text/javascript" src="https://oauth.googlecode.com/svn/code/javascript/oauth.js"></script>
+	<script type="text/javascript" src="https://oauth.googlecode.com/svn/code/javascript/sha1.js"></script>
+		<script type="text/javascript" src="infobubble.js" ></script>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 600px;
+        width: 600px;
+        
+      }
+      
+    </style>
+  </head>
+  <body>
+
+  <div id="yelp">
+		<form>
+			<label for="what">What do you feel like eating?</label>
+			<input id="what"></input>
+			
+			
+			<label for="where">Where do you feel like eating it?</label>
+			<input id="where"></input>
+			<input type="button" id="submit" value="submit"></input><br />
+			<!-- <a href = "http://www.yelp.com"> --> <!-- <img src = http://s3-media4.ak.yelpcdn.com/assets/2/www/img/9b7b8f0fecd7/developers/Powered_By_Yelp_Yellow.png>  </a> 
+ -->
+
+		</form>
+	</div>
+	<div id="counter">
+		
+		</div>
+		<div id="lastplace"></div>
+    <div id="map"></div>
+
+    <script>
+
+$('#submit').on('click', function(){
+   
+    locations = [];
+    if (activeMarkers.length > 0){clearMarkers()};
+    activeMarkers = [];
+    var what = "term=" + $(this).text()
+    var where = 'location=' + $(this).text()
+    
+    what = $('#what').val()
+    where = $('#where').val()
+    
+
+
+
+    var auth = {
+  //
+  // Update with your auth tokens.
+  //
+        consumerKey: "6D8kU6kuztsql0mF5fn1pQ",
+        consumerSecret: "ySNfoa-0ET1HGydX3o8Y7Bk1Cjk",
+        accessToken: "zV2TRcSIOG20IQjyXKOTWt4WKVKjX-c-",
+        // This example is a proof of concept, for how to use the Yelp v2 API with javascript.
+        // You wouldn't actually want to expose your access token secret like this in a real application.
+        accessTokenSecret: "vo_ufN9gSTYcqrUFjLcVfKYjXkM",
+        serviceProvider: {
+            signatureMethod: "HMAC-SHA1"
+        }
+    };
+
+
+
+    var accessor = {
+      consumerSecret: auth.consumerSecret,
+      tokenSecret: auth.accessTokenSecret
+    };
+
+    parameters = [];
+    parameters.push(['term', what]);
+    parameters.push(['location', where]);
+    parameters.push(['callback', 'cb']);
+    parameters.push(['oauth_consumer_key', auth.consumerKey]);
+    parameters.push(['oauth_consumer_secret', auth.consumerSecret]);
+    parameters.push(['oauth_token', auth.accessToken]);
+    parameters.push(['oauth_signature_method', 'HMAC-SHA1']);
+
+    var message = {
+      'action': 'https://api.yelp.com/v2/search',
+      'method': 'GET',
+      'parameters': parameters
+    };
+
+    OAuth.setTimestampAndNonce(message);
+    OAuth.SignatureMethod.sign(message, accessor);
+
+    var parameterMap = OAuth.getParameterMap(message.parameters);
+    parameterMap.oauth_signature = OAuth.percentEncode(parameterMap.oauth_signature);
+    // console.log(parameterMap);
+
+    var bestRestaurant = "Some random restaurant";
+
+    $.ajax({
+      'url': message.action,
+      'data': parameterMap,
+      'cache': true,
+      'dataType': 'jsonp',
+      'jsonpCallback': 'cb',
+      'success': function(data, textStats, XMLHttpRequest) {
+        // console.log(data);
+
+
+    // $("body").append("<h1>The best "+what+" spots are listed below: </h1>");
+    // $("body").append("<h1>");
+    // $("body").append(where);
+    // $("body").append("<\h1>");
+    var i;
+
+    for(i=0; i<=9; i= i+1){
+    			newObject = ["" + data.businesses[i].name + "", "" + data.businesses[i].location.address[0]+ "" + " " + "" + data.businesses[i].location.city + "" + " " + "" + data.businesses[i].location.state_code, data.businesses[i].rating_img_url_small, "" + data.businesses[i].display_phone + "", data.region.center.latitude, data.region.center.longitude];
+    			// console.log(newObject);
+    			locations.push(newObject);
+
+
+
+
+
+
+
+                // $("body").append("<p>");  
+                // $("body").append('<a href ="' + data.businesses[i].url + '">' + data.businesses[i].name +'</a>');
+                // $("body").append("      ");
+                // $("body").append('<img src="' + data.businesses[i].rating_img_url +'" />');
+                // $("body").append(" Phone: ");
+                // $("body").append(data.businesses[i].phone);
+                // $("body").append("<p>");  
+                // $("body").append(" Yelp Reviews: ");
+                // $("body").append(data.businesses[i].review_count);
+                // $("body").append("      ");
+                // $("body").append("<\p>");  
+       }
+       search();
+
+      }
+    })
+
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//********************************************************************
+var localCounter = 0;
+
+function updateCounter(){
+		$("#counter").empty();
+		$("#counter").html("<p>You have this many points:" + localCounter+ "</p>");
+
+};
+
+
+// function getLocation() {
+//     if (navigator.geolocation) {
+//         navigator.geolocation.getCurrentPosition(showPosition);
+//         console.log("got it");
+//     } else {
+//         console.log("Geolocation is not supported by this browser.");
+//     }
+// }
+// function showPosition(position) {
+// 	console.log("caught it");
+//    console.log("Latitude: " + position.coords.latitude + 
+//     "Longitude: " + position.coords.longitude); 
+// }
+
+
+
+
+
+
+
+// if (navigator.geolocation) {
+	
+//         navigator.geolocation.getCurrentPosition(getCoordinates());
+//         console.log("got it");
+//     } else { 
+//         console.log("Geolocation is not supported by this browser.");
+//     };
+
+
+
+
+
+// function getCoordinates(position) {
+// 	console.log("caught it");
+// 	console.log(position.coords.latitude);
+// 	console.log(position.coords.longitude);
+
+// 	// console.log(currentLat)
+// 	// console.log(currentLang)
+// };
+
+  var map;
+  var activeMarkers = [];
+  var locations = [];
+
+  google.maps.event.addDomListener(window, "load", initMap);
+
+	function setMapOnAll(map) {
+	  for (var i = 0; i < activeMarkers.length; i++) {
+	    activeMarkers[i].setMap(map);
+	  }
+	};
+
+	function clearMarkers() {
+		setMapOnAll(null)
+	};
+
+	function initMap() {    
+	      map = new google.maps.Map(
+	      	document.getElementById('map'), {
+	          center: {lat: 40.728, lng: -74.078},
+	          zoom: 12
+	        });  	
+	};
+
+	function search(){
+	geocoder = new google.maps.Geocoder();
+	for (i = 0; i < locations.length; i++) {
+	    		geocodeAddress(locations, i)
+	    	};
+	map.panTo(center)
+	};
+
+	var marker;
+	var center = {};
+
+	function geocodeAddress(locations, i) {
+
+	      var title = locations[i][0];
+	      var address = locations[i][1];
+	      var rating = locations[i][2];
+	      var phone = locations[i][3];
+	      center = {};
+	      center.lat = locations[i][4];
+				center.lng = locations[i][5];
+
+	      geocoder.geocode({
+	      	'address': locations[i][1]
+	      }, function(results, status){
+
+	      	if (status == google.maps.GeocoderStatus.OK){
+
+	      		marker = new google.maps.Marker({
+	      			map: map,
+	      			position: results[0].geometry.location,
+	      			title: title,
+	      			animation: google.maps.Animation.DROP,
+	      			address: address, 
+	      			rating: rating,
+	      			phone: phone,
+	      			center: center
+	      		});
+	      		activeMarkers.push(marker);
+	      		infoWindow(marker, map, title, address, rating, phone);
+	      		bounds.extend(marker.getPosition());
+	      		// map.setCenter(center);
+	      		// map.panTo(center);
+	      		map.fitBounds(bounds);
+	      	} else {
+	      		alert ("geocode of" + address + "failed:" + status);
+	      	}
+	      });
+	};
+
+
+	function updatePlaced(){
+			
+			$("#lastplace").html("<p>You were last at:" + checkedPlaces[0]+ "</p>");
+	};
+
+	var infoBubble = null;
+	var checkedPlaces = [];
+	var thisPlace = null;
+
+
+	function infoWindow(marker, map, title, address, rating, phone){
+
+		google.maps.event.addListener(marker, 'click', function(){
+			if (infoBubble) {
+				infoBubble.close();
+			};
+
+			var htmls= $("<div id='test'><h3>" + title + "</h3><p>" + address + "</p><img src="+"'"+ rating +"'><br><p>" + phone + "</p><br><button class='checkIn' name=:'checkIn' type='button'>I ate here!</button></div>");
+			infoBubble = new InfoBubble({
+				content: htmls[0],
+				maxWidth: 350,
+				shadowStyle: 1,
+				backgroundColor: 'slategrey'
+			});
+
+			infoBubble.open(map,marker);
+
+			var checkBtn = htmls.find('button.checkIn')[0];
+
+      google.maps.event.addDomListener(checkBtn, "click", function(event) {
+		        console.log("hi!");
+		        localCounter++;
+		        console.log(localCounter);
+		        updateCounter();
+		        thisPlace = {
+			        	title: title,
+			        	address: address,
+			        	phone: phone
+			      };
+			      console.log(thisPlace);
+		        checkedPlaces.push(thisPlace);
+		        console.log(checkedPlaces);
+		        updatePlaced();
+      });
+		});
+	}
+
+
+
+
+
+
+
+
+      
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOTti6k-dAW16IZkoNLTN9ZGE85KfS9M0&callback=initMap"
+    async defer></script>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
