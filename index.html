@@ -1,6 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+	<meta charset="UTF-8">
+
+	<title>This is the group project</title>
+
     <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 	<script type="text/javascript" src="https://oauth.googlecode.com/svn/code/javascript/oauth.js"></script>
@@ -15,87 +19,85 @@
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
-	<title>This is the group project</title>
+
 </head>
 <body>
-	<div id="fbWrapper">
-		<div id="fb-root"></div>
 
-		<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-		</fb:login-button>
+<div class="container-fluid">
 
-		<div id="status">
+	<nav class="navbar navbar-default" role="navigation">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#"><strong>Locale</strong></a>
+			</div>
+	
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse navbar-ex1-collapse">
+				<ul class="nav navbar-nav">
+					<li><a href="#">Yelp</a></li>
+					<li><a href="#">Foursquare</a></li>
+				</ul>
+				<form class="navbar-form navbar-left" role="search">
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="What Biz R U looking for">
+						<input type="text" class="form-control" placeholder="Where in locale? Type City Name">
+					</div>
+					<button type="submit" class="btn btn-default">Submit</button>
+				</form>
+
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#">Facebook login</a></li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Your Account <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Contributions</a></li>
+							<li><a href="#">total points</a></li>
+							<li><a href="#">claim your credit here!</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div><!-- /.navbar-collapse -->
+		</div>
+	</nav>
+
+		<div class="well well-lg">
+		  contents from Yelp nesting here!
 		</div>
 
-		<div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+		<div class="well">
+		<div id="wrapper">
+			<div id="box-1">
+		  contents from Foursquare nesting here!
+			</div>
+		</div>
+		</div>
 
-
-		<div class="fb-login-button" data-max-rows="1" data-size="small" data-show-faces="true" data-auto-logout-link="false"></div>
-		<a href="#" id="fbLogin">Firebase Facebook Login </a><br />
-	</div>
-	
-	<div id="yelp">
-		<form>
-			<label for="what">What do you feel like eating?</label>
-			<input id="what"></input>
-			
-			
-			<label for="where">Where do you feel like eating it?</label>
-			<input id="where"></input>
-			<input type="button" id="submit" value="submit"></input><br />
-			<!-- <a href = "http://www.yelp.com"> --> <!-- <img src = http://s3-media4.ak.yelpcdn.com/assets/2/www/img/9b7b8f0fecd7/developers/Powered_By_Yelp_Yellow.png>  </a> 
- -->
-
-		</form>
-	</div>
-
-	<div class="fourSquare">
-		<button id="logFoursquare">Check out fourSquare!</button>
-
-		
-	</div>
-
+</div>
 
 </body>
-<script type="javascript" src="assets/javascript/ap.js"></script>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</body>
-
 <script type="text/javascript" src='ap.js'></script>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
