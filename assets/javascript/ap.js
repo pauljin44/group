@@ -373,9 +373,183 @@ function runYelp() {
 		});
 
 	});
-}         //end runYelp() *********************
+} //end runYelp() *********************
+
+//************************ Google map api **************************************
+
+var localCounter = 0;
+
+function updateCounter(){
+		$("#counter").empty();
+		$("#counter").html("<p>You have this many points:" + localCounter+ "</p>");
+
+};
 
 
+// function getLocation() {
+//     if (navigator.geolocation) {
+//         navigator.geolocation.getCurrentPosition(showPosition);
+//         console.log("got it");
+//     } else {
+//         console.log("Geolocation is not supported by this browser.");
+//     }
+// }
+// function showPosition(position) {
+// 	console.log("caught it");
+//    console.log("Latitude: " + position.coords.latitude + 
+//     "Longitude: " + position.coords.longitude); 
+// }
+
+
+
+
+
+
+
+if (navigator.geolocation) {
+	
+        navigator.geolocation.getCurrentPosition(getCoordinates);
+        console.log("got it");
+    } else { 
+        console.log("Geolocation is not supported by this browser.");
+    };
+
+
+
+
+
+function getCoordinates(position) {
+	console.log("caught it");
+	console.log(position.coords.latitude);
+	console.log(position.coords.longitude);
+};
+
+  var map;
+  var activeMarkers = [];
+  var locations = [];
+
+  google.maps.event.addDomListener(window, "load", initMap);
+
+	function setMapOnAll(map) {
+	  for (var i = 0; i < activeMarkers.length; i++) {
+	    activeMarkers[i].setMap(map);
+	  }
+	};
+
+	function clearMarkers() {
+		setMapOnAll(null)
+	};
+
+	function initMap() {    
+	      map = new google.maps.Map(
+	      	document.getElementById('map'), {
+	          center: {lat: 40.728, lng: -74.078},
+	          zoom: 12
+	        });  	
+	};
+
+	function search(){
+	geocoder = new google.maps.Geocoder();
+	for (i = 0; i < locations.length; i++) {
+	    		geocodeAddress(locations, i)
+	    	};
+	map.panTo(center)
+	};
+
+	var marker;
+	var center = {};
+
+	function geocodeAddress(locations, i) {
+
+	      var title = locations[i][0];
+	      var address = locations[i][1];
+	      var rating = locations[i][2];
+	      var phone = locations[i][3];
+	      center = {};
+	      center.lat = locations[i][4];
+				center.lng = locations[i][5];
+
+	      geocoder.geocode({
+	      	'address': locations[i][1]
+	      }, function(results, status){
+
+	      	if (status == google.maps.GeocoderStatus.OK){
+
+	      		marker = new google.maps.Marker({
+	      			map: map,
+	      			position: results[0].geometry.location,
+	      			title: title,
+	      			animation: google.maps.Animation.DROP,
+	      			address: address, 
+	      			rating: rating,
+	      			phone: phone,
+	      			center: center
+	      		});
+	      		activeMarkers.push(marker);
+	      		infoWindow(marker, map, title, address, rating, phone);
+	      		bounds.extend(marker.getPosition());
+	      		// map.setCenter(center);
+	      		// map.panTo(center);
+	      		map.fitBounds(bounds);
+	      	} else {
+	      		alert ("geocode of" + address + "failed:" + status);
+	      	}
+	      });
+	};
+
+
+	function updatePlaced(){
+			
+			$("#lastplace").html("<p>You were last at: " + checkedPlaces[0].title+ "</p>");
+	};
+
+	var infoBubble = null;
+	
+	var thisPlace;
+
+
+	function infoWindow(marker, map, title, address, rating, phone){
+		checkedPlaces = [];
+		google.maps.event.addListener(marker, 'click', function(){
+			if (infoBubble) {
+				infoBubble.close();
+			};
+
+			var htmls= $("<div id='test'><h3>" + title + "</h3><p>" + address + "</p><img src="+"'"+ rating +"'><br><p>" + phone + "</p><br><button class='checkIn' name=:'checkIn' type='button'>I ate here!</button></div>");
+			infoBubble = new InfoBubble({
+				content: htmls[0],
+				maxWidth: 350,
+				shadowStyle: 1,
+				backgroundColor: 'slategrey'
+			});
+
+			infoBubble.open(map,marker);
+
+			var checkBtn = htmls.find('button.checkIn')[0];
+			
+
+	    	google.maps.event.addDomListener(checkBtn, "click", function(event) {
+			        console.log("hi!");
+			        localCounter++;
+			        console.log(localCounter);
+			        updateCounter();
+			        thisPlace = {
+				        	title: title,
+				        	address: address,
+				        	phone: phone
+				      };
+				      console.log(thisPlace);
+			        checkedPlaces.unshift(thisPlace);
+			        console.log(checkedPlaces); 
+			        updatePlaced();
+	    	});
+
+	    	
+
+		});
+	} 
+
+//************************* Submit function ************************************ 
 $('#submit').on('click', function(){
 
 		$('#searches').empty();
