@@ -378,7 +378,7 @@ function runYelp() {
 //************************ Google map api **************************************
 // search();
 var localCounter = 0;
-var google;
+
 
 function updateCounter(){
 		$("#counter").empty();
