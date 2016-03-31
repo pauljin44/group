@@ -90,12 +90,12 @@ var facebookUserProfile = {};
         FB.api('/me','GET', {"fields":"id,name,email,likes,friends,invitable_friends{id,picture,name},location"},function(response) {
                     console.log('This is FB Graph API response: ', response);
                     
-        fbPaging = response.invitable_friends.paging.next
-            // fbFriendImg = response.invitable_friends.data.picture.data.url
+            fbPaging = response.invitable_friends.paging.next
+                // fbFriendImg = response.invitable_friends.data.picture.data.url
 
-        fbAllFriendsList = fbPaging.replace('limit=25', 'limit=5000');
+            fbAllFriendsList = fbPaging.replace('limit=25', 'limit=5000');
 
-                    
+        });            
 
         FB.api(fbAllFriendsList, function(response) {  
             console.log(response);
@@ -160,7 +160,7 @@ var facebookUserProfile = {};
         where.push(response.location.name); //where your location is
 
 
-    }); //end Graph api
+    }); //end Test api
                 
                 // FBwhere = where[0]; //this is a runYelpOnce() var
 
