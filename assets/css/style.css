@@ -19,13 +19,18 @@ nav {
 }
 
 #fbWrapper {
-	width: 50%;
-	float: left;
+	width: 30%;
+    float: left;
     padding: 5px;
 }
 
 .btn.btn-primary.btn-xs{
-	margin-top: 24px;
+	margin-top: 14px;
+    margin-left: 12px;
+}
+
+nav.navbar-nav.navbar-right {
+	width: 18%;
 }
 
 #yelp {
