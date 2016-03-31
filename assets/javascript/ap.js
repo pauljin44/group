@@ -17,6 +17,17 @@ var fbPaging;
 var facebookUserProfile = {};
 var currentUser;
 
+//************************* Submit function ************************************ 
+
+$('#submit').on('click', function() {
+
+    $('#searches').empty();
+    what = $('#what').val();
+    where = $('#where').val();
+    $('#yelpSearches').show();
+    runYelp()
+
+});
 
     
 
@@ -618,17 +629,7 @@ function infoWindow(marker, map, title, address, rating, phone){
     });
 } 
 
-//************************* Submit function ************************************ 
 
-$('#submit').on('click', function() {
-
-    $('#searches').empty();
-    what = $('#what').val();
-    where = $('#where').val();
-    $('#yelpSearches').show();
-    runYelp()
-
-});
 
 
 
