@@ -236,10 +236,14 @@ if (navigator.geolocation) {
 
 
 
-
+currentLat = null;
+currentLang = null;
 
 function getCoordinates(position) {
 	console.log("caught it");
+	currentLat = position.coords.latitude;
+	currentLang = position.coords.longitude;
+
 	console.log(position.coords.latitude);
 	console.log(position.coords.longitude);
 };

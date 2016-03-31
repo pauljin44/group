@@ -243,6 +243,17 @@ $('#yelpSearches').hide();
 
 function runYelp() {
 
+    locations = [];
+    if (activeMarkers.length > 0){clearMarkers()};
+    activeMarkers = [];
+
+    
+    var what = "term=" + $(this).text()
+    var where = 'location=' + $(this).text()
+    
+    what = $('#what').val()
+    where = $('#where').val()
+
         
 
     firebaseValueCheck.once('value', function(snapshot) {
@@ -316,7 +327,17 @@ function runYelp() {
                     $("."+i).append('<td>Phone: '+data.businesses[i].phone+'</td>');
                     $("."+i).append('<td>Is this claimed by owner: '+isClaimed+'</td>'+'</tr>'); 
                     $("."+i).append("<br />"); 
-                }
+                };
+
+                var j;
+
+                for(j=0; j<=9; j= j+1){
+                    newObject = ["" + data.businesses[j].name + "", "" + data.businesses[j].location.address[0]+ "" + " " + "" + data.businesses[j].location.city + "" + " " + "" + data.businesses[j].location.state_code, data.businesses[j].rating_img_url_small, "" + data.businesses[j].display_phone + "", data.region.center.latitude, data.region.center.longitude];
+                    locations.push(newObject);
+                };
+                search();
+
+
 
             }
         
@@ -324,7 +345,7 @@ function runYelp() {
 
     });
 
-    search();
+ 
 } //end runYelp() *********************
 
 //************************ Google map api **************************************
