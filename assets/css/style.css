@@ -31,17 +31,14 @@ nav {
     padding: 5px;
 }
 
-#yelp form img {
-    width: 20%;
-    margin-top: 5px;
+#poweredBy {
+	width: 18%;
 }
 
 #yelpSearches {
-	width: 50%;
-	float: right;		
+
 	height: 200px;
 	overflow: scroll;
-
 }
 
 td {
