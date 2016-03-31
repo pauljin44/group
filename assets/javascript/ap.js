@@ -29,6 +29,18 @@ $('#submit').on('click', function() {
 
 });
 
+$('#oldUserSubmit').on('click', function() {
+    var test = $('#oldUser').val()
+    firebaseValueCheck.on('value', function(snapshot){
+        if (snapshot.val().users.test == true) {
+            currentUser = $('#oldUser').val()
+        }
+
+    });
+
+    
+});
+
     
 
     window.fbAsyncInit = function() {
