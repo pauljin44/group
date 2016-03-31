@@ -34,6 +34,7 @@ $('#oldUserSubmit').on('click', function() {
     firebaseValueCheck.on('value', function(snapshot){
         if (snapshot.val().users.test == true) {
             currentUser = $('#oldUser').val();
+            console.log();
         }
 
     });
@@ -51,7 +52,9 @@ $('#newUserSubmit').on('click', function(){
     firebaseNewUser.update(added);
     firebaseValueCheck.once('value', function(snapshot) {
         console.log(snapshot.val().users.newUser)
-    })        
+    }) 
+
+    currentUser = newUser       
 });
 
     
