@@ -160,7 +160,7 @@ var facebookUserProfile = {};
         where.push(response.location.name); //where your location is
 
 
-    }); //end Test api
+    } //end Test api
                 
                 // FBwhere = where[0]; //this is a runYelpOnce() var
 
