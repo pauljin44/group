@@ -17,11 +17,8 @@ var fbPaging;
 var facebookUserProfile = {};
 var currentUser;
 
-$('#myModal').modal();
 
     
-
-
 
     window.fbAsyncInit = function() {
         FB.init({
