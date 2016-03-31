@@ -61,10 +61,11 @@ $('#newUserSubmit').on('click', function(){
 });
 
 $('#points').on('click', function(){
-
+    debugger;
     firebaseValueCheck.once('value', function(snapshot){
         $('#modalPoints').modal();
         for (p=0;p<snapshot.val().users.currentUser.places;p++) {
+            debugger;
             $('#showPlaces').append('<li class="seenPlace">').text(snapshot.val().users.currentUser.places[i]);
         }
     });
