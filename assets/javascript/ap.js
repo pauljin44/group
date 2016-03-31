@@ -17,7 +17,7 @@ var fbPaging;
 var facebookUserProfile = {};
 var currentUser;
 
-
+$('#myModal').modal();
 
     
 
