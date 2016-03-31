@@ -24,6 +24,10 @@ nav {
     padding: 5px;
 }
 
+.btn.btn-primary.btn-xs{
+	margin-top: 24px;
+}
+
 #yelp {
 	width: 50%;
 	float: left;
