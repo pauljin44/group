@@ -17,11 +17,10 @@ var fbPaging;
 var facebookUserProfile = {};
 var currentUser;
 
-
 //************************* Submit function ************************************ 
 
 $('#submit').on('click', function() {
-
+    debugger;
     $('#searches').empty();
     what = $('#what').val();
     where = $('#where').val();
@@ -68,7 +67,7 @@ $('#points').on('click', function(){
     firebaseValueCheck.once('value', function(snapshot){
         $('#modalPoints').modal();
         for (p=0;p<snapshot.val();p++) {
-            // debugger;
+            debugger;
             $('#showPlaces').append('<li class="seenPlace">').text(snapshot.val()[i]);
         }
     });
@@ -238,7 +237,7 @@ $('#points').on('click', function(){
 
     // }    
     
-    
+    $('#yelpSearches').hide();
 
 //****************************************** Yelp ******************************************************       
 
@@ -566,7 +565,6 @@ function infoWindow(marker, map, title, address, rating, phone){
     });
 } 
 
-$('#yelpSearches').hide();
 
 
 
