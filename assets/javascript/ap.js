@@ -19,6 +19,7 @@ var currentUser;
 
 //************************* Submit function ************************************ 
 $(document).ready(function(){
+
     $('#submit').on('click', function() {
         debugger;
         $('#searches').empty();
@@ -28,52 +29,62 @@ $(document).ready(function(){
         runYelp()
 
     });
-});
 
+    $('#oldUserSubmit').on('click', function() {
 
-$('#oldUserSubmit').on('click', function() {
+        firebaseValueCheck.on('value', function(snapshot){
+            var test = $('#oldUser').val()
+            test = test.replace(/(^")|("$)/g, '')
+            
+            if (snapshot.val().users.test == true) {
+                currentUser = $('#oldUser').val();
+                console.log();
+            }
 
-    firebaseValueCheck.on('value', function(snapshot){
-        var test = $('#oldUser').val()
-        test = test.replace(/(^")|("$)/g, '')
+        });
+
         
-        if (snapshot.val().users.test == true) {
-            currentUser = $('#oldUser').val();
-            console.log();
-        }
-
     });
 
-    
-});
+    $('#newUserSubmit').on('click', function(){
+        
+        newUser = $('#newUser').val();
+        var firebaseNewUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+newUser)
+        added = {
+            dateAdded : Date.now()
+        }
+        firebaseNewUser.update(added);
+        firebaseValueCheck.once('value', function(snapshot) {
+            console.log(snapshot.val().users.newUser)
+        }) 
 
-$('#newUserSubmit').on('click', function(){
-    
-    newUser = $('#newUser').val();
-    var firebaseNewUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+newUser)
-    added = {
-        dateAdded : Date.now()
-    }
-    firebaseNewUser.update(added);
-    firebaseValueCheck.once('value', function(snapshot) {
-        console.log(snapshot.val().users.newUser)
-    }) 
+        currentUser = newUser       
+    });  
 
-    currentUser = newUser       
-});
 
-$('#points').on('click', function(){
-    $('#modalPoints').modal();
-    // debugger;
-    var firebasePointsValue = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+currentUser+"/places")
-    firebaseValueCheck.once('value', function(snapshot){
+    $('#points').on('click', function(){
         $('#modalPoints').modal();
-        for (p=0;p<snapshot.val();p++) {
-            debugger;
-            $('#showPlaces').append('<li class="seenPlace">').text(snapshot.val()[i]);
-        }
+        // debugger;
+        var firebasePointsValue = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+currentUser+"/places")
+        firebaseValueCheck.once('value', function(snapshot){
+            $('#modalPoints').modal();
+            for (p=0;p<snapshot.val();p++) {
+                debugger;
+                $('#showPlaces').append('<li class="seenPlace">').text(snapshot.val()[i]);
+            }
+        });
     });
+
+
+
+    $('#yelpSearches').hide();
+
+
+
 });
+
+
+
 
     
 
@@ -239,11 +250,22 @@ $('#points').on('click', function(){
 
     // }    
     
-$('#yelpSearches').hide();
+
 
 //****************************************** Yelp ******************************************************       
 
 function runYelp() {
+
+    locations = [];
+    if (activeMarkers.length > 0){clearMarkers()};
+    activeMarkers = [];
+
+    
+    var what = "term=" + $(this).text()
+    var where = 'location=' + $(this).text()
+    
+    what = $('#what').val()
+    where = $('#where').val()
 
         
 
@@ -318,7 +340,17 @@ function runYelp() {
                     $("."+i).append('<td>Phone: '+data.businesses[i].phone+'</td>');
                     $("."+i).append('<td>Is this claimed by owner: '+isClaimed+'</td>'+'</tr>'); 
                     $("."+i).append("<br />"); 
-                }
+                };
+
+                var j;
+
+                for(j=0; j<=9; j= j+1){
+                    newObject = ["" + data.businesses[j].name + "", "" + data.businesses[j].location.address[0]+ "" + " " + "" + data.businesses[j].location.city + "" + " " + "" + data.businesses[j].location.state_code, data.businesses[j].rating_img_url_small, "" + data.businesses[j].display_phone + "", data.region.center.latitude, data.region.center.longitude];
+                    locations.push(newObject);
+                };
+                search();
+
+
 
             }
         
@@ -326,7 +358,7 @@ function runYelp() {
 
     });
 
-    search();
+ 
 } //end runYelp() *********************
 
 //************************ Google map api **************************************
