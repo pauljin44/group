@@ -18,16 +18,18 @@ var facebookUserProfile = {};
 var currentUser;
 
 //************************* Submit function ************************************ 
+$(document).ready(function(){
+    $('#submit').on('click', function() {
+        debugger;
+        $('#searches').empty();
+        what = $('#what').val();
+        where = $('#where').val();
+        $('#yelpSearches').show();
+        runYelp()
 
-$('#submit').on('click', function() {
-    debugger;
-    $('#searches').empty();
-    what = $('#what').val();
-    where = $('#where').val();
-    $('#yelpSearches').show();
-    runYelp()
-
+    });
 });
+
 
 $('#oldUserSubmit').on('click', function() {
 
