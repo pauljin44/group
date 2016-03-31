@@ -43,10 +43,12 @@
 						<div class="collapse navbar-collapse navbar-ex1-collapse">
 							<form class="navbar-form navbar-left" role="search">
 								<div class="form-group">
-									<input type="text" class="form-control" placeholder="What Biz R U looking for">
-									<input type="text" class="form-control" placeholder="Where in locale? Type City Name">
+									<input type="text" id="what" class="form-control" placeholder="What Biz R U looking for">
+									<input type="text" id="where" class="form-control" placeholder="Where in locale? Type City Name">
 								</div>
-								<button type="submit" class="btn btn-default">Submit</button>
+								<button type="submit" id="submit" class="btn btn-default">Submit</button>
+								<div class="fb-like" data-href="http://polar-mesa-92767.herokuapp.com/" data-width="10px" data-action="like" data-show-faces="false" data-share="true">	
+								</div>
 							</form>
 
 							<ul class="nav navbar-nav navbar-right">
@@ -75,48 +77,48 @@
 					</div>
 				</nav>
 					<div class="well well-lg">
-					  contents from Yelp nesting here!
-					</div>
-					<div class="well">
-					<div id="wrapper">
-						<div id="box-1">
-					  contents from Foursquare nesting here!
+						<img id="poweredBy"src="assets/images/yelp.png">
+						<div id="yelpSearches">
+							<div class='panel panel-danger'>
+								<div class="panel-heading">
+									<h3 class="panel-title">
+									</h3>
+								</div>
+					  			<div class="panel-body">
+									<table id="searches"></table>
+								</div>
+							</div>
 						</div>
 					</div>
-				</div>
 			</div>
-			<div id="yelp">
-				<form>
-					<label for="what">What are you looking for?</label>
-					<input id="what"></input></br>
-					
-					
-					<label for="where">Where do want to find it?</label>
-					<input id="where"></input><br />
-					<input type="button" id="submit" value="submit"></input><br />
-					<img src="assets/images/yelp.png">
-
-				</form>
-			</div>
-			<div id="yelpSearches">
-				<div class='panel panel-danger'>
-					<div class="panel-heading">
-						<h3 class="panel-title">
-						</h3>
-					</div>
-		  			<div class="panel-body">
-						<table id="searches"></table>
-					</div>
-				</div>
-			</div>
-			<div class="fb-like" data-href="http://polar-mesa-92767.herokuapp.com/" data-width="50px" data-layout="box_count" data-action="like" data-show-faces="false" data-share="true">	
-			</div>
-
 			<div id="counter">
 		
 			</div>
 			<div id="lastplace"></div>
     		<div id="map"></div>
+    					<!-- Button trigger modal -->
+			<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+			  Launch demo modal
+			</button>
+
+			<!-- Modal -->
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+			      </div>
+			      <div class="modal-body">
+			        ...
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			        <button type="button" class="btn btn-primary">Save changes</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
 		<script type="text/javascript" src="assets/javascript/ap.js"></script>
 	</body>
 </html>
