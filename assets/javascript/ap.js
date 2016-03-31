@@ -382,11 +382,34 @@ function runYelp() {
 
 //************************ Google map api **************************************
 // search();
-var localCounter = 0;
+var localCounter = 0; //initally set to 0
+var checkedPlaces = []
+
+var firebaseValueCheck = new Firebase("https://sizzling-heat-1076.firebaseio.com/");
+    
+    firebaseValueCheck.on('value', function(snapshot){
+        if (snapshot.val().userName != undefined) {
+            localCounter = snapshot.val().userName.count
+        }
+        if (snapshot.val().userName.places != undefined){
+            checkedPlaces = snapshot.val().userName.places
+        }
+
+
+        
+    });
+
+var firebaseCountUp = new Firebase("https://sizzling-heat-1076.firebaseio.com/userName/");
 
 
 function updateCounter(){
-        $("#counter").empty();
+
+        var addCount = {
+            count: localCounter,
+        }
+        
+        firebaseCountUp.update(addCount)
+        $("#counter").empty();      
         $("#counter").html("<p>You have this many points:" + localCounter+ "</p>");
 
 };
@@ -455,13 +478,11 @@ function getCoordinates(position) {
     };
 
     function search(){
-        
-        geocoder = new google.maps.Geocoder();
-        for (i = 0; i < locations.length; i++) {
-            geocodeAddress(locations, i)
-        };
-
-        map.panTo(center)
+    geocoder = new google.maps.Geocoder();
+    for (i = 0; i < locations.length; i++) {
+                geocodeAddress(locations, i)
+            };
+    map.panTo(center)
     };
 
     var marker;
@@ -509,6 +530,41 @@ function getCoordinates(position) {
     function updatePlaced(){
             
             $("#lastplace").html("<p>You were last at: " + checkedPlaces[0].title+ "</p>");
+            
+            var addPlaces = {
+                
+                places: {
+                    0: [checkedPlaces[0].title] 
+                }
+                
+            }
+            var firebasePlaceUp = new Firebase("https://sizzling-heat-1076.firebaseio.com/userName/");
+            
+            firebasePlaceUp.once('value', function(snapshot){
+                debugger;
+                if (snapshot.val().places == undefined){
+                    firebasePlaceUp.update(addPlaces)
+
+                }else{
+                    for(i=0;i<snapshot.val().places.length;i++){
+                        addPlaces = {
+
+                                [i+1]: checkedPlaces[0].title
+                            }                           
+                        } 
+
+                        var firebasePlaceDown = new Firebase("https://sizzling-heat-1076.firebaseio.com/userName/places");
+                                
+
+                        firebasePlaceDown.update(addPlaces)
+                    }
+
+
+                
+            });
+            
+            
+
     };
 
     var infoBubble = null;
