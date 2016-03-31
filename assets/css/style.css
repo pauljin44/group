@@ -32,7 +32,8 @@ nav {
 }
 
 #poweredBy {
-	width: 18%;
+	width: 10%;
+	margin-bottom: 5px;
 }
 
 #yelpSearches {
