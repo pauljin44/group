@@ -15,6 +15,7 @@ var allFriends = [];
 var allFriendImg = [];
 var fbPaging;
 var facebookUserProfile = {};
+var currentUser;
 
 
 
@@ -132,6 +133,8 @@ var facebookUserProfile = {};
                 userFriends: {},
                 userLikes: {}
             }
+
+            currentUser = response.name;
 
 
 
@@ -400,7 +403,7 @@ var firebaseValueCheck = new Firebase("https://sizzling-heat-1076.firebaseio.com
         
     });
 
-var firebaseCountUp = new Firebase("https://sizzling-heat-1076.firebaseio.com/userName/");
+var firebaseCountUp = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+currentUser);
 
 
 function updateCounter(){
@@ -539,7 +542,7 @@ function getCoordinates(position) {
                 }
                 
             }
-            var firebasePlaceUp = new Firebase("https://sizzling-heat-1076.firebaseio.com/userName/");
+            var firebasePlaceUp = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+currentUser);
             
             firebasePlaceUp.once('value', function(snapshot){
                 debugger;
@@ -554,7 +557,7 @@ function getCoordinates(position) {
                             }                           
                         } 
 
-                        var firebasePlaceDown = new Firebase("https://sizzling-heat-1076.firebaseio.com/userName/places");
+                        var firebasePlaceDown = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+currentUser+"/places");
                                 
 
                         firebasePlaceDown.update(addPlaces)
