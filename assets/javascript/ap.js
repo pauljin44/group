@@ -97,70 +97,71 @@ var facebookUserProfile = {};
 
             fbAllFriendsList = fbPaging.replace('limit=25', 'limit=5000');
 
-        });            
+                   
 
-        FB.api(fbAllFriendsList, function(response) {  
-            console.log(response);
+            FB.api(fbAllFriendsList, function(response) {  
+                console.log(response);
+                
+                for (x=0;x<response.data.length;x++) {
+                    allFriends.push(response.data[x].name);
+                    allFriendImg.push(response.data[x].picture.data.url)
+
+
+                }
+                
+                for(a=0;a<allFriends.length;a++){ 
+                    // debugger;
+
+                    facebookUserProfile.userFriends[a] = [allFriends[a], allFriendImg[a]]
+                }
+
+                var newFirebaseUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+facebookUserProfile.userName);
+                debugger;
+                newFirebaseUser.set(facebookUserProfile);   
+
+            });
+
+
+
+                        
+
+            facebookUserProfile = { 
+                userName: response.name,
+                userID: response.id,
+                userEmail: response.email,
+                userFriends: {},
+                userLikes: {}
+            }
+
+
+
+            var newFirebaseUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+response.name);
             
-            for (x=0;x<response.data.length;x++) {
-                allFriends.push(response.data[x].name);
-                allFriendImg.push(response.data[x].picture.data.url)
-
-
-            }
-            
-            for(a=0;a<allFriends.length;a++){ 
-                // debugger;
-
-                facebookUserProfile.userFriends[a] = [allFriends[a], allFriendImg[a]]
-            }
-
-            var newFirebaseUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+facebookUserProfile.userName);
-            debugger;
-            newFirebaseUser.set(facebookUserProfile);   
-
-        });
-
-
-
-                    
-
-        facebookUserProfile = { 
-            userName: response.name,
-            userID: response.id,
-            userEmail: response.email,
-            userFriends: {},
-            userLikes: {}
-        }
-
-
-
-        var newFirebaseUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+response.name);
-        
-        newFirebaseUser.set(facebookUserProfile); 
-        
-        
-
-        if (response.likes.data.length != undefined) { 
-            
-            for (h=0;h<response.likes.data.length;h++) {
-            // var userLikes = []
-             userLikes.push(response.likes.data[h].name);
-            }
-
-            for(b=0;b<userLikes.length;b++){ 
-                // debugger;
-
-                facebookUserProfile.userLikes[b] = userLikes[b]
-            }
-
-            var newFirebaseUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+facebookUserProfile.userName);
-        
             newFirebaseUser.set(facebookUserProfile); 
-        }
+            
+            
 
-        where.push(response.location.name); //where your location is
+            if (response.likes.data.length != undefined) { 
+                
+                for (h=0;h<response.likes.data.length;h++) {
+                // var userLikes = []
+                 userLikes.push(response.likes.data[h].name);
+                }
 
+                for(b=0;b<userLikes.length;b++){ 
+                    // debugger;
+
+                    facebookUserProfile.userLikes[b] = userLikes[b]
+                }
+
+                var newFirebaseUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+facebookUserProfile.userName);
+            
+                newFirebaseUser.set(facebookUserProfile); 
+            }
+
+            where.push(response.location.name); //where your location is
+
+        }); 
 
     } //end Test api
                 
