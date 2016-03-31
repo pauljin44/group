@@ -57,15 +57,21 @@
 							<ul class="nav navbar-nav navbar-right">
 								<li>
 									<div id="fbWrapper">
-									        <div id="fb-root"></div>
-												<script>(function(d, s, id) {
-												  var js, fjs = d.getElementsByTagName(s)[0];
-												  if (d.getElementById(id)) return;
-												  js = d.createElement(s); js.id = id;
-												  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=1518819868427496";
-												  fjs.parentNode.insertBefore(js, fjs);
-												}(document, 'script', 'facebook-jssdk'));</script>
-											<div class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="false"></div>							
+										<div id="fb-root"></div>
+											<script>(function(d, s, id) {
+											var js, fjs = d.getElementsByTagName(s)[0];
+											if (d.getElementById(id)) return;
+											js = d.createElement(s); js.id = id;
+											js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=1518819868427496";
+											 fjs.parentNode.insertBefore(js, fjs);
+											}(document, 'script', 'facebook-jssdk'));</script>
+											
+											<fb:login-button scope="public_profile,email,user_likes,friends,invitable_friends{name}?limit=5000" onlogin="checkLoginState();">
+											</fb:login-button>
+
+											
+												
+											<div class="fb-login-button" data-max-rows="1" data-size="small" data-show-faces="true" data-auto-logout-link="true">								
 										</div>
 									</div>
 									    					<!-- Button trigger modal -->
@@ -83,6 +89,9 @@
 									      </div>
 									      <div class="modal-body">
 									        <h1>Please Log in!</h1>
+									        <div id="fb-root"></div>
+
+												<div class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="false"></div>
 									      </div>
 									      <div class="modal-footer">
 									        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
