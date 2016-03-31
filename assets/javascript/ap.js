@@ -48,7 +48,7 @@ $('#myModal').modal();
         function statusChangeCallback(response) {
 
             if (response.status === 'connected') {
-                
+                $('#myModal').empty();
                 testAPI();
 
             } else if (response.status === 'not_authorized') {
