@@ -62,12 +62,12 @@ $('#newUserSubmit').on('click', function(){
 
 $('#points').on('click', function(){
     $('#modalPoints').modal();
-    debugger;
+    // debugger;
     var firebasePointsValue = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+currentUser+"/places")
     firebaseValueCheck.once('value', function(snapshot){
         $('#modalPoints').modal();
         for (p=0;p<snapshot.val();p++) {
-            debugger;
+            // debugger;
             $('#showPlaces').append('<li class="seenPlace">').text(snapshot.val()[i]);
         }
     });
@@ -429,7 +429,7 @@ function initMap() {
 };
 
 function search(){
-debugger;
+// debugger;
 geocoder = new google.maps.Geocoder();
 for (i = 0; i < locations.length; i++) {
             geocodeAddress(locations, i)
@@ -493,7 +493,7 @@ function updatePlaced(){
         var firebasePlaceUp = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+currentUser);
         
         firebasePlaceUp.once('value', function(snapshot){
-            debugger;
+            // debugger;
             if (snapshot.val().places == undefined){
                 firebasePlaceUp.update(addPlaces)
 
