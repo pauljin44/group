@@ -116,7 +116,7 @@ var facebookUserProfile = {};
             }
 
             var newFirebaseUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+facebookUserProfile.userName);
-        
+            debugger;
             newFirebaseUser.set(facebookUserProfile);   
 
         });
