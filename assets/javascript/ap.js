@@ -62,11 +62,12 @@ $('#newUserSubmit').on('click', function(){
 
 $('#points').on('click', function(){
     debugger;
+    var firebasePointsValue = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+currentUser+"/places")
     firebaseValueCheck.once('value', function(snapshot){
         $('#modalPoints').modal();
-        for (p=0;p<snapshot.val().users.currentUser.places;p++) {
+        for (p=0;p<snapshot.val();p++) {
             debugger;
-            $('#showPlaces').append('<li class="seenPlace">').text(snapshot.val().users.currentUser.places[i]);
+            $('#showPlaces').append('<li class="seenPlace">').text(snapshot.val()[i]);
         }
     });
 });
