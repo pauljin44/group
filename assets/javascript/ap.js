@@ -386,37 +386,40 @@ function runYelp() {
 
 //************************ Google map api **************************************
 // search();
-var localCounter = 0; //initally set to 0
-var checkedPlaces = []
-
-var firebaseValueCheck = new Firebase("https://sizzling-heat-1076.firebaseio.com/");
-    
-    firebaseValueCheck.on('value', function(snapshot){
-        if (snapshot.val().userName != undefined) {
-            localCounter = snapshot.val().userName.count
-        }
-        if (snapshot.val().userName.places != undefined){
-            checkedPlaces = snapshot.val().userName.places
-        }
+(document).ready(function(){
 
 
+    var localCounter = 0; //initally set to 0
+    var checkedPlaces = []
+
+    var firebaseValueCheck = new Firebase("https://sizzling-heat-1076.firebaseio.com/");
         
-    });
+        firebaseValueCheck.on('value', function(snapshot){
+            if (snapshot.val().userName != undefined) {
+                localCounter = snapshot.val().userName.count
+            }
+            if (snapshot.val().userName.places != undefined){
+                checkedPlaces = snapshot.val().userName.places
+            }
 
-var firebaseCountUp = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+currentUser);
+
+            
+        });
+
+    var firebaseCountUp = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+currentUser);
 
 
-function updateCounter(){
+    function updateCounter(){
 
-        var addCount = {
-            count: localCounter,
-        }
-        
-        firebaseCountUp.update(addCount)
-        $("#counter").empty();      
-        $("#counter").html("<p>You have this many points:" + localCounter+ "</p>");
+            var addCount = {
+                count: localCounter,
+            }
+            
+            firebaseCountUp.update(addCount)
+            $("#counter").empty();      
+            $("#counter").html("<p>You have this many points:" + localCounter+ "</p>");
 
-};
+    };
 
 
 // function getLocation() {
@@ -439,29 +442,29 @@ function updateCounter(){
 
 
 
-if (navigator.geolocation) {
-    
-        navigator.geolocation.getCurrentPosition(getCoordinates);
-        console.log("got it");
-    } else { 
-        console.log("Geolocation is not supported by this browser.");
+    if (navigator.geolocation) {
+        
+            navigator.geolocation.getCurrentPosition(getCoordinates);
+            console.log("got it");
+        } else { 
+            console.log("Geolocation is not supported by this browser.");
+        };
+
+
+
+
+
+    function getCoordinates(position) {
+        console.log("caught it");
+        console.log(position.coords.latitude);
+        console.log(position.coords.longitude);
     };
 
+    var map;
+    var activeMarkers = [];
+    var locations = [];
 
-
-
-
-function getCoordinates(position) {
-    console.log("caught it");
-    console.log(position.coords.latitude);
-    console.log(position.coords.longitude);
-};
-
-  var map;
-  var activeMarkers = [];
-  var locations = [];
-
-  google.maps.event.addDomListener(window, "load", initMap);
+    google.maps.event.addDomListener(window, "load", initMap);
 
     function setMapOnAll(map) {
       for (var i = 0; i < activeMarkers.length; i++) {
@@ -616,7 +619,7 @@ function getCoordinates(position) {
 
         });
     } 
-
+});
 //************************* Submit function ************************************ 
 
 $('#submit').on('click', function() {
