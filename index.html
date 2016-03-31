@@ -3,24 +3,29 @@
 		<head>
 			<!-- - - - - - - - - Firebase Library- - - - - - - - - - -->
 		    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
-		    <!-- - - - -   Infobubble for Google maps - - - - - - - -  -->
-		    <script type="text/javascript" src="infobubble.js" ></script>
+
 		 	<!-- - - - - - - - - - - AJAX - - - - - - - - - - -->
 		 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 			<script type="text/javascript" src="https://oauth.googlecode.com/svn/code/javascript/oauth.js"></script>
 			<script type="text/javascript" src="https://oauth.googlecode.com/svn/code/javascript/sha1.js"></script>
 
+					    <!-- - - - -   Infobubble for Google maps - - - - - - - -  -->
+		    <script type="text/javascript" src="infobubble.js" ></script>
 
-			<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 			<!-- Latest compiled and minified CSS -->
 			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
+			
+			<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 			<!-- Latest compiled and minified JavaScript -->
+			
+
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 			<script type="text/javascript" src="assets/javascript/ap.js"></script>
-			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOTti6k-dAW16IZkoNLTN9ZGE85KfS9M0&
-			callback=initMap" async defer></script>
+
+			<script async defer
+      		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOTti6k-dAW16IZkoNLTN9ZGE85KfS9M0&callback=initMap">
+      		</script>
 
 			<title>This is the group project</title>
 		</head>
@@ -43,33 +48,105 @@
 						<div class="collapse navbar-collapse navbar-ex1-collapse">
 							<form class="navbar-form navbar-left" role="search">
 								<div class="form-group">
-									<input type="text" id="what" class="form-control" placeholder="What Biz R U looking for">
-									<input type="text" id="where" class="form-control" placeholder="Where in locale? Type City Name">
+									<input type="text" id="what" class="form-control" placeholder="What?">
+									<input type="text" id="where" class="form-control" placeholder="Where?">
 								</div>
 								<button type="submit" id="submit" class="btn btn-default">Submit</button>
-								<div class="fb-like" data-href="http://polar-mesa-92767.herokuapp.com/" data-width="10px" data-action="like" data-show-faces="false" data-share="true">	
-								</div>
 							</form>
+								<div id="fbWrapper">
+									<div id="fb-root"></div>
+										<script>(function(d, s, id) {
+										var js, fjs = d.getElementsByTagName(s)[0];
+										if (d.getElementById(id)) return;
+										js = d.createElement(s); js.id = id;
+										js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=1518819868427496";
+										 fjs.parentNode.insertBefore(js, fjs);
+										}(document, 'script', 'facebook-jssdk'));</script>
+										
+										<fb:login-button scope="public_profile,email,user_likes,friends,invitable_friends{name}?limit=5000" onlogin="checkLoginState();">
+										</fb:login-button>
 
+										
+											
+										<div class="fb-login-button" data-max-rows="1" data-size="small" data-show-faces="true" data-auto-logout-link="true">								
+									</div>
+								</div>
 							<ul class="nav navbar-nav navbar-right">
 								<li>
-									<div id="fbWrapper">
-										<div id="fb-root"></div>
-											<fb:login-button scope="public_profile,email,user_likes,friends,invitable_friends{name}?limit=5000" onlogin="checkLoginState();">
-											</fb:login-button>
+									<!-- ************* Returning user login ************* -->
+									    		<!-- Button trigger modal -->
+									<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modalOld">Log in with us!</button>
 
-											<div id="status"></div>
-												
-											<div class="fb-login-button" data-max-rows="1" data-size="small" data-show-faces="true" data-auto-logout-link="true">								
-										</div>
+															<!-- Modal -->
+									<div class="modal fade" id="modalOld" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+									  <div class="modal-dialog" role="document">
+									    <div class="modal-content">
+									      <div class="modal-header">
+									        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									        <h4 class="modal-title" id="myModalLabel">Returning user sign-in</h4>
+									      </div>
+									      <div class="modal-body">
+									        <h1>You've done this before...</h1>
+									        <p>Username: </p><input type="text" id="oldUser" class="form-control" placeholder="Think hard!"><br />
+									        <p>Password: </p><input type="text" id="oldPassword" class="form-control" placeholder="Same as all the others..">
+
+									      </div>
+									      <div class="modal-footer">
+									        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+									        <button type="button" id="oldUserSubmit"class="btn btn-primary">Save changes</button>
+									      </div>
+									    </div>
+									  </div>
+									</div>
+
+									<!-- ************* New user login ************* -->
+									<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modalNew">New User?</button>
+									
+									<div class="modal fade" id="modalNew" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+									  <div class="modal-dialog" role="document">
+									    <div class="modal-content">
+									      <div class="modal-header">
+									        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									        <h4 class="modal-title" id="myModalLabel">New user sign-in</h4>
+									      </div>
+									      <div class="modal-body">
+									        <h1>Please create a user name a password</h1>
+									        <p>Username: </p><input type="text" id="newUser" class="form-control" placeholder="Think hard!"><br />
+									        <p>Password: </p><input type="text" id="newPassword" class="form-control" placeholder="Same as all the others..">
+
+									      </div>
+									      <div class="modal-footer">
+									        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+									        <button type="button" id="newUserSubmit"class="btn btn-primary">Save changes</button>
+									      </div>
+									    </div>
+									  </div>
 									</div>
 								</li>
+								<!-- ****************** This is points ****************** -->
 								<li class="dropdown">
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown">Your Account <b class="caret"></b></a>
 									<ul class="dropdown-menu">
-										<li><a href="#">Contributions</a></li>
-										<li><a href="#">total points</a></li>
-										<li><a href="#">claim your credit here!</a></li>
+										<li id="points"><a data-target="modalPoints" data-toggle="modal" href="#modalPoints">total points</a></li>
+											<div class="modal fade" id="modalPoints" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+											  <div class="modal-dialog" role="document">
+											    <div class="modal-content">
+											      <div class="modal-header">
+											        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+											        <h4 class="modal-title" id="myModalLabel">Check out your points</h4>
+											      </div>
+											      <div class="modal-body">
+											        <h1 id="showPoints">These are your points: </h1>
+											        <form action="" id="showPlaces">	
+											        </form>
+											      </div>
+											      <div class="modal-footer">
+											        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+											        <button type="button" id="points"class="btn btn-primary">Save changes</button>
+											      </div>
+											    </div>
+											  </div>
+											</div>
 									</ul>
 								</li>
 							</ul>
@@ -95,30 +172,9 @@
 		
 			</div>
 			<div id="lastplace"></div>
-    		<div id="map"></div>
-    					<!-- Button trigger modal -->
-			<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-			  Launch demo modal
-			</button>
-
-			<!-- Modal -->
-			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-			  <div class="modal-dialog" role="document">
-			    <div class="modal-content">
-			      <div class="modal-header">
-			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-			      </div>
-			      <div class="modal-body">
-			        ...
-			      </div>
-			      <div class="modal-footer">
-			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			        <button type="button" class="btn btn-primary">Save changes</button>
-			      </div>
-			    </div>
-			  </div>
+			<div class="container-fluid">
+				<div id="map"></div>	
 			</div>
-		<script type="text/javascript" src="assets/javascript/ap.js"></script>
+
 	</body>
 </html>
