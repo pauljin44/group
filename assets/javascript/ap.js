@@ -60,8 +60,10 @@ $('#newUserSubmit').on('click', function(){
     currentUser = newUser       
 });
 
-$('#modalPoints').on('click', function(){
+$('#points').on('click', function(){
+
     firebaseValueCheck.once('value', function(snapshot){
+        $('#modalPoints').modal();
         for (p=0;p<snapshot.val().users.currentUser.places;p++) {
             $('#showPlaces').append('<li class="seenPlace">').text(snapshot.val().users.currentUser.places[i]);
         }
