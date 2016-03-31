@@ -48,8 +48,7 @@ $('#myModal').modal();
         function statusChangeCallback(response) {
 
             if (response.status === 'connected') {
-                console.log('you are logged in')
-                $('#myModal').model(hide);
+
                 testAPI();
 
             } else if (response.status === 'not_authorized') {
@@ -64,9 +63,11 @@ $('#myModal').modal();
         }
 
         FB.getLoginStatus(function(response) {
-                if (response.status === 'connected') {
-                    var accessToken = response.authResponse.accessToken;
-        } 
+            if (response.status === 'connected') {
+                var accessToken = response.authResponse.accessToken;
+                console.log('you are logged in')
+                $('#myModal').model(hide);
+            } 
             statusChangeCallback(response);
         });
 
