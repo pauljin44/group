@@ -45,7 +45,10 @@ $('#newUserSubmit').on('click', function(){
     
     newUser = $('#newUser').val();
     var firebaseNewUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+newUser)
-    firebaseNewUser.update();
+    added = {
+        dateAdded : Date.now()
+    }
+    firebaseNewUser.update(added);
     firebaseValueCheck.once('value', function(snapshot) {
         console.log(snapshot.val().users.newUser)
     })        
