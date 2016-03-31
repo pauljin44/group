@@ -48,6 +48,7 @@ $('#myModal').modal();
         function statusChangeCallback(response) {
 
             if (response.status === 'connected') {
+                console.log('you are logged in')
                 $('#myModal').model(hide);
                 testAPI();
 
