@@ -42,6 +42,11 @@ nav {
 	overflow: scroll;
 }
 
+#map{
+	width: 500px;
+	height: 500px;s
+}
+
 td {
 	text-align: center;
 }
