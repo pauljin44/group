@@ -19,9 +19,18 @@ nav {
 }
 
 #fbWrapper {
-	width: 50%;
-	float: left;
+	width: 30%;
+    float: left;
     padding: 5px;
+}
+
+.btn.btn-primary.btn-xs{
+	margin-top: 14px;
+    margin-left: 12px;
+}
+
+nav.navbar-nav.navbar-right {
+	width: 18%;
 }
 
 #yelp {
@@ -40,6 +49,12 @@ nav {
 
 	height: 200px;
 	overflow: scroll;
+}
+
+#map{
+	margin: 0 auto;
+	width: 75%;
+	height: 500px;s
 }
 
 td {
