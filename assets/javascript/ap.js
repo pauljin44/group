@@ -323,11 +323,13 @@ function runYelp() {
         });
 
     });
+
+    search();
 } //end runYelp() *********************
 
 //************************ Google map api **************************************
 debugger;
-search();
+
 
 
 
