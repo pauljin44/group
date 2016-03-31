@@ -1,9 +1,52 @@
+body {
+    height: 100%;
+    /*background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdDVAhJOGMUODmwzJYWcW-cBJjLTNF4ix6WSundFl63jJf8Sxd3g");*/
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-color: #cccccc;
+  }
+ul {
+    border: 1px solid #e7e7e7;
+    background-color: #f3f3f3;
+}
+
+li a {
+    color: #666;
+}
+nav {
+  position:relative;
+  background-color: #333;
+}
+
 #fbWrapper {
-	border: 14px solid #6077b9;
+	width: 50%;
+	float: left;
     padding: 5px;
 }
 
 #yelp {
+	width: 50%;
+	float: left;
 	border: 6px solid #c41200;
     padding: 5px;
 }
+
+#poweredBy {
+	width: 10%;
+	margin-bottom: 5px;
+}
+
+#yelpSearches {
+
+	height: 200px;
+	overflow: scroll;
+}
+
+td {
+	text-align: center;
+}
+
+td img {
+	margin: 5px;
+}
+

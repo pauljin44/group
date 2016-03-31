@@ -1,101 +1,124 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
- 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-	<script type="text/javascript" src="https://oauth.googlecode.com/svn/code/javascript/oauth.js"></script>
-	<script type="text/javascript" src="https://oauth.googlecode.com/svn/code/javascript/sha1.js"></script>
-	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<html>
+		<head>
+			<!-- - - - - - - - - Firebase Library- - - - - - - - - - -->
+		    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+		    <!-- - - - -   Infobubble for Google maps - - - - - - - -  -->
+		    <script type="text/javascript" src="infobubble.js" ></script>
+		 	<!-- - - - - - - - - - - AJAX - - - - - - - - - - -->
+		 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
-	<!-- Optional theme -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-
-	<!-- Latest compiled and minified JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-
-	<title>This is the group project</title>
-</head>
-<body>
-	<div id="fbWrapper">
-		<div id="fb-root"></div>
-
-		<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-		</fb:login-button>
-
-		<div id="status">
-		</div>
-
-		<div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+			<script type="text/javascript" src="https://oauth.googlecode.com/svn/code/javascript/oauth.js"></script>
+			<script type="text/javascript" src="https://oauth.googlecode.com/svn/code/javascript/sha1.js"></script>
 
 
-		<div class="fb-login-button" data-max-rows="1" data-size="small" data-show-faces="true" data-auto-logout-link="false"></div>
-		<a href="#" id="fbLogin">Firebase Facebook Login </a><br />
-	</div>
-	
-	<div id="yelp">
-		<form>
-			<label for="what">What do you feel like eating?</label>
-			<input id="what"></input>
-			
-			
-			<label for="where">Where do you feel like eating it?</label>
-			<input id="where"></input>
-			<input type="button" id="submit" value="submit"></input><br />
-			<!-- <a href = "http://www.yelp.com"> --> <!-- <img src = http://s3-media4.ak.yelpcdn.com/assets/2/www/img/9b7b8f0fecd7/developers/Powered_By_Yelp_Yellow.png>  </a> 
- -->
+			<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+			<!-- Latest compiled and minified CSS -->
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
-		</form>
-	</div>
+			<!-- Latest compiled and minified JavaScript -->
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+			<script type="text/javascript" src="assets/javascript/ap.js"></script>
+			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOTti6k-dAW16IZkoNLTN9ZGE85KfS9M0&
+			callback=initMap" async defer></script>
 
-	<div class="fourSquare">
-		<button id="logFoursquare">Check out fourSquare!</button>
+			<title>This is the group project</title>
+		</head>
+		<body>
+			<div class="container-fluid">
+				<nav class="navbar navbar-default" role="navigation">
+					<div class="container-fluid">
+						<!-- Brand and toggle get grouped for better mobile display -->
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+							<a class="navbar-brand" href="#"><strong>Locale</strong></a>
+						</div>
+				
+						<!-- Collect the nav links, forms, and other content for toggling -->
+						<div class="collapse navbar-collapse navbar-ex1-collapse">
+							<form class="navbar-form navbar-left" role="search">
+								<div class="form-group">
+									<input type="text" id="what" class="form-control" placeholder="What Biz R U looking for">
+									<input type="text" id="where" class="form-control" placeholder="Where in locale? Type City Name">
+								</div>
+								<button type="submit" id="submit" class="btn btn-default">Submit</button>
+								<div class="fb-like" data-href="http://polar-mesa-92767.herokuapp.com/" data-width="10px" data-action="like" data-show-faces="false" data-share="true">	
+								</div>
+							</form>
 
+							<ul class="nav navbar-nav navbar-right">
+								<li>
+									<div id="fbWrapper">
+										<div id="fb-root"></div>
+											<fb:login-button scope="public_profile,email,user_likes,friends,invitable_friends{name}?limit=5000" onlogin="checkLoginState();">
+											</fb:login-button>
+
+											<div id="status"></div>
+												
+											<div class="fb-login-button" data-max-rows="1" data-size="small" data-show-faces="true" data-auto-logout-link="true">								
+										</div>
+									</div>
+								</li>
+								<li class="dropdown">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown">Your Account <b class="caret"></b></a>
+									<ul class="dropdown-menu">
+										<li><a href="#">Contributions</a></li>
+										<li><a href="#">total points</a></li>
+										<li><a href="#">claim your credit here!</a></li>
+									</ul>
+								</li>
+							</ul>
+						</div><!-- /.navbar-collapse -->
+					</div>
+				</nav>
+					<div class="well well-lg">
+						<img id="poweredBy"src="assets/images/yelp.png">
+						<div id="yelpSearches">
+							<div class='panel panel-danger'>
+								<div class="panel-heading">
+									<h3 class="panel-title">
+									</h3>
+								</div>
+					  			<div class="panel-body">
+									<table id="searches"></table>
+								</div>
+							</div>
+						</div>
+					</div>
+			</div>
+			<div id="counter">
 		
-	</div>
+			</div>
+			<div id="lastplace"></div>
+    		<div id="map"></div>
+    					<!-- Button trigger modal -->
+			<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+			  Launch demo modal
+			</button>
 
-
-</body>
-<script type="javascript" src="assets/javascript/ap.js"></script>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</body>
-
-<script type="text/javascript" src='ap.js'></script>
+			<!-- Modal -->
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+			      </div>
+			      <div class="modal-body">
+			        ...
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			        <button type="button" class="btn btn-primary">Save changes</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+		<script type="text/javascript" src="assets/javascript/ap.js"></script>
+	</body>
 </html>
