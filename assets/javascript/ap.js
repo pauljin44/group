@@ -33,12 +33,22 @@ $('#oldUserSubmit').on('click', function() {
     var test = $('#oldUser').val()
     firebaseValueCheck.on('value', function(snapshot){
         if (snapshot.val().users.test == true) {
-            currentUser = $('#oldUser').val()
+            currentUser = $('#oldUser').val();
         }
 
     });
 
     
+});
+
+$('#newUserSubmit').on('click', function(){
+    
+    newUser = $('#newUser').val();
+    var firebaseNewUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+newUser)
+    
+    firebaseValueCheck.once('value', function(snapshot) {
+        console.log(snapshot.val().users.newUser)
+    })        
 });
 
     
@@ -206,120 +216,8 @@ $('#oldUserSubmit').on('click', function() {
     // }    
     
     $('#yelpSearches').hide();
-                    
-        
-                    
-                    
-    
-
-//***************** update firebase *********************************************************
-        
-
-
-
-
-
-
-
-
-
-
-
 
 //****************************************** Yelp ******************************************************       
-
-function runYelpOnce() { //The function runs one time for every FB 'like'
-
-    
-
-
-    firebaseValueCheck.once('value', function(snapshot) {
-            var auth = {
-
-                consumerKey: snapshot.val().yelp.consumerKey,
-                consumerSecret: snapshot.val().yelp.consumerSecret,
-                accessToken: snapshot.val().yelp.accessToken,
-                accessTokenSecret: snapshot.val().yelp.accessTokenSecret,
-                serviceProvider: {
-                        signatureMethod: snapshot.val().yelp.serviceProvider.signatureMethod
-                    }
-            };
-        
-
-        var yelpOnceLimit = 1
-
-        var accessor = {
-            consumerSecret: auth.consumerSecret,
-            tokenSecret: auth.accessTokenSecret
-        };
-
-        parameters = [];
-        parameters.push(['term', FBwhat]);
-        parameters.push(['location', FBwhere]);
-        parameters.push(['callback', 'cb']);
-        parameters.push(['oauth_consumer_key', auth.consumerKey]);
-        parameters.push(['oauth_consumer_secret', auth.consumerSecret]);
-        parameters.push(['oauth_token', auth.accessToken]);
-        parameters.push(['oauth_signature_method', 'HMAC-SHA1']);
-        parameters.push(['limit', yelpOnceLimit]);
-
-
-        var message = {
-            'action': 'https://api.yelp.com/v2/search',
-            'method': 'GET',
-            'parameters': parameters
-        };
-
-        OAuth.setTimestampAndNonce(message);
-        OAuth.SignatureMethod.sign(message, accessor);
-
-        var parameterMap = OAuth.getParameterMap(message.parameters);
-        parameterMap.oauth_signature = OAuth.percentEncode(parameterMap.oauth_signature)
-        // console.log(parameterMap);
-
-        var bestRestaurant = "Some random restaurant";
-
-        $.ajax({
-            'url': message.action,
-            'data': parameterMap,
-            'cache': true,
-            'dataType': 'jsonp',
-            'jsonpCallback': 'cb',
-            'success': function(data, textStats, XMLHttpRequest) {
-                // console.log(data);
-                $('.panel-title').text('The best '+FBwhat+' spots in '+FBwhere+' are listed below').css('text-align', 'center');
-                $("#searches").addClass('table table-hover')
-        
-                var i;
-
-                for(i=0; i<=9; i++){
-
-                    if (data.businesses[i].is_claimed) {
-                        var isClaimed = 'yes'       
-                    }else{
-                        isClaimed = 'no'
-                    }
-
-                    $("#searches").append("<tr class="+i+">"+'<td>'+'<a href='+data.businesses[i].url+">"+data.businesses[i].name +"</a>"+'</td>');
-                    $("."+i).append('<td>'+'<img src='+ data.businesses[i].rating_img_url+'>'+'</td>');
-                    $("."+i).append('<td>Phone: '+data.businesses[i].phone+'</td>');
-                    $("."+i).append('<td>Is this claimed by owner: '+isClaimed+'</td>'+'</tr>'); 
-                    $("."+i).append("<br />"); 
-                }
-
-            }
-        
-        });
-
-
-    });
-
-} //end runYelpOnce *************************
-
-
-
-
-//************************************************************************************************************************************
 
 function runYelp() {
 
