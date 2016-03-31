@@ -109,7 +109,7 @@ $('#points').on('click', function(){
                     'into this app.';
             } else {
 
-                document.getElementById('status').innerHTML = '';
+                document.getElementById('status').innerHTML = 'Please login';
             }
         }
 
@@ -326,6 +326,7 @@ function runYelp() {
 } //end runYelp() *********************
 
 //************************ Google map api **************************************
+debugger;
 search();
 
 
@@ -426,6 +427,7 @@ function initMap() {
 };
 
 function search(){
+debugger;
 geocoder = new google.maps.Geocoder();
 for (i = 0; i < locations.length; i++) {
             geocodeAddress(locations, i)
