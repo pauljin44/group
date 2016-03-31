@@ -20,154 +20,154 @@ var facebookUserProfile = {}
 
 
 
-	// window.fbAsyncInit = function() {
-	// 	FB.init({
-	// 		appId      : '1518819868427496',
-	// 		cookie     : true,  // enable cookies to allow the server to access the session
+	window.fbAsyncInit = function() {
+		FB.init({
+			appId      : '1518819868427496',
+			cookie     : true,  // enable cookies to allow the server to access the session
 													
-	// 		xfbml      : true,  // parse social plugins on this page
-	// 		version    : 'v2.5' // use graph api version 2.5
-	// 	});
+			xfbml      : true,  // parse social plugins on this page
+			version    : 'v2.5' // use graph api version 2.5
+		});
 
 
 
 
 
-	// // The response object is returned with a status field that lets the app know the current login status of the person.
+	// The response object is returned with a status field that lets the app know the current login status of the person.
 		 
-	// 	function checkLoginState() {
-	// 		FB.getLoginStatus(function(response) {
-	// 			statusChangeCallback(response);
-	// 		});
-	// 	}
+		function checkLoginState() {
+			FB.getLoginStatus(function(response) {
+				statusChangeCallback(response);
+			});
+		}
 
 
-	// 	function statusChangeCallback(response) {
+		function statusChangeCallback(response) {
 
-	// 		if (response.status === 'connected') {
+			if (response.status === 'connected') {
 				
-	// 			testAPI();
+				testAPI();
 
-	// 		} else if (response.status === 'not_authorized') {
+			} else if (response.status === 'not_authorized') {
 				
-	// 			document.getElementById('status').innerHTML = 'Please log ' +
-	// 				'into this app.';
-	// 		} else {
+				document.getElementById('status').innerHTML = 'Please log ' +
+					'into this app.';
+			} else {
 
-	// 			document.getElementById('status').innerHTML = 'Please log ' +
-	// 				'into Facebook.';
-	// 		}
-	// 	}
+				document.getElementById('status').innerHTML = 'Please log ' +
+					'into Facebook.';
+			}
+		}
 
-	// 	FB.getLoginStatus(function(response) {
-	// 			if (response.status === 'connected') {
-	// 				var accessToken = response.authResponse.accessToken;
-	// 	} 
-	// 		statusChangeCallback(response);
-	// 	});
+		FB.getLoginStatus(function(response) {
+				if (response.status === 'connected') {
+					var accessToken = response.authResponse.accessToken;
+		} 
+			statusChangeCallback(response);
+		});
 
 	
-	// }; //close window.fbAsyncInit
+	}; //close window.fbAsyncInit
 
 	
 
-	// // Load the SDK asynchronously 
-	// (function(d, s, id) {
-	// 	var js, fjs = d.getElementsByTagName(s)[0];
-	// 	if (d.getElementById(id)) return;
-	// 	js = d.createElement(s); js.id = id;
-	// 	js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=1518819868427496";
-	// 	fjs.parentNode.insertBefore(js, fjs);
-	// }(document, 'script', 'facebook-jssdk'));
+	// Load the SDK asynchronously 
+	(function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) return;
+		js = d.createElement(s); js.id = id;
+		js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=1518819868427496";
+		fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
 
-	// // FB Graph API
-	// var userLikes = []
-	// function testAPI() {
+	// FB Graph API
+	var userLikes = []
+	function testAPI() {
 
-	// 			FB.api('/me','GET', {"fields":"id,name,email,likes,friends,invitable_friends{id,picture,name},location"},function(response) {
-	// 				console.log('This is FB Graph API response: ', response);
+				FB.api('/me','GET', {"fields":"id,name,email,likes,friends,invitable_friends{id,picture,name},location"},function(response) {
+					console.log('This is FB Graph API response: ', response);
 					
- //          	fbPaging = response.invitable_friends.paging.next
- //          	// fbFriendImg = response.invitable_friends.data.picture.data.url
+          	fbPaging = response.invitable_friends.paging.next
+          	// fbFriendImg = response.invitable_friends.data.picture.data.url
 
- //          	fbAllFriendsList = fbPaging.replace('limit=25', 'limit=5000');
+          	fbAllFriendsList = fbPaging.replace('limit=25', 'limit=5000');
 
 					
 
-	// 				FB.api(fbAllFriendsList, function(response) {  
-	// 					console.log(response);
+					FB.api(fbAllFriendsList, function(response) {  
+						console.log(response);
 						
-	// 					for (x=0;x<response.data.length;x++) {
-	// 						allFriends.push(response.data[x].name);
-	// 						allFriendImg.push(response.data[x].picture.data.url)
+						for (x=0;x<response.data.length;x++) {
+							allFriends.push(response.data[x].name);
+							allFriendImg.push(response.data[x].picture.data.url)
 
 
-	// 					}
+						}
 						
-	// 					for(a=0;a<allFriends.length;a++){ 
-	// 						// debugger;
+						for(a=0;a<allFriends.length;a++){ 
+							// debugger;
 
-	// 						facebookUserProfile.userFriends[a] = [allFriends[a], allFriendImg[a]]
-	// 					}
+							facebookUserProfile.userFriends[a] = [allFriends[a], allFriendImg[a]]
+						}
 
-	// 					var newFirebaseUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+facebookUserProfile.userName);
+						var newFirebaseUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+facebookUserProfile.userName);
 					
-	// 					newFirebaseUser.set(facebookUserProfile); 	
+						newFirebaseUser.set(facebookUserProfile); 	
 
-	// 				});
-
-
-
-					
-
-	// 				facebookUserProfile = { 
-	// 					userName: response.name,
-	// 					userID: response.id,
-	// 					userEmail: response.email,
-	// 					userFriends: {},
-	// 					userLikes: {}
-	// 				}
+					});
 
 
 
-	// 				var newFirebaseUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+response.name);
-					
-	// 				newFirebaseUser.set(facebookUserProfile); 
-					
 					
 
-	// 				if (response.likes.data.length != undefined) { 
+					facebookUserProfile = { 
+						userName: response.name,
+						userID: response.id,
+						userEmail: response.email,
+						userFriends: {},
+						userLikes: {}
+					}
+
+
+
+					var newFirebaseUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+response.name);
+					
+					newFirebaseUser.set(facebookUserProfile); 
+					
+					
+
+					if (response.likes.data.length != undefined) { 
 						
-	// 					for (h=0;h<response.likes.data.length;h++) {
-	// 					// var userLikes = []
-	// 					 userLikes.push(response.likes.data[h].name);
-	// 					}
+						for (h=0;h<response.likes.data.length;h++) {
+						// var userLikes = []
+						 userLikes.push(response.likes.data[h].name);
+						}
 
-	// 					for(b=0;b<userLikes.length;b++){ 
-	// 						// debugger;
+						for(b=0;b<userLikes.length;b++){ 
+							// debugger;
 
-	// 						facebookUserProfile.userLikes[b] = userLikes[b]
-	// 					}
+							facebookUserProfile.userLikes[b] = userLikes[b]
+						}
 
-	// 					var newFirebaseUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+facebookUserProfile.userName);
+						var newFirebaseUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+facebookUserProfile.userName);
 					
-	// 					newFirebaseUser.set(facebookUserProfile); 
-	// 				}
+						newFirebaseUser.set(facebookUserProfile); 
+					}
 
-	// 				where.push(response.location.name); //where your location is
+					where.push(response.location.name); //where your location is
 
 
-	// 			}); //end Graph api
+				}); //end Graph api
 				
-	// 			// FBwhere = where[0]; //this is a runYelpOnce() var
+				// FBwhere = where[0]; //this is a runYelpOnce() var
 
-	// 			// 	if (userLikes.length > 0) { 
-	// 			// 		for (k=0;k<what.length;k++) {
-	// 			// 			FBwhat = userLikes[k] //this is a runYelpOnce() var
-	// 			// 			runYelpOnce()
-	// 			// 		}
+				// 	if (userLikes.length > 0) { 
+				// 		for (k=0;k<what.length;k++) {
+				// 			FBwhat = userLikes[k] //this is a runYelpOnce() var
+				// 			runYelpOnce()
+				// 		}
 
-	// 			// 	}
+				// 	}
 
 
 
