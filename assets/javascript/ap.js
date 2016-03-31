@@ -62,7 +62,7 @@ var currentUser;
             if (response.status === 'connected') {
                 var accessToken = response.authResponse.accessToken;
                 console.log('you are logged in')
-                $('#myModal').model(hide);
+                
             } 
             statusChangeCallback(response);
         });
