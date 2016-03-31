@@ -551,11 +551,11 @@ function getCoordinates(position) {
 	} 
 
 //************************* Submit function ************************************ 
-$('#submit').on('click', function(){
+$('#submit').on('click', function() {
 
 		$('#searches').empty();
-		what = $('#what').val()
-		where = $('#where').val()
+		what = $('#what').val();
+		where = $('#where').val();
 		$('#yelpSearches').show();
 		runYelp()
 
