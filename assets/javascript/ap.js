@@ -57,8 +57,7 @@ $('#myModal').modal();
                     'into this app.';
             } else {
 
-                document.getElementById('status').innerHTML = 'Please log ' +
-                    'into Facebook.';
+                document.getElementById('status').innerHTML = '';
             }
         }
 
