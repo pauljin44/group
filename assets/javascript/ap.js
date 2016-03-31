@@ -17,7 +17,6 @@ var fbPaging;
 var facebookUserProfile = {};
 var currentUser;
 
-$('#yelpSearches').hide();
 
 //************************* Submit function ************************************ 
 
@@ -567,6 +566,7 @@ function infoWindow(marker, map, title, address, rating, phone){
     });
 } 
 
+$('#yelpSearches').hide();
 
 
 
