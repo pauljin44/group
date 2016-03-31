@@ -30,8 +30,11 @@ $('#submit').on('click', function() {
 });
 
 $('#oldUserSubmit').on('click', function() {
-    var test = $('#oldUser').val()
+
     firebaseValueCheck.on('value', function(snapshot){
+        var test = $('#oldUser').val()
+        test = test.replace(/(^")|("$)/g, '')
+        
         if (snapshot.val().users.test == true) {
             currentUser = $('#oldUser').val();
             console.log();
