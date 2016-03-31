@@ -17,6 +17,8 @@ var fbPaging;
 var facebookUserProfile = {};
 var currentUser;
 
+$('#yelpSearches').hide();
+
 //************************* Submit function ************************************ 
 
 $('#submit').on('click', function() {
@@ -237,7 +239,7 @@ $('#points').on('click', function(){
 
     // }    
     
-    $('#yelpSearches').hide();
+    
 
 //****************************************** Yelp ******************************************************       
 
