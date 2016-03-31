@@ -18,60 +18,73 @@ var facebookUserProfile = {};
 var currentUser;
 
 //************************* Submit function ************************************ 
+$(document).ready(function(){
 
-$('#submit').on('click', function() {
-    debugger;
-    $('#searches').empty();
-    what = $('#what').val();
-    where = $('#where').val();
-    $('#yelpSearches').show();
-    runYelp()
+    $('#submit').on('click', function() {
+        debugger;
+        $('#searches').empty();
+        what = $('#what').val();
+        where = $('#where').val();
+        $('#yelpSearches').show();
+        runYelp()
 
-});
+    });
 
-$('#oldUserSubmit').on('click', function() {
+    $('#oldUserSubmit').on('click', function() {
 
-    firebaseValueCheck.on('value', function(snapshot){
-        var test = $('#oldUser').val()
-        test = test.replace(/(^")|("$)/g, '')
+        firebaseValueCheck.on('value', function(snapshot){
+            var test = $('#oldUser').val()
+            test = test.replace(/(^")|("$)/g, '')
+            
+            if (snapshot.val().users.test == true) {
+                currentUser = $('#oldUser').val();
+                console.log();
+            }
+
+        });
+
         
-        if (snapshot.val().users.test == true) {
-            currentUser = $('#oldUser').val();
-            console.log();
-        }
-
     });
 
-    
-});
+    $('#newUserSubmit').on('click', function(){
+        
+        newUser = $('#newUser').val();
+        var firebaseNewUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+newUser)
+        added = {
+            dateAdded : Date.now()
+        }
+        firebaseNewUser.update(added);
+        firebaseValueCheck.once('value', function(snapshot) {
+            console.log(snapshot.val().users.newUser)
+        }) 
 
-$('#newUserSubmit').on('click', function(){
-    
-    newUser = $('#newUser').val();
-    var firebaseNewUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+newUser)
-    added = {
-        dateAdded : Date.now()
-    }
-    firebaseNewUser.update(added);
-    firebaseValueCheck.once('value', function(snapshot) {
-        console.log(snapshot.val().users.newUser)
-    }) 
+        currentUser = newUser       
+    });  
 
-    currentUser = newUser       
-});
 
-$('#points').on('click', function(){
-    $('#modalPoints').modal();
-    // debugger;
-    var firebasePointsValue = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+currentUser+"/places")
-    firebaseValueCheck.once('value', function(snapshot){
+    $('#points').on('click', function(){
         $('#modalPoints').modal();
-        for (p=0;p<snapshot.val();p++) {
-            debugger;
-            $('#showPlaces').append('<li class="seenPlace">').text(snapshot.val()[i]);
-        }
+        // debugger;
+        var firebasePointsValue = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+currentUser+"/places")
+        firebaseValueCheck.once('value', function(snapshot){
+            $('#modalPoints').modal();
+            for (p=0;p<snapshot.val();p++) {
+                debugger;
+                $('#showPlaces').append('<li class="seenPlace">').text(snapshot.val()[i]);
+            }
+        });
     });
+
+
+
+    $('#yelpSearches').hide();
+
+
+
 });
+
+
+
 
     
 
@@ -237,7 +250,7 @@ $('#points').on('click', function(){
 
     // }    
     
-$('#yelpSearches').hide();
+
 
 //****************************************** Yelp ******************************************************       
 
