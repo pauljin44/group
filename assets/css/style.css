@@ -43,7 +43,8 @@ nav {
 }
 
 #map{
-	width: 500px;
+	margin: 0 auto;
+	width: 75%;
 	height: 500px;s
 }
 
