@@ -388,11 +388,11 @@ var firebaseValueCheck = new Firebase("https://sizzling-heat-1076.firebaseio.com
         
     });
 
-var firebaseCountUp = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+currentUser);
+var firebaseCountUp = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+currentUser+"/count");
 
 
 function updateCounter(){
-        
+
         var addCount = {
             count: localCounter
         }
