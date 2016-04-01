@@ -55,14 +55,14 @@ $(document).ready(function(){
 $('#modalOld').ready(function(){
     $('#oldUserSubmit').on('click', function() {
         console.log('working');
-        
+        debugger;
         
         var test = $('#oldUser').val()
 
         var firebaseOldUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+test);
 
         firebaseValueCheck.on('value', function(snapshot){
-            
+            debugger;
             test = test.replace(/(^")|("$)/g, '')
             
             if (snapshot.val() == true) {
