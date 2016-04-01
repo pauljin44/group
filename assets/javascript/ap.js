@@ -573,6 +573,7 @@ function infoWindow(marker, map, title, address, rating, phone){
         infoBubble = new InfoBubble({
             content: htmls[0],
             maxWidth: 350,
+            height: 100%,
             shadowStyle: 1,
             backgroundColor: 'slategrey'
         });
