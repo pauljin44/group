@@ -7,8 +7,6 @@ var firebaseValueCheck = new Firebase("https://sizzling-heat-1076.firebaseio.com
 var FBwhat = []; 
 var FBwhere = []; 
 var FBYelpwhat; 
-var what = [];
-var where = [];
 var FBresponse; 
 var fbAllFriendsList;
 var allFriends = [];
@@ -260,11 +258,9 @@ function runYelp() {
     activeMarkers = [];
 
     
-    var what = "term=" + $(this).text()
-    var where = 'location=' + $(this).text()
+    var what = "term=" + $('#what').val();
+    var where = 'location=' + $('#where').val();
     
-    what = $('#what').val()
-    where = $('#where').val()
 
         
 
