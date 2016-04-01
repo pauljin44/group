@@ -23,8 +23,6 @@ $(document).ready(function(){
     $('#submit').on('click', function() {
         debugger;
         $('#searches').empty();
-        what = $('#what').val();
-        where = $('#where').val();
         $('#yelpSearches').show();
         runYelp()
 
