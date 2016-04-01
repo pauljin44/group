@@ -25,7 +25,7 @@ $(document).ready(function(){
         $('#searches').empty();
         $('#yelpSearches').show();
         runYelp()
-        return false
+        // return false
 
     });
 
