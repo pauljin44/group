@@ -385,17 +385,7 @@ function runYelp() {
 var localCounter = 0; //initally set to 0
 var checkedPlaces = []
 
-function updateCounter(){
 
-        var addCount = {
-            count: localCounter
-        }
-        
-        countActual.update(addCount)
-        $("#counter").empty();      
-        $("#counter").html("<p>You have this many points:" + localCounter+ "</p>");
-
-};
 
 var firebaseCountUp = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/");   //+currentUser+"/count");
 var currentUserFirebase = firebaseCountUp.child(currentUser);    
@@ -409,7 +399,18 @@ var currentUserFirebase = firebaseCountUp.child(currentUser);
         }
         
         var countActual = currentCountUp.child('count');
+        
+        function updateCounter(){
 
+                var addCount = {
+                    count: localCounter
+                }
+                
+                countActual.update(addCount)
+                $("#counter").empty();      
+                $("#counter").html("<p>You have this many points:" + localCounter+ "</p>");
+
+        };
         updateCounter();
     
 
