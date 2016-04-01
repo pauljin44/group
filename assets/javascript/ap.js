@@ -8,7 +8,7 @@ var FBwhat = [];
 var FBwhere = []; 
 var FBYelpwhat; 
 var FBresponse;
-var where = [] 
+// var where = [] 
 var fbAllFriendsList;
 var allFriends = [];
 var allFriendImg = [];
@@ -259,8 +259,8 @@ function runYelp() {
     activeMarkers = [];
 
     
-    var what = "term=" + $('#what').val();
-    var where = 'location=' + $('#where').val();
+    what = $('#what').val();
+    where = $('#where').val();
     
 
         
