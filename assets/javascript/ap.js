@@ -374,25 +374,6 @@ function runYelp() {
 var localCounter = 0; //initally set to 0
 var checkedPlaces = []
 
-var firebaseValueCheck = new Firebase("https://sizzling-heat-1076.firebaseio.com/");
-    
-    firebaseValueCheck.on('child_added', function(snapshot){
-        if (snapshot.val().userName != undefined) {
-            localCounter = snapshot.val().userName.count
-        }
-        if (snapshot.val().userName.places != undefined){
-            checkedPlaces = snapshot.val().userName.places
-        }
-
-
-        
-    });
-
-var firebaseCountUp = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/");   //+currentUser+"/count");
-
-var currentCountUp = firebaseCountUp.child(currentUser);
-var countActual = currentCountUp.child('count');
-
 function updateCounter(){
 
         var addCount = {
@@ -404,6 +385,31 @@ function updateCounter(){
         $("#counter").html("<p>You have this many points:" + localCounter+ "</p>");
 
 };
+
+var firebaseValueCheck = new Firebase("https://sizzling-heat-1076.firebaseio.com/");
+    
+    firebaseValueCheck.on('child_added', function(snapshot){
+        if (snapshot.val().userName != undefined) {
+            localCounter = snapshot.val().userName.count
+        }
+        if (snapshot.val().userName.places != undefined){
+            checkedPlaces = snapshot.val().userName.places
+        }
+
+        var firebaseCountUp = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/");   //+currentUser+"/count");
+
+        var currentCountUp = firebaseCountUp.child(currentUser);
+        var countActual = currentCountUp.child('count');
+
+        updateCounter();
+    
+
+
+    });
+
+
+
+
 
 
 // function getLocation() {
