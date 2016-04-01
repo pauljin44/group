@@ -7,7 +7,8 @@ var firebaseValueCheck = new Firebase("https://sizzling-heat-1076.firebaseio.com
 var FBwhat = []; 
 var FBwhere = []; 
 var FBYelpwhat; 
-var FBresponse; 
+var FBresponse;
+var where = [] 
 var fbAllFriendsList;
 var allFriends = [];
 var allFriendImg = [];
