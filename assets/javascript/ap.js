@@ -64,7 +64,7 @@ $('#modalOld').ready(function(){
         firebaseOldUser.on('value', function(snapshot){
             debugger;
             
-            if (snapshot.val() == true) {
+            if (snapshot.val() != undefined) {
              
              currentUser = $('#oldUser').val();   
                 console.log('currentUser is: ', currentUser);
