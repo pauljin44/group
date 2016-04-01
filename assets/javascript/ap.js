@@ -376,7 +376,7 @@ var checkedPlaces = []
 
 var firebaseValueCheck = new Firebase("https://sizzling-heat-1076.firebaseio.com/");
     
-    firebaseValueCheck.on('value', function(snapshot){
+    firebaseValueCheck.on('child_added', function(snapshot){
         if (snapshot.val().userName != undefined) {
             localCounter = snapshot.val().userName.count
         }
