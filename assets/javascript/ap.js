@@ -395,28 +395,27 @@ function updateCounter(){
         var addCount = {
             count: localCounter
         }
-        
+        currentUserFirebase = firebaseCountUp.child(currentUser);
         currentUserFirebase.update(addCount)
         $("#counter").empty();      
         $("#counter").html("<p>You have this many points:" + localCounter+ "</p>");
 
 };
-    currentUserFirebase.on('value', function(snapshot){
-        if (snapshot.val().count != undefined) {
-            localCounter = snapshot.val().count
-        }
-        if (snapshot.val().places != undefined){
-            checkedPlaces = snapshot.val().places
-        }
-        
-       
-        
 
-        updateCounter();
+currentUserFirebase.on('value', function(snapshot){
+    
+    if (snapshot.val().count != undefined) {
+        localCounter = snapshot.val().count
+    }
+    if (snapshot.val().places != undefined){
+        checkedPlaces = snapshot.val().places
+    }
+
+    updateCounter();
     
 
 
-    });
+});
 
 
 
