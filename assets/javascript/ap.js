@@ -4,6 +4,7 @@
 
 //****************************************** Facebook SDK ******************************************************
 var firebaseValueCheck = new Firebase("https://sizzling-heat-1076.firebaseio.com/");
+var firebaseCountUp = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/");
 var FBwhat = []; 
 var FBwhere = []; 
 var FBYelpwhat; 
@@ -27,37 +28,7 @@ $(document).ready(function(){
         return false
 
     });
-
-    $('#oldUserSubmit').on('click', function() {
-
-        firebaseValueCheck.on('value', function(snapshot){
-            var test = $('#oldUser').val()
-            test = test.replace(/(^")|("$)/g, '')
-            
-            if (snapshot.val().users.test == true) {
-                currentUser = $('#oldUser').val();
-                console.log();
-            }
-
-        });
-
-        
-    });
-
-    $('#newUserSubmit').on('click', function(){
-        
-        newUser = $('#newUser').val();
-        var firebaseNewUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+newUser)
-        added = {
-            dateAdded : Date.now()
-        }
-        firebaseNewUser.update(added);
-        firebaseValueCheck.once('value', function(snapshot) {
-            console.log(snapshot.val().users.newUser)
-        }) 
-
-        currentUser = newUser       
-    });  
+ 
 
 
     $('#points').on('click', function(){
@@ -82,7 +53,71 @@ $(document).ready(function(){
 });
 
 
+$('#modalOld').ready(function(){
+    $('#oldUserSubmit').on('click', function() {
+        console.log('working');
+        debugger;
+        
+        var test = $('#oldUser').val()
 
+        var firebaseOldUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+test);
+
+        firebaseOldUser.on('value', function(snapshot){
+            debugger;
+            
+            if (snapshot.val() != undefined) {
+             
+             currentUser = $('#oldUser').val();   
+                console.log('currentUser is: ', currentUser);
+            }else{
+                console.log('currentUser login unsucessful')
+            }
+            currentUserFirebase = firebaseCountUp.child(currentUser);
+            currentUserFirebase.on('value', function(snapshot){
+    
+                if (snapshot.val().count != undefined) {
+                    localCounter = snapshot.val().count
+                }
+                
+                if (snapshot.val().places != undefined){
+                    checkedPlaces = snapshot.val().places
+                }
+
+                updateCounter();
+            
+            });
+
+
+});
+
+        
+
+        
+        $('#oldUserSubmit').hide();
+
+        
+    });    
+});
+
+
+$('#modalNew').ready(function(){
+    $('#newUserSubmit').on('click', function(){
+        console.log('also working');
+        $('#newUserSubmit').hide();
+        newUser = $('#newUser').val();
+        var firebaseNewUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+newUser)
+        added = {
+            dateAdded : Date.now(),
+            
+        }
+        firebaseNewUser.update(added);
+        firebaseValueCheck.once('value', function(snapshot) {
+            console.log(snapshot.val().users.newUser)
+        }) 
+
+        currentUser = newUser       
+    }); 
+});
 
     
 
@@ -255,8 +290,9 @@ $(document).ready(function(){
 function runYelp() {
 
     locations = [];
-    if (activeMarkers.length > 0){clearMarkers()};
     activeMarkers = [];
+    if (activeMarkers.length > 0){clearMarkers()};
+    
 
     
     what = $('#what').val();
@@ -366,54 +402,25 @@ function runYelp() {
 var localCounter = 0; //initally set to 0
 var checkedPlaces = []
 
-var firebaseValueCheck = new Firebase("https://sizzling-heat-1076.firebaseio.com/");
-    
-    firebaseValueCheck.on('value', function(snapshot){
-        if (snapshot.val().userName != undefined) {
-            localCounter = snapshot.val().userName.count
-        }
-        if (snapshot.val().userName.places != undefined){
-            checkedPlaces = snapshot.val().userName.places
-        }
 
 
-        
-    });
-
-var firebaseCountUp = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+currentUser);
-
+  //Get to users
+var currentUserFirebase = firebaseCountUp.child(currentUser);    //Get to current User 
+   
 
 function updateCounter(){
 
+
+
         var addCount = {
-            count: localCounter,
+            count: localCounter
         }
-        
-        firebaseCountUp.update(addCount)
+        currentUserFirebase = firebaseCountUp.child(currentUser);
+        currentUserFirebase.update(addCount)
         $("#counter").empty();      
         $("#counter").html("<p>You have this many points:" + localCounter+ "</p>");
 
 };
-
-
-// function getLocation() {
-//     if (navigator.geolocation) {
-//         navigator.geolocation.getCurrentPosition(showPosition);
-//         console.log("got it");
-//     } else {
-//         console.log("Geolocation is not supported by this browser.");
-//     }
-// }
-// function showPosition(position) {
-//  console.log("caught it");
-//    console.log("Latitude: " + position.coords.latitude + 
-//     "Longitude: " + position.coords.longitude); 
-// }
-
-
-
-
-
 
 
 if (navigator.geolocation) {
@@ -498,10 +505,11 @@ function geocodeAddress(locations, i) {
             });
             activeMarkers.push(marker);
             infoWindow(marker, map, title, address, rating, phone);
+            map.fitBounds(bounds);
             bounds.extend(marker.getPosition());
             // map.setCenter(center);
             // map.panTo(center);
-            map.fitBounds(bounds);
+            
         } else {
             alert ("geocode of" + address + "failed:" + status);
         }
