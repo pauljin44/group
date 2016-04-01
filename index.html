@@ -53,7 +53,11 @@
 								</div>
 								<button type="submit" id="submit" class="btn btn-default">Submit</button>
 							</form>
-								<div id="fbWrapper">
+								
+							<ul class="nav navbar-nav navbar-right">
+								<li>
+
+									<div id="fbWrapper">
 									<div id="fb-root"></div>
 									<script>(function(d, s, id) {
 									var js, fjs = d.getElementsByTagName(s)[0];
@@ -63,18 +67,14 @@
 									 fjs.parentNode.insertBefore(js, fjs);
 									}(document, 'script', 'facebook-jssdk'));</script>
 									
-																	
-									
-								</div>
-							<ul class="nav navbar-nav navbar-right">
-								<li>
-									<!-- ************* Returning user login ************* -->
-									    		<!-- Button trigger modal -->
 									<fb:login-button scope="public_profile,email,user_likes,friends,invitable_friends{name}?limit=5000" onlogin="checkLoginState();">
 									</fb:login-button>	
-									<div class="fb-login-button" data-max-rows="1" data-size="small" data-show-faces="true" data-auto-logout-link="true">
-									<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modalOld">Log in with us!</button>
+									<div class="fb-login-button" data-max-rows="1" data-size="small" data-show-faces="true" data-auto-logout-link="true">								
 									</div>
+								</div>
+									<!-- ************* Returning user login ************* -->
+									    		<!-- Button trigger modal -->
+									<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modalOld">Log in with us!</button>
 
 															<!-- Modal -->
 									<div class="modal fade" id="modalOld" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
