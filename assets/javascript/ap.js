@@ -387,9 +387,21 @@ var checkedPlaces = []
 
 
 
-var firebaseCountUp = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/");   //+currentUser+"/count");
-var currentUserFirebase = firebaseCountUp.child(currentUser);    
-    
+var firebaseCountUp = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/");  //Get to users
+var currentUserFirebase = firebaseCountUp.child(currentUser);    //Get to current User 
+var countActual = currentCountUp.child('count');   //Get to current user count
+
+function updateCounter(){
+
+        var addCount = {
+            count: localCounter
+        }
+        
+        countActual.update(addCount)
+        $("#counter").empty();      
+        $("#counter").html("<p>You have this many points:" + localCounter+ "</p>");
+
+};
     currentUserFirebase.on('value', function(snapshot){
         if (snapshot.val().count != undefined) {
             localCounter = snapshot.val().count
@@ -398,24 +410,16 @@ var currentUserFirebase = firebaseCountUp.child(currentUser);
             checkedPlaces = snapshot.val().places
         }
         
-        var countActual = currentCountUp.child('count');
+       
         
-        function updateCounter(){
 
-                var addCount = {
-                    count: localCounter
-                }
-                
-                countActual.update(addCount)
-                $("#counter").empty();      
-                $("#counter").html("<p>You have this many points:" + localCounter+ "</p>");
-
-        };
         updateCounter();
     
 
 
     });
+
+
 
 
 
