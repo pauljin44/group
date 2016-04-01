@@ -72,7 +72,7 @@ $('#modalOld').ready(function(){
             }else{
                 console.log('currentUser login unsucessful')
             }
-
+            currentUserFirebase = firebaseCountUp.child(currentUser);
             currentUserFirebase.on('value', function(snapshot){
     
                 if (snapshot.val().count != undefined) {
