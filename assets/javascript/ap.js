@@ -273,8 +273,9 @@ $('#modalNew').ready(function(){
 function runYelp() {
 
     locations = [];
-    if (activeMarkers.length > 0){clearMarkers()};
     activeMarkers = [];
+    if (activeMarkers.length > 0){clearMarkers()};
+    
 
     
     what = $('#what').val();
