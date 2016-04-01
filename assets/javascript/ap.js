@@ -28,21 +28,6 @@ $(document).ready(function(){
 
     });
 
-    $('#oldUserSubmit').on('click', function() {
-
-        firebaseValueCheck.on('value', function(snapshot){
-            var test = $('#oldUser').val()
-            test = test.replace(/(^")|("$)/g, '')
-            
-            if (snapshot.val().users.test == true) {
-                currentUser = $('#oldUser').val();
-                console.log();
-            }
-
-        });
-
-        
-    });
 
     $('#newUserSubmit').on('click', function(){
         
@@ -81,6 +66,24 @@ $(document).ready(function(){
     $('#yelpSearches').hide();
 });
 
+
+$('#modalOld').ready(function(){
+    $('#oldUserSubmit').on('click', function() {
+
+        firebaseValueCheck.on('value', function(snapshot){
+            var test = $('#oldUser').val()
+            test = test.replace(/(^")|("$)/g, '')
+            
+            if (snapshot.val().users.test == true) {
+                currentUser = $('#oldUser').val();
+                console.log();
+            }
+
+        });
+
+        
+    });    
+});
 
 
 
