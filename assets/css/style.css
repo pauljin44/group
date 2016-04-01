@@ -78,7 +78,7 @@ div #map h3 {
 
 }
 
-div #map .bubbletext {
+div #map #test {
 	text-align: center;
 }
 
@@ -87,10 +87,6 @@ div #map button:hover{
 
 }
 
-div #map p{
-
-	font-size: 14pt;
-}
 
 
 
