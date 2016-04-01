@@ -526,10 +526,11 @@ function geocodeAddress(locations, i) {
             });
             activeMarkers.push(marker);
             infoWindow(marker, map, title, address, rating, phone);
+            map.fitBounds(bounds);
             bounds.extend(marker.getPosition());
             // map.setCenter(center);
             // map.panTo(center);
-            map.fitBounds(bounds);
+            
         } else {
             alert ("geocode of" + address + "failed:" + status);
         }
