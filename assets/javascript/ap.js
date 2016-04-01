@@ -21,7 +21,7 @@ var currentUser;
 $(document).ready(function(){
 
     $('#submit').on('click', function() {
-        debugger;
+        // debugger;
         $('#searches').empty();
         $('#yelpSearches').show();
         runYelp()
@@ -68,7 +68,7 @@ $(document).ready(function(){
         firebaseValueCheck.once('value', function(snapshot){
             $('#modalPoints').modal();
             for (p=0;p<snapshot.val();p++) {
-                debugger;
+                // debugger;
                 $('#showPlaces').append('<li class="seenPlace">').text(snapshot.val()[i]);
             }
         });
