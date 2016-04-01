@@ -3,7 +3,7 @@ body {
     /*background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdDVAhJOGMUODmwzJYWcW-cBJjLTNF4ix6WSundFl63jJf8Sxd3g");*/
     background-repeat: no-repeat;
     background-size: 100%;
-    background-color: #cccccc;
+    background-color: #708090;
   }
 ul {
     border: 1px solid #e7e7e7;
@@ -71,9 +71,25 @@ div #map button {
 	transition-duration: 0.4s;
 }
 
+div #map h3 {
+	color: gainsboro;
+	display: inline-block;
+
+
+}
+
+div #map .bubbletext {
+	text-align: center;
+}
+
 div #map button:hover{
 	background-color: gainsboro;
-	
+
+}
+
+div #map p{
+
+	font-size: 14pt;
 }
 
 
