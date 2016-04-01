@@ -61,9 +61,8 @@ $('#modalOld').ready(function(){
 
         var firebaseOldUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+test);
 
-        firebaseValueCheck.on('value', function(snapshot){
+        firebaseOldUser.on('value', function(snapshot){
             debugger;
-            test = test.replace(/(^")|("$)/g, '')
             
             if (snapshot.val() == true) {
              
