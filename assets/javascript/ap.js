@@ -25,6 +25,7 @@ $(document).ready(function(){
         $('#searches').empty();
         $('#yelpSearches').show();
         runYelp()
+        return false
 
     });
 
@@ -78,10 +79,10 @@ $(document).ready(function(){
     
 
 
-
+    $('#yelpSearches').hide();
 });
 
-$('#yelpSearches').hide();
+
 
 
     
