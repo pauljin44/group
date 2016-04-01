@@ -32,7 +32,7 @@ $(document).ready(function(){
 
 
     $('#points').on('click', function(){
-        $('#modalPoints').modal();
+        // $('#modalPoints').modal();
         // debugger;
         var firebasePointsValue = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+currentUser+"/places")
         firebaseValueCheck.once('value', function(snapshot){
