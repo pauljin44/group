@@ -5,6 +5,10 @@ body {
     background-size: 100%;
     background-color: #708090;
   }
+
+html,body{
+	height:100%;
+}
 ul {
     border: 1px solid #e7e7e7;
     background-color: #f3f3f3;
@@ -80,6 +84,10 @@ div #map h3 {
 
 div #map #test {
 	text-align: center;
+}
+
+div #map #test img{
+	margin-bottom: 11px;
 }
 
 div #map button:hover{
