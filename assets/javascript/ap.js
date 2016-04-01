@@ -7,9 +7,8 @@ var firebaseValueCheck = new Firebase("https://sizzling-heat-1076.firebaseio.com
 var FBwhat = []; 
 var FBwhere = []; 
 var FBYelpwhat; 
-var what = [];
-var where = [];
-var FBresponse; 
+var FBresponse;
+// var where = [] 
 var fbAllFriendsList;
 var allFriends = [];
 var allFriendImg = [];
@@ -21,12 +20,11 @@ var currentUser;
 $(document).ready(function(){
 
     $('#submit').on('click', function() {
-        debugger;
+        // debugger;
         $('#searches').empty();
-        what = $('#what').val();
-        where = $('#where').val();
         $('#yelpSearches').show();
         runYelp()
+        return false
 
     });
 
@@ -69,7 +67,7 @@ $(document).ready(function(){
         firebaseValueCheck.once('value', function(snapshot){
             $('#modalPoints').modal();
             for (p=0;p<snapshot.val();p++) {
-                debugger;
+                // debugger;
                 $('#showPlaces').append('<li class="seenPlace">').text(snapshot.val()[i]);
             }
         });
@@ -77,10 +75,10 @@ $(document).ready(function(){
 
 
 
+    
+
+
     $('#yelpSearches').hide();
-
-
-
 });
 
 
@@ -228,7 +226,7 @@ $(document).ready(function(){
                 newFirebaseUser.set(facebookUserProfile); 
             }
 
-            where.push(response.location.name); //where your location is
+            // where.push(response.location.name); //where your location is
 
         }); 
 
@@ -261,11 +259,9 @@ function runYelp() {
     activeMarkers = [];
 
     
-    var what = "term=" + $(this).text()
-    var where = 'location=' + $(this).text()
+    what = $('#what').val();
+    where = $('#where').val();
     
-    what = $('#what').val()
-    where = $('#where').val()
 
         
 
