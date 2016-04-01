@@ -27,22 +27,7 @@ $(document).ready(function(){
         return false
 
     });
-
-
-    $('#newUserSubmit').on('click', function(){
-        
-        newUser = $('#newUser').val();
-        var firebaseNewUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+newUser)
-        added = {
-            dateAdded : Date.now()
-        }
-        firebaseNewUser.update(added);
-        firebaseValueCheck.once('value', function(snapshot) {
-            console.log(snapshot.val().users.newUser)
-        }) 
-
-        currentUser = newUser       
-    });  
+ 
 
 
     $('#points').on('click', function(){
@@ -69,6 +54,8 @@ $(document).ready(function(){
 
 $('#modalOld').ready(function(){
     $('#oldUserSubmit').on('click', function() {
+        console.log('working')
+        $('#oldUserSubmit').hide();
 
         firebaseValueCheck.on('value', function(snapshot){
             var test = $('#oldUser').val()
@@ -85,7 +72,23 @@ $('#modalOld').ready(function(){
     });    
 });
 
+$('#modalNew').ready(function(){
+    $('#newUserSubmit').on('click', function(){
+        console.log('also working');
+        $('#newUserSubmit').hide();
+        newUser = $('#newUser').val();
+        var firebaseNewUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+newUser)
+        added = {
+            dateAdded : Date.now()
+        }
+        firebaseNewUser.update(added);
+        firebaseValueCheck.once('value', function(snapshot) {
+            console.log(snapshot.val().users.newUser)
+        }) 
 
+        currentUser = newUser       
+    }); 
+});
 
     
 
