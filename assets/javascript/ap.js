@@ -54,19 +54,29 @@ $(document).ready(function(){
 
 $('#modalOld').ready(function(){
     $('#oldUserSubmit').on('click', function() {
-        console.log('working')
-        $('#oldUserSubmit').hide();
+        console.log('working');
+        
+        
+        var test = $('#oldUser').val()
+
+        var firebaseOldUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+test);
 
         firebaseValueCheck.on('value', function(snapshot){
-            var test = $('#oldUser').val()
+            
             test = test.replace(/(^")|("$)/g, '')
             
-            if (snapshot.val().users.test == true) {
-                currentUser = $('#oldUser').val();
-                console.log();
+            if (snapshot.val() == true) {
+             
+             currentUser = $('#oldUser').val();   
+                console.log('currentUser is: ', currentUser);
+            }else{
+                console.log('currentUser login unsucessful')
             }
 
         });
+
+        
+        $('#oldUserSubmit').hide();
 
         
     });    
@@ -386,19 +396,17 @@ function updateCounter(){
 
 };
 
-var firebaseValueCheck = new Firebase("https://sizzling-heat-1076.firebaseio.com/");
+var firebaseCountUp = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/");   //+currentUser+"/count");
+var currentUserFirebase = firebaseCountUp.child(currentUser);    
     
-    firebaseValueCheck.on('child_added', function(snapshot){
-        if (snapshot.val().userName != undefined) {
-            localCounter = snapshot.val().userName.count
+    currentUserFirebase.on('value', function(snapshot){
+        if (snapshot.val().count != undefined) {
+            localCounter = snapshot.val().count
         }
-        if (snapshot.val().userName.places != undefined){
-            checkedPlaces = snapshot.val().userName.places
+        if (snapshot.val().places != undefined){
+            checkedPlaces = snapshot.val().places
         }
-
-        var firebaseCountUp = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/");   //+currentUser+"/count");
-
-        var currentCountUp = firebaseCountUp.child(currentUser);
+        
         var countActual = currentCountUp.child('count');
 
         updateCounter();
