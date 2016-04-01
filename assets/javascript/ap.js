@@ -72,6 +72,7 @@ $('#modalOld').ready(function(){
     });    
 });
 
+
 $('#modalNew').ready(function(){
     $('#newUserSubmit').on('click', function(){
         console.log('also working');
@@ -79,7 +80,8 @@ $('#modalNew').ready(function(){
         newUser = $('#newUser').val();
         var firebaseNewUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+newUser)
         added = {
-            dateAdded : Date.now()
+            dateAdded : Date.now(),
+            count: 0
         }
         firebaseNewUser.update(added);
         firebaseValueCheck.once('value', function(snapshot) {
@@ -390,9 +392,9 @@ var firebaseCountUp = new Firebase("https://sizzling-heat-1076.firebaseio.com/us
 
 
 function updateCounter(){
-
+        
         var addCount = {
-            count: localCounter,
+            count: localCounter
         }
         
         firebaseCountUp.update(addCount)
