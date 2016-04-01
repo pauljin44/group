@@ -226,7 +226,7 @@ $(document).ready(function(){
                 newFirebaseUser.set(facebookUserProfile); 
             }
 
-            where.push(response.location.name); //where your location is
+            // where.push(response.location.name); //where your location is
 
         }); 
 
