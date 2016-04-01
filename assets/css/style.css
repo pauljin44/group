@@ -84,6 +84,12 @@ div #map h3 {
 
 div #map #test {
 	text-align: center;
+	
+}
+
+div #map #test .parent{
+	padding: 4px;
+	
 }
 
 div #map #test img{
