@@ -75,13 +75,13 @@ $(document).ready(function(){
 
 
 
-    $('#yelpSearches').hide();
+    
 
 
 
 });
 
-
+$('#yelpSearches').hide();
 
 
     
