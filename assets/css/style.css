@@ -66,5 +66,38 @@ td img {
 }
 
 div #map button {
-	background-color: red;
+	background-color: #CCCCCC;
+	border-radius: 12px;
+	transition-duration: 0.4s;
 }
+
+div #map button:hover{
+	background-color: gainsboro;
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
