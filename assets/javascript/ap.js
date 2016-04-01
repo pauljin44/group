@@ -388,7 +388,7 @@ var checkedPlaces = []
 
 var firebaseCountUp = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/");  //Get to users
 var currentUserFirebase = firebaseCountUp.child(currentUser);    //Get to current User 
-var countActual = currentCountUp.child('count');   //Get to current user count
+   
 
 function updateCounter(){
 
@@ -396,7 +396,7 @@ function updateCounter(){
             count: localCounter
         }
         
-        countActual.update(addCount)
+        currentUserFirebase.update(addCount)
         $("#counter").empty();      
         $("#counter").html("<p>You have this many points:" + localCounter+ "</p>");
 
