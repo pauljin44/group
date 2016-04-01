@@ -81,7 +81,7 @@ $('#modalNew').ready(function(){
         var firebaseNewUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+newUser)
         added = {
             dateAdded : Date.now(),
-            count: 0
+            
         }
         firebaseNewUser.update(added);
         firebaseValueCheck.once('value', function(snapshot) {
@@ -388,8 +388,10 @@ var firebaseValueCheck = new Firebase("https://sizzling-heat-1076.firebaseio.com
         
     });
 
-var firebaseCountUp = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+currentUser+"/count");
+var firebaseCountUp = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/");   //+currentUser+"/count");
 
+var currentCountUp = firebaseCountUp.child(currentUser);
+var countActual = currentCountUp.child('count');
 
 function updateCounter(){
 
@@ -397,7 +399,7 @@ function updateCounter(){
             count: localCounter
         }
         
-        firebaseCountUp.update(addCount)
+        countActual.update(addCount)
         $("#counter").empty();      
         $("#counter").html("<p>You have this many points:" + localCounter+ "</p>");
 
