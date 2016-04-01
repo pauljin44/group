@@ -4,6 +4,7 @@
 
 //****************************************** Facebook SDK ******************************************************
 var firebaseValueCheck = new Firebase("https://sizzling-heat-1076.firebaseio.com/");
+var firebaseCountUp = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/");
 var FBwhat = []; 
 var FBwhere = []; 
 var FBYelpwhat; 
@@ -72,7 +73,24 @@ $('#modalOld').ready(function(){
                 console.log('currentUser login unsucessful')
             }
 
-        });
+            currentUserFirebase.on('value', function(snapshot){
+    
+                if (snapshot.val().count != undefined) {
+                    localCounter = snapshot.val().count
+                }
+                
+                if (snapshot.val().places != undefined){
+                    checkedPlaces = snapshot.val().places
+                }
+
+                updateCounter();
+            
+            });
+
+
+});
+
+        
 
         
         $('#oldUserSubmit').hide();
@@ -386,11 +404,13 @@ var checkedPlaces = []
 
 
 
-var firebaseCountUp = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/");  //Get to users
+  //Get to users
 var currentUserFirebase = firebaseCountUp.child(currentUser);    //Get to current User 
    
 
 function updateCounter(){
+
+
 
         var addCount = {
             count: localCounter
@@ -401,47 +421,6 @@ function updateCounter(){
         $("#counter").html("<p>You have this many points:" + localCounter+ "</p>");
 
 };
-
-currentUserFirebase.on('value', function(snapshot){
-    
-    if (snapshot.val().count != undefined) {
-        localCounter = snapshot.val().count
-    }
-    if (snapshot.val().places != undefined){
-        checkedPlaces = snapshot.val().places
-    }
-
-    updateCounter();
-    
-
-
-});
-
-
-
-
-
-
-
-
-// function getLocation() {
-//     if (navigator.geolocation) {
-//         navigator.geolocation.getCurrentPosition(showPosition);
-//         console.log("got it");
-//     } else {
-//         console.log("Geolocation is not supported by this browser.");
-//     }
-// }
-// function showPosition(position) {
-//  console.log("caught it");
-//    console.log("Latitude: " + position.coords.latitude + 
-//     "Longitude: " + position.coords.longitude); 
-// }
-
-
-
-
-
 
 
 if (navigator.geolocation) {
