@@ -569,11 +569,10 @@ function infoWindow(marker, map, title, address, rating, phone){
             infoBubble.close();
         };
 
-        var htmls= $("<div id='test'><h3>" + title + "</h3><p>" + address + "</p><img src="+"'"+ rating +"'><br><p>" + phone + "</p><br><button class='checkIn' name=:'checkIn' type='button'>I ate here!</button></div>");
+        var htmls= $("<div id='test' class='bubbleText'><h3>" + title + "</h3><p>" + address + "</p><img src="+"'"+ rating +"'><br><p>" + phone + "</p><br><button class='checkIn' class='btn btn-default' name='checkIn' type='button'>I ate here!</button></div>");
         infoBubble = new InfoBubble({
             content: htmls[0],
             maxWidth: 350,
-            height: 100%,
             shadowStyle: 1,
             backgroundColor: 'slategrey'
         });
