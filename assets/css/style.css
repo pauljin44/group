@@ -53,7 +53,7 @@ ul.nav.navbar-nav.navbar-full {
     width:inherit;
     background-color: rgba(0,0,0,.075);
     overflow: scroll;
-    height: 183px;
+    max-height: 183px;
 }
 
 #fbWrapper {
