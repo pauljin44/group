@@ -30,15 +30,17 @@ $(document).ready(function(){
     });
  
 
-    $('.dropdown-menu').on('show.bs.dropdown', function(){
+    $('.dropdown').on('show.bs.dropdown', function(){
       
-        debugger;
+        console.log("ran dropdown");
+
         var firebasePointsValue = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+currentUser+"/count");
 
 
 
         firebasePointsValue.on('value', function(snapshot){
-            $('#points').append(snahpshot.val()) 
+            $('#points').empty();
+            $('#points').append('<li><p>You have '+snapshot.val()+' LocalePoints!</p></li>') 
         });
 
         if (firebasePointsValue===null)
@@ -47,12 +49,31 @@ $(document).ready(function(){
 
 
         var firebasePlacesValue = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+currentUser+"/places");
-        firebasePlacesValue.on('value', function(snapshot){
 
-            for (p=0;p<snapshot.val();p++) {
-                            
-                            $('#exPlaces').append('<li class="seenPlace">').text(snapshot.val());
-                        }
+        firebasePlacesValue.once('value', function(snapshot){
+            $("#exPlaces").empty();
+
+            console.log(snapshot.val())
+           
+
+                snapshot.forEach(function(childSnapshot){
+                var key = childSnapshot.key();
+                var childData = childSnapshot.val();
+                $("#exPlaces").append('<li><p>'+childData+'</p></li>')
+                
+            });
+
+
+
+
+            // for (p=0;p<snapshot.val().length;p++) {
+            //  var x= $('<li>')
+            //      x.addClass("seenPlace")
+            //      x.text(snapshot.val(p);
+
+
+            //     $('#exPlaces').append(x)
+            //             }
 
         })
             
@@ -72,14 +93,14 @@ $(document).ready(function(){
 $('#modalOld').ready(function(){
     $('#oldUserSubmit').on('click', function() {
         console.log('working');
-        debugger;
+        
         
         var test = $('#oldUser').val()
 
         var firebaseOldUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+test);
 
         firebaseOldUser.on('value', function(snapshot){
-            debugger;
+            
             
             if (snapshot.val() != undefined) {
              
@@ -540,7 +561,7 @@ function updatePlaced(){
         var addPlaces = {
             
             places: {
-                0: [checkedPlaces[0].title] 
+                0: checkedPlaces[0].title 
             }
             
         }
