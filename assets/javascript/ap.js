@@ -31,17 +31,27 @@ $(document).ready(function(){
  
 
 
-    $('#points').on('click', function(){
-        $('#modalPoints').modal();
+    $('.dropdown-menu').ready(function(){
+      
         // debugger;
-        var firebasePointsValue = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+currentUser+"/places")
-        firebaseValueCheck.once('value', function(snapshot){
-            $('#modalPoints').modal();
-            for (p=0;p<snapshot.val();p++) {
-                // debugger;
-                $('#showPlaces').append('<li class="seenPlace">').text(snapshot.val()[i]);
-            }
+        var firebasePointsValue = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+currentUser+"/count");
+        firebasePointsValue.on('value', function(snapshot){
+            $('#points').append(snahpshot.val()) 
         });
+
+
+        var firebasePlacesValue = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+currentUser+"/places");
+        firebasePlacesValue.on('value', function(snapshot){
+
+            for (p=0;p<snapshot.val();p++) {
+                            
+                            $('#exPlaces').append('<li class="seenPlace">').text(snapshot.val());
+                        }
+
+        })
+            
+            
+       
     });
 
 
@@ -557,6 +567,8 @@ function updatePlaced(){
 
 };
 
+
+
 var infoBubble = null;
 
 var thisPlace;
@@ -569,7 +581,7 @@ function infoWindow(marker, map, title, address, rating, phone){
             infoBubble.close();
         };
 
-        var htmls= $("<div id='test' class='bubbleText'><h3>" + title + "</h3><p>" + address + "</p><img src="+"'"+ rating +"'><br><p>" + phone + "</p><br><button class='checkIn' class='btn btn-default' name='checkIn' type='button'>I ate here!</button></div>");
+        var htmls= $("<div id='test' class='bubbleText'><h3>" + title + "</h3><p>" + address + "</p><img src="+"'"+ rating +"'><br><br><p>" + phone + "</p><br><button class='checkIn' name='checkIn' type='button'>I ate here!</button></div>");
         infoBubble = new InfoBubble({
             content: htmls[0],
             maxWidth: 350,
