@@ -31,7 +31,7 @@ $(document).ready(function(){
  
 
 
-    $('.dropdown-menu').ready(function(){
+    $('.dropdown-menu').change(function(){
       
         // debugger;
         var firebasePointsValue = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+currentUser+"/count");
