@@ -343,26 +343,26 @@ function initMap() {
           zoom: 12
     });
 
-    if (navigator.geolocation) {
-        console.log("got it")
-        navigator.geolocation.getCurrentPosition(function(position){
-            console.log("caught it");
-            console.log(position.coords.latitude);
-            console.log(position.coords.longitude);
-            var pos: {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude
-            };
-            map.setCenter(pos);
-        });
-    }else{ 
-        console.log("Geolocation is not supported by this browser.");
-        var altPos: {
-            lat: 40.728,
-            lng: -74.078
-        };
-        map.setCenter(altPos)
-    };     
+    // if (navigator.geolocation) {
+    //     console.log("got it")
+    //     navigator.geolocation.getCurrentPosition(function(position){
+    //         console.log("caught it");
+    //         console.log(position.coords.latitude);
+    //         console.log(position.coords.longitude);
+    //         var pos: {
+    //             lat: position.coords.latitude,
+    //             lng: position.coords.longitude
+    //         };
+    //         map.setCenter(pos);
+    //     });
+    // }else{ 
+    //     console.log("Geolocation is not supported by this browser.");
+    //     var altPos: {
+    //         lat: 40.728,
+    //         lng: -74.078
+    //     };
+    //     map.setCenter(altPos)
+    // };     
 };
 
 function search(){
