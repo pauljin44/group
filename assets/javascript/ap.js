@@ -16,6 +16,7 @@ var allFriendImg = [];
 var fbPaging;
 var facebookUserProfile = {};
 var currentUser;
+var userLikes = [];
 
 
 $(document).ready(function(){
@@ -63,74 +64,47 @@ $(document).ready(function(){
         $(".well.well-lg").show();
     }
 
-
+//****************************************Returning User Login******************************************
 $('#modalOld').ready(function(){
-    $('#oldUserSubmit').on('click', function() {
-        console.log('working');
-        
-        
-        var test = $('#oldUser').val()
-
+    $('#oldUserSubmit').on('click', function() { 
+        var test = $('#oldUser').val();
         var firebaseOldUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+test);
-
         firebaseOldUser.on('value', function(snapshot){
-            
-            
             if (snapshot.val() != undefined) {
-             
-             currentUser = $('#oldUser').val();   
-                console.log('currentUser is: ', currentUser);
+                currentUser = $('#oldUser').val();   
             }else{
                 console.log('currentUser login unsucessful')
-            }
+            };
             currentUserFirebase = firebaseCountUp.child(currentUser);
             currentUserFirebase.on('value', function(snapshot){
-    
                 if (snapshot.val().count != undefined) {
                     localCounter = snapshot.val().count
-                }
-                
+                };
                 if (snapshot.val().places != undefined){
                     checkedPlaces = snapshot.val().places
-                }
-
+                };
                 updateCounter();
-            
             });
-
-
-});
-
-        
-
-        
-        $('#oldUserSubmit').hide();
-
-        
+        });
+        $('#oldUserSubmit').hide();   
     });    
 });
 
-
+//****************************************New User Login******************************************
 $('#modalNew').ready(function(){
     $('#newUserSubmit').on('click', function(){
-        console.log('also working');
         $('#newUserSubmit').hide();
         newUser = $('#newUser').val();
         var firebaseNewUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+newUser)
         added = {
-            dateAdded : Date.now(),
-            
-        }
+            dateAdded : Date.now(),   
+        };
         firebaseNewUser.update(added);
-        firebaseValueCheck.once('value', function(snapshot) {
-            console.log(snapshot.val().users.newUser)
-        }) 
-
         currentUser = newUser       
     }); 
 });
 
-    
+//*************************************Facebook User Login******************************************    
 
     window.fbAsyncInit = function() {
         FB.init({
@@ -140,64 +114,34 @@ $('#modalNew').ready(function(){
             xfbml      : true,  // parse social plugins on this page
             version    : 'v2.5' // use graph api version 2.5
         });
-
-
-
-
-
-        // The response object is returned with a status field that lets the app know the current login status of the person.
-         
         function checkLoginState() {
             FB.getLoginStatus(function(response) {
                 statusChangeCallback(response);
             });
         }
-
-
         function statusChangeCallback(response) {
-
             if (response.status === 'connected') {
-
                 testAPI();
-
-            } else if (response.status === 'not_authorized') {
-                
+            } else if (response.status === 'not_authorized') { 
                 document.getElementById('status').innerHTML = 'Please log ' +
                     'into this app.';
             } else {
-
                 document.getElementById('status').innerHTML = 'Please login';
             }
-        }
-
+        };
         FB.getLoginStatus(function(response) {
             if (response.status === 'connected') {
                 var accessToken = response.authResponse.accessToken;
                 console.log('you are logged in')
-                
+
             } 
             statusChangeCallback(response);
         });
-
-    
-    }; //close window.fbAsyncInit
-
-    
-
-    // Load the SDK asynchronously 
-    // (function(d, s, id) {
-    //     var js, fjs = d.getElementsByTagName(s)[0];
-    //     if (d.getElementById(id)) return;
-    //     js = d.createElement(s); js.id = id;
-    //     js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=1518819868427496";
-    //     fjs.parentNode.insertBefore(js, fjs);
-    // }(document, 'script', 'facebook-jssdk'));
-
-    // FB Graph API
-    
+    }; 
 
 
-    var userLikes = [];
+//*************************************Facebook Graph API******************************************    
+
     function testAPI() {
 
         FB.api('/me','GET', {"fields":"id,name,email,likes,friends,invitable_friends{id,picture,name},location"},function(response) {
@@ -205,10 +149,7 @@ $('#modalNew').ready(function(){
                     
             fbPaging = response.invitable_friends.paging.next
                 // fbFriendImg = response.invitable_friends.data.picture.data.url
-
             fbAllFriendsList = fbPaging.replace('limit=25', 'limit=5000');
-
-                   
 
             FB.api(fbAllFriendsList, function(response) {  
                 console.log(response);
@@ -216,25 +157,17 @@ $('#modalNew').ready(function(){
                 for (x=0;x<response.data.length;x++) {
                     allFriends.push(response.data[x].name);
                     allFriendImg.push(response.data[x].picture.data.url)
-
-
                 }
-                
                 for(a=0;a<allFriends.length;a++){ 
                     // debugger;
 
                     facebookUserProfile.userFriends[a] = [allFriends[a], allFriendImg[a]]
                 }
-
                 var newFirebaseUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+facebookUserProfile.userName);
                 // debugger;
                 newFirebaseUser.set(facebookUserProfile);   
 
             });
-
-
-
-                        
 
             facebookUserProfile = { 
                 userName: response.name,
@@ -246,12 +179,9 @@ $('#modalNew').ready(function(){
 
             currentUser = response.name;
 
-
-
             var newFirebaseUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+response.name);
             
             newFirebaseUser.set(facebookUserProfile); 
-            
             
 
             if (response.likes.data.length != undefined) { 
@@ -271,47 +201,24 @@ $('#modalNew').ready(function(){
             
                 newFirebaseUser.set(facebookUserProfile); 
             }
-
-            // where.push(response.location.name); //where your location is
-
         }); 
 
-    } //end Test api
-                
-                // FBwhere = where[0]; //this is a runYelpOnce() var
-
-                //  if (userLikes.length > 0) { 
-                //      for (k=0;k<what.length;k++) {
-                //          FBwhat = userLikes[k] //this is a runYelpOnce() var
-                //          runYelpOnce()
-                //      }
-
-                //  }
-
-
-
-
-
-    // }    
+    } 
     
+//********************************************** Yelp *********************************************       
 
 
-//****************************************** Yelp ******************************************************       
-
+//****Searches Yelp with information from Submit Event ********
 function runYelp() {
 
     locations = [];
     activeMarkers = [];
     if (activeMarkers.length > 0){clearMarkers()};
     
-
     
     what = $('#what').val();
     where = $('#where').val();
     
-
-        
-
     firebaseValueCheck.once('value', function(snapshot) {
             var auth = {
 
@@ -323,8 +230,6 @@ function runYelp() {
                         signatureMethod: snapshot.val().yelp.serviceProvider.signatureMethod
                     }
             };
-
-
 
         var accessor = {
             consumerSecret: auth.consumerSecret,
@@ -392,64 +297,28 @@ function runYelp() {
                     locations.push(newObject);
                 };
                 search();
-
-
-
             }
-        
         });
-
     });
+} 
 
- 
-} //end runYelp() *********************
-
-//************************ Google map api **************************************
-// debugger;
-
-
-
+//**************************************** Google Map API **************************************
 
 var localCounter = 0; //initally set to 0
 var checkedPlaces = []
-
-
-
   //Get to users
 var currentUserFirebase = firebaseCountUp.child(currentUser);    //Get to current User 
    
-
 function updateCounter(){
-
-
-
-        var addCount = {
+        var addCount = {›
             count: localCounter
         }
         currentUserFirebase = firebaseCountUp.child(currentUser);
         currentUserFirebase.update(addCount)
-       
-
 };
 
 
-if (navigator.geolocation) {
-    
-        navigator.geolocation.getCurrentPosition(getCoordinates);
-        console.log("got it");
-    } else { 
-        console.log("Geolocation is not supported by this browser.");
-    };
 
-
-
-
-
-function getCoordinates(position) {
-    console.log("caught it");
-    console.log(position.coords.latitude);
-    console.log(position.coords.longitude);
-};
 
 var map;
 var activeMarkers = [];
@@ -468,15 +337,36 @@ function clearMarkers() {
 };
 
 function initMap() {    
-      map = new google.maps.Map(
+    map = new google.maps.Map(
         document.getElementById('map'), {
           center: {lat: 40.728, lng: -74.078},
           zoom: 12
-        });     
+    });
+
+    if (navigator.geolocation) {
+        console.log("got it")
+        navigator.geolocation.getCurrentPosition(function(position){
+            console.log("caught it");
+            console.log(position.coords.latitude);
+            console.log(position.coords.longitude);
+            var pos: {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            };
+            map.setCenter(pos);
+        });
+    }else{ 
+        console.log("Geolocation is not supported by this browser.");
+        var altPos: {
+            lat: 40.728,
+            lng: -74.078
+        };
+        map.setCenter(altPos)
+    };     
 };
 
 function search(){
-// debugger;
+
 geocoder = new google.maps.Geocoder();
 for (i = 0; i < locations.length; i++) {
             geocodeAddress(locations, i)
@@ -529,49 +419,34 @@ function geocodeAddress(locations, i) {
 
 function updatePlaced(){
         
-        
         var addPlaces = {
-            
             places: {
                 0: checkedPlaces[0].title 
             }
             
         }
         var firebasePlaceUp = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+currentUser);
-        
+
         firebasePlaceUp.once('value', function(snapshot){
-            // debugger;
+            
             if (snapshot.val().places == undefined){
                 firebasePlaceUp.update(addPlaces)
-
             }else{
                 for(i=0;i<snapshot.val().places.length;i++){
                     addPlaces = {
-
                             [i+1]: checkedPlaces[0].title
-                        }                           
-                    } 
-
-                    var firebasePlaceDown = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+currentUser+"/places");
-                            
-
-                    firebasePlaceDown.update(addPlaces)
-                }
-
-
-            
+                    }                           
+                };
+                var firebasePlaceDown = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+currentUser+"/places");
+                firebasePlaceDown.update(addPlaces)
+            }
         });
-        
-        
-
 };
 
 
 
 var infoBubble = null;
-
 var thisPlace;
-
 
 function infoWindow(marker, map, title, address, rating, phone){
     checkedPlaces = [];
@@ -579,7 +454,6 @@ function infoWindow(marker, map, title, address, rating, phone){
         if (infoBubble) {
             infoBubble.close();
         };
-
         var htmls= $("<div id='test' class='bubbleText'><h3>" + title + "</h3><p>" + address + "</p><img src="+"'"+ rating +"'><br><br><p>" + phone + "</p><br><button class='checkIn' name='checkIn' type='button'>I ate here!</button></div>");
         infoBubble = new InfoBubble({
             content: htmls[0],
@@ -587,12 +461,8 @@ function infoWindow(marker, map, title, address, rating, phone){
             shadowStyle: 1,
             backgroundColor: 'slategrey'
         });
-
         infoBubble.open(map,marker);
-
         var checkBtn = htmls.find('button.checkIn')[0];
-        
-
         google.maps.event.addDomListener(checkBtn, "click", function(event) {
                 console.log("hi!");
                 localCounter++;
@@ -608,9 +478,6 @@ function infoWindow(marker, map, title, address, rating, phone){
                 console.log(checkedPlaces); 
                 updatePlaced();
         });
-
-        
-
     });
 } 
 
