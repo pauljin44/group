@@ -2,6 +2,7 @@
 
 
 
+
 //****************************************** Facebook SDK ******************************************************
 var firebaseValueCheck = new Firebase("https://sizzling-heat-1076.firebaseio.com/");
 var firebaseCountUp = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/");
@@ -613,7 +614,6 @@ function infoWindow(marker, map, title, address, rating, phone){
 
     });
 } 
-
 
 
 
