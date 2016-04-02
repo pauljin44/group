@@ -17,9 +17,10 @@ var fbPaging;
 var facebookUserProfile = {};
 var currentUser;
 
-//************************* Submit function ************************************ 
+
 $(document).ready(function(){
 
+//************************* Submit function ************************************ 
     $('#submit').on('click', function() {
         // debugger;
         $('#searches').empty();
@@ -32,72 +33,35 @@ $(document).ready(function(){
  
 
     $('.dropdown').on('show.bs.dropdown', function(){
-      
-        console.log("ran dropdown");
-
         var firebasePointsValue = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+currentUser+"/count");
-
-
-
         firebasePointsValue.on('value', function(snapshot){
             $('#points').empty();
-
             if (snapshot.val()===null)
-            {$('#points').append('<li><p>Make an account or log in to track your LocalePoints!</p></li>');
+                {$('#points').append('<li><p>Make an account or log in to track your LocalePoints!</p></li>');
             } else{
-            $('#points').append('<li><p>You have '+snapshot.val()+' LocalePoints!</p></li>') 
-        }
+                $('#points').append('<li><p>You have '+snapshot.val()+' LocalePoints!</p></li>') 
+            }   
         });
 
-        
-
-
         var firebasePlacesValue = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+currentUser+"/places");
-
         firebasePlacesValue.once('value', function(snapshot){
             $("#exPlaces").empty();
-
-            console.log(snapshot.val())
-           
-
-                snapshot.forEach(function(childSnapshot){
+            snapshot.forEach(function(childSnapshot){
                 var key = childSnapshot.key();
                 var childData = childSnapshot.val();
                 $("#exPlaces").append('<li><p>'+childData+'</p></li>')
-                
             });
-
-
-
-
-            // for (p=0;p<snapshot.val().length;p++) {
-            //  var x= $('<li>')
-            //      x.addClass("seenPlace")
-            //      x.text(snapshot.val(p);
-
-
-            //     $('#exPlaces').append(x)
-            //             }
-
         })
-            
-            
-       
     });
 
-
-
-      $(".well.well-lg").hide();
-
-
+    $(".well.well-lg").hide();
     $('#yelpSearches').hide();
-
 });
 
-function loadYelpDiv(){
-    console.log("makinitbigger")
-    $(".well.well-lg").show();
-}
+    function loadYelpDiv(){
+        console.log("makinitbigger")
+        $(".well.well-lg").show();
+    }
 
 
 $('#modalOld').ready(function(){
