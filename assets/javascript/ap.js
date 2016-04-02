@@ -30,14 +30,20 @@ $(document).ready(function(){
     });
  
 
-
-    $('.dropdown-menu').change(function(){
+    $('.dropdown-menu').on('show.bs.dropdown', function(){
       
-        // debugger;
+        debugger;
         var firebasePointsValue = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+currentUser+"/count");
+
+
+
         firebasePointsValue.on('value', function(snapshot){
             $('#points').append(snahpshot.val()) 
         });
+
+        if (firebasePointsValue===null)
+            {$('#points').append('<li><p>Make an account or log in to track your LocalePoints!</p></li>');
+            }
 
 
         var firebasePlacesValue = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+currentUser+"/places");
