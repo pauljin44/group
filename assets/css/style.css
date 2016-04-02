@@ -3,7 +3,7 @@ body {
     /*background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdDVAhJOGMUODmwzJYWcW-cBJjLTNF4ix6WSundFl63jJf8Sxd3g");*/
     background-repeat: no-repeat;
     background-size: 100%;
-    background-color: #708090;
+    background-color: #92ACC5;
   }
 
 html,body{
@@ -22,6 +22,40 @@ nav {
   background-color: #333;
 }
 
+.navbar-brand strong {
+	color: #92ACC5;
+    font-size: 52px;
+}
+
+/*.well .well-lg {
+	display:none;
+}*/
+
+
+ul.nav.navbar-nav.navbar-full {
+	    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#topnav {
+	margin-top: 15px;
+}
+
+.dropdown.open{
+	width: inherit;
+}
+
+.dropdown-menu{
+	    padding-left: 5px;
+    padding-right: 5px;
+    position:static;
+    width:inherit;
+    background-color: rgba(0,0,0,.075);
+    overflow: scroll;
+    height: 183px;
+}
+
 #fbWrapper {
 	width: 30%;
     float: left;
@@ -35,6 +69,12 @@ nav {
 
 nav.navbar-nav.navbar-right {
 	width: 18%;
+}
+
+li #exPlaces li {
+	background-color: #A3BB9B;
+	margin-top: 2px;
+	border: solid 1px black;
 }
 
 #yelp {
@@ -87,10 +127,6 @@ div #map #test {
 	
 }
 
-div #map #test .parent{
-	padding: 4px;
-	
-}
 
 div #map #test img{
 	margin-bottom: 11px;
@@ -102,7 +138,29 @@ div #map button:hover{
 }
 
 
+li #points {
+	text-align: center;
+	
+}
 
+li #points p {
+	display:inline-block;
+	font-size: 16pt;
+	font-weight: 600;
+
+}
+
+li #exPlaces {
+	text-align: center;
+	
+}
+
+li #exPlaces p {
+	display:inline-block;
+	font-size: 14pt;
+
+	
+}
 
 
 

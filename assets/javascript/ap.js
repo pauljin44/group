@@ -24,6 +24,7 @@ $(document).ready(function(){
         // debugger;
         $('#searches').empty();
         $('#yelpSearches').show();
+        loadYelpDiv()
         runYelp()
         return false
 
@@ -40,12 +41,15 @@ $(document).ready(function(){
 
         firebasePointsValue.on('value', function(snapshot){
             $('#points').empty();
+
+            if (snapshot.val()===null)
+            {$('#points').append('<li><p>Make an account or log in to track your LocalePoints!</p></li>');
+            } else{
             $('#points').append('<li><p>You have '+snapshot.val()+' LocalePoints!</p></li>') 
+        }
         });
 
-        if (firebasePointsValue===null)
-            {$('#points').append('<li><p>Make an account or log in to track your LocalePoints!</p></li>');
-            }
+        
 
 
         var firebasePlacesValue = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+currentUser+"/places");
@@ -83,11 +87,17 @@ $(document).ready(function(){
 
 
 
-    
+      $(".well.well-lg").hide();
 
 
     $('#yelpSearches').hide();
+
 });
+
+function loadYelpDiv(){
+    console.log("makinitbigger")
+    $(".well.well-lg").show();
+}
 
 
 $('#modalOld').ready(function(){
@@ -454,8 +464,7 @@ function updateCounter(){
         }
         currentUserFirebase = firebaseCountUp.child(currentUser);
         currentUserFirebase.update(addCount)
-        $("#counter").empty();      
-        $("#counter").html("<p>You have this many points:" + localCounter+ "</p>");
+       
 
 };
 
@@ -556,7 +565,6 @@ function geocodeAddress(locations, i) {
 
 function updatePlaced(){
         
-        $("#lastplace").html("<p>You were last at: " + checkedPlaces[0].title+ "</p>");
         
         var addPlaces = {
             
