@@ -2,6 +2,7 @@
 
 
 
+
 //****************************************** Facebook SDK ******************************************************
 var firebaseValueCheck = new Firebase("https://sizzling-heat-1076.firebaseio.com/");
 var firebaseCountUp = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/");
@@ -17,53 +18,64 @@ var fbPaging;
 var facebookUserProfile = {};
 var currentUser;
 
-//************************* Submit function ************************************ 
+
 $(document).ready(function(){
 
+//************************* Submit function ************************************ 
     $('#submit').on('click', function() {
         // debugger;
         $('#searches').empty();
         $('#yelpSearches').show();
+        loadYelpDiv()
         runYelp()
         return false
 
     });
  
 
-
-    $('#points').on('click', function(){
-        $('#modalPoints').modal();
-        // debugger;
-        var firebasePointsValue = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+currentUser+"/places")
-        firebaseValueCheck.once('value', function(snapshot){
-            $('#modalPoints').modal();
-            for (p=0;p<snapshot.val();p++) {
-                // debugger;
-                $('#showPlaces').append('<li class="seenPlace">').text(snapshot.val()[i]);
-            }
+    $('.dropdown').on('show.bs.dropdown', function(){
+        var firebasePointsValue = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+currentUser+"/count");
+        firebasePointsValue.on('value', function(snapshot){
+            $('#points').empty();
+            if (snapshot.val()===null)
+                {$('#points').append('<li><p>Make an account or log in to track your LocalePoints!</p></li>');
+            } else{
+                $('#points').append('<li><p>You have '+snapshot.val()+' LocalePoints!</p></li>') 
+            }   
         });
+
+        var firebasePlacesValue = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+currentUser+"/places");
+        firebasePlacesValue.once('value', function(snapshot){
+            $("#exPlaces").empty();
+            snapshot.forEach(function(childSnapshot){
+                var key = childSnapshot.key();
+                var childData = childSnapshot.val();
+                $("#exPlaces").append('<li><p>'+childData+'</p></li>')
+            });
+        })
     });
 
-
-
-    
-
-
+    $(".well.well-lg").hide();
     $('#yelpSearches').hide();
 });
+
+    function loadYelpDiv(){
+        console.log("makinitbigger")
+        $(".well.well-lg").show();
+    }
 
 
 $('#modalOld').ready(function(){
     $('#oldUserSubmit').on('click', function() {
         console.log('working');
-        debugger;
+        
         
         var test = $('#oldUser').val()
 
         var firebaseOldUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+test);
 
         firebaseOldUser.on('value', function(snapshot){
-            debugger;
+            
             
             if (snapshot.val() != undefined) {
              
@@ -417,8 +429,7 @@ function updateCounter(){
         }
         currentUserFirebase = firebaseCountUp.child(currentUser);
         currentUserFirebase.update(addCount)
-        $("#counter").empty();      
-        $("#counter").html("<p>You have this many points:" + localCounter+ "</p>");
+       
 
 };
 
@@ -519,12 +530,11 @@ function geocodeAddress(locations, i) {
 
 function updatePlaced(){
         
-        $("#lastplace").html("<p>You were last at: " + checkedPlaces[0].title+ "</p>");
         
         var addPlaces = {
             
             places: {
-                0: [checkedPlaces[0].title] 
+                0: checkedPlaces[0].title 
             }
             
         }
@@ -557,6 +567,8 @@ function updatePlaced(){
 
 };
 
+
+
 var infoBubble = null;
 
 var thisPlace;
@@ -569,11 +581,10 @@ function infoWindow(marker, map, title, address, rating, phone){
             infoBubble.close();
         };
 
-        var htmls= $("<div id='test'><h3>" + title + "</h3><p>" + address + "</p><img src="+"'"+ rating +"'><br><p>" + phone + "</p><br><button class='checkIn' name=:'checkIn' type='button'>I ate here!</button></div>");
+        var htmls= $("<div id='test' class='bubbleText'><h3>" + title + "</h3><p>" + address + "</p><img src="+"'"+ rating +"'><br><br><p>" + phone + "</p><br><button class='checkIn' name='checkIn' type='button'>I ate here!</button></div>");
         infoBubble = new InfoBubble({
             content: htmls[0],
             maxWidth: 350,
-            height: 100%,
             shadowStyle: 1,
             backgroundColor: 'slategrey'
         });
@@ -603,7 +614,6 @@ function infoWindow(marker, map, title, address, rating, phone){
 
     });
 } 
-
 
 
 

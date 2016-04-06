@@ -3,8 +3,12 @@ body {
     /*background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdDVAhJOGMUODmwzJYWcW-cBJjLTNF4ix6WSundFl63jJf8Sxd3g");*/
     background-repeat: no-repeat;
     background-size: 100%;
-    background-color: #cccccc;
+    background-color: #92ACC5;
   }
+
+html,body{
+	height:100%;
+}
 ul {
     border: 1px solid #e7e7e7;
     background-color: #f3f3f3;
@@ -18,8 +22,42 @@ nav {
   background-color: #333;
 }
 
+.navbar-brand strong {
+	color: #92ACC5;
+    font-size: 52px;
+}
+
+/*.well .well-lg {
+	display:none;
+}*/
+
+
+ul.nav.navbar-nav.navbar-full {
+	    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#topnav {
+	margin-top: 15px;
+}
+
+.dropdown.open{
+	width: inherit;
+}
+
+.dropdown-menu{
+	    padding-left: 5px;
+    padding-right: 5px;
+    position:static;
+    width:inherit;
+    background-color: rgba(0,0,0,.075);
+    overflow: scroll;
+    max-height: 183px;
+}
+
 #fbWrapper {
-	width: 30%;
+	margin-top: 10px;
     float: left;
     padding: 5px;
 }
@@ -31,6 +69,12 @@ nav {
 
 nav.navbar-nav.navbar-right {
 	width: 18%;
+}
+
+li #exPlaces li {
+	background-color: #A3BB9B;
+	margin-top: 2px;
+	border: solid 1px black;
 }
 
 #yelp {
@@ -64,4 +108,80 @@ td {
 td img {
 	margin: 5px;
 }
+
+div #map button {
+	background-color: #CCCCCC;
+	border-radius: 12px;
+	transition-duration: 0.4s;
+}
+
+div #map h3 {
+	color: gainsboro;
+	display: inline-block;
+
+
+}
+
+div #map #test {
+	text-align: center;
+	
+}
+
+
+div #map #test img{
+	margin-bottom: 11px;
+}
+
+div #map button:hover{
+	background-color: gainsboro;
+
+}
+
+
+li #points {
+	text-align: center;
+	
+}
+
+li #points p {
+	display:inline-block;
+	font-size: 16pt;
+	font-weight: 600;
+
+}
+
+li #exPlaces {
+	text-align: center;
+	
+}
+
+li #exPlaces p {
+	display:inline-block;
+	font-size: 14pt;
+
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
