@@ -294,10 +294,11 @@ $('#modalNew').ready(function(){
 
 //****************************************** Yelp ******************************************************
 var  locations = [];
+var activeMarkers = [];
 function runYelp() {
 
-  
-    activeMarkers = [];
+
+
     if (activeMarkers.length > 0){clearMarkers()};
 
 
