@@ -565,6 +565,7 @@ function updatePlaced(){
 
                     firebasePlaceDown.update(addPlaces)
                 }
+            }
 
 
 
