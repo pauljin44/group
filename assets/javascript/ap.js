@@ -50,7 +50,7 @@ $(document).ready(function(){
             snapshot.forEach(function(childSnapshot){
                 var key = childSnapshot.key();
                 var childData = childSnapshot.val();
-                $("#exPlaces").append('<li><p>'+childData+'</p></li>')
+                $("#exPlaces").append('<li><p data-address='+childData[1]+' data-phone='+childData[2]+'>'+childData[0]+'</p></li>')
             });
         })
     });
@@ -185,19 +185,6 @@ $('#modalNew').ready(function(){
 
 
 
-    // Load the SDK asynchronously
-    // (function(d, s, id) {
-    //     var js, fjs = d.getElementsByTagName(s)[0];
-    //     if (d.getElementById(id)) return;
-    //     js = d.createElement(s); js.id = id;
-    //     js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=1518819868427496";
-    //     fjs.parentNode.insertBefore(js, fjs);
-    // }(document, 'script', 'facebook-jssdk'));
-
-    // FB Graph API
-
-
-
     var userLikes = [];
     function testAPI() {
 
@@ -278,22 +265,6 @@ $('#modalNew').ready(function(){
         });
 
     } //end Test api
-
-                // FBwhere = where[0]; //this is a runYelpOnce() var
-
-                //  if (userLikes.length > 0) {
-                //      for (k=0;k<what.length;k++) {
-                //          FBwhat = userLikes[k] //this is a runYelpOnce() var
-                //          runYelpOnce()
-                //      }
-
-                //  }
-
-
-
-
-
-    // }
 
 
 
