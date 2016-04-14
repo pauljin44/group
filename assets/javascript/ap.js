@@ -58,8 +58,8 @@ $(document).ready(function(){
           var goHere = this.innerHTML
           firebasePlacesValue.once('value', function(snapshot){
               snapshot.forEach(function(childSnapshot){
-                if(childSnapshot.goHere){
-                  console.log(this.childSnapshot)
+                if(childSnapshot.val()[0] = goHere){
+                  var searchThis = childSnapshot.val()[1];
                 }
               });
           });
