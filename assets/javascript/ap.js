@@ -484,10 +484,15 @@ function geocodeAddress(locations, i) {
       var address = locations[i][1];
       var rating = locations[i][2];
       var phone = locations[i][3];
-      var center = {
-        center.lat: locations[i][4],
-        center.lng: locations[i][5],
-      };
+      var center = {};
+      center.lat: locations[i][4];
+      center.lng: locations[i][5];
+      var aCenter = {
+        lat: locations[i][4],
+        lng: locations[i][5]
+      }
+      console.log(aCenter + 'check1')
+
 
       geocoder.geocode({
         'address': locations[i][1]
@@ -503,10 +508,10 @@ function geocodeAddress(locations, i) {
                 address: address,
                 rating: rating,
                 phone: phone,
-                // center: center
+                center: center
             });
             activeMarkers.push(marker);
-            infoWindow(marker, map, title, address, rating, phone, center);
+            infoWindow(marker, map, title, address, rating, phone, aCenter);
             map.fitBounds(bounds);
             bounds.extend(marker.getPosition());
             // map.setCenter(center);
@@ -579,7 +584,7 @@ var infoBubble = null;
 
 
 
-function infoWindow(marker, map, title, address, rating, phone, center){
+function infoWindow(marker, map, title, address, rating, phone, aCenter){
     checkedPlaces = [];
     google.maps.event.addListener(marker, 'click', function(){
         if (infoBubble) {
@@ -609,9 +614,9 @@ function infoWindow(marker, map, title, address, rating, phone, center){
                         address: address,
                         rating: rating,
                         phone: phone,
-                        center: center
+                        center: aCenter
                   };
-                  console.log(thisPlace);
+                  console.log(thisPlace + 'check2');
                 checkedPlaces.unshift(thisPlace);
                 console.log(checkedPlaces);
                 updatePlaced();
