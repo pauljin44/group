@@ -50,7 +50,7 @@ $(document).ready(function(){
             snapshot.forEach(function(childSnapshot){
                 var key = childSnapshot.key();
                 var childData = childSnapshot.val();
-                $("#exPlaces").append('<li><p data-address='+childData[1]+' data-phone='+childData[2]+'>'+childData[0]+'</p></li>')
+                $("#exPlaces").append('<li><p data-address='childData[1]', data-phone='childData[2]'>'+childData[0]+'</p></li>')
             });
         })
     });
