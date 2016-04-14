@@ -72,6 +72,7 @@ $(document).ready(function(){
                   locations.length= 0;
                   console.log(locations.length);
                   locations.push(searchThis);
+                  clearMarkers();
                   search();
                 }
               });
