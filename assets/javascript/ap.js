@@ -54,10 +54,13 @@ $(document).ready(function(){
             });
         });
         $("#exPlaces li p").on("click", function(){
-          console.log(this.text);
+          console.log(this.innerHTML);
+          var goHere = this.innerHTML
           firebasePlacesValue.once('value', function(snapshot){
               snapshot.forEach(function(childSnapshot){
-                console.log(childSnapshot)
+                if(childSnapshot.goHere){
+                  console.log(this.childSnapshot)
+                }
               });
           });
         });
