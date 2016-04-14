@@ -56,11 +56,11 @@ $(document).ready(function(){
         $("#exPlaces li p").on("click", function(){
           console.log(this.innerHTML);
           var goHere = this.innerHTML;
-          goHere.replace(/&amp;/g, '&');
           firebasePlacesValue.once('value', function(snapshot){
               snapshot.forEach(function(childSnapshot){
-                if(childSnapshot.val()[0] == goHere){
+                if(childSnapshot.val()[0] == goHere.replace(/&amp;/g, '&')){
                   var searchThis = childSnapshot.val()[1];
+                  console.log(searchThis)
                 }
               });
           });
