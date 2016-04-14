@@ -485,8 +485,8 @@ function geocodeAddress(locations, i) {
       var rating = locations[i][2];
       var phone = locations[i][3];
       var center = {};
-      center.lat: locations[i][4];
-      center.lng: locations[i][5];
+      center.lat = locations[i][4];
+      center.lng = locations[i][5];
       var aCenter = {
         lat: locations[i][4],
         lng: locations[i][5]
