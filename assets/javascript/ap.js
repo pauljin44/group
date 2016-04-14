@@ -50,9 +50,17 @@ $(document).ready(function(){
             snapshot.forEach(function(childSnapshot){
                 var key = childSnapshot.key();
                 var childData = childSnapshot.val();
-                $("#exPlaces").append('<li><p data-address='+childData[1]+'>'+childData[0]+'</p></li>')
+                $("#exPlaces").append('<li><p>'+childData[0]+'</p></li>') //childData[1]: address, childData[2]: phone#
             });
-        })
+        });
+        $("#exPlaces li p").on("click", function(){
+          console.log(this.text);
+          firebasePlacesValue.once('value', function(snapshot){
+              snapshot.forEach(function(childSnapshot){
+                console.log(childSnapshot)
+              });
+          });
+        });
     });
 
     $(".well.well-lg").hide();
