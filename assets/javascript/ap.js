@@ -59,9 +59,14 @@ $(document).ready(function(){
           firebasePlacesValue.once('value', function(snapshot){
               snapshot.forEach(function(childSnapshot){
                 if(childSnapshot.val()[0] == goHere.replace(/&amp;/g, '&')){
-                  var searchThis = { address: childSnapshot.val()[1],
-                    title: childSnapshot.val()[0];
-                    phone: childSnapshot.val()[2];
+                  var searchThis = {
+                    title: childSnapshot.val()[0],
+                    address: childSnapshot.val()[1],
+                    rating: childSnapshot.val()[2],
+                    phone: childSnapshot.val()[3],
+                    center: childSnapshot.val()[4]
+                  };
+
                   console.log(searchThis)
                 }
               });
