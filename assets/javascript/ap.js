@@ -293,10 +293,10 @@ $('#modalNew').ready(function(){
 
 
 //****************************************** Yelp ******************************************************
-
+var  locations = [];
 function runYelp() {
 
-    locations = [];
+  
     activeMarkers = [];
     if (activeMarkers.length > 0){clearMarkers()};
 
