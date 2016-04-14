@@ -59,15 +59,20 @@ $(document).ready(function(){
           firebasePlacesValue.once('value', function(snapshot){
               snapshot.forEach(function(childSnapshot){
                 if(childSnapshot.val()[0] == goHere.replace(/&amp;/g, '&')){
-                  var searchThis = {
-                    title: childSnapshot.val()[0],
-                    address: childSnapshot.val()[1],
-                    rating: childSnapshot.val()[2],
-                    phone: childSnapshot.val()[3],
-                    center: childSnapshot.val()[4]
-                  };
-
-                  console.log(searchThis)
+                  var searchThis = [
+                    childSnapshot.val()[0],
+                    childSnapshot.val()[1],
+                    childSnapshot.val()[2],
+                    childSnapshot.val()[3],
+                    childSnapshot.val()[4].lat,
+                    childSnapshot.val()[4].lng,
+                  ];
+                  console.log(searchThis);
+                  console.log(locations);
+                  locations.length= 0;
+                  console.log(locations.length);
+                  locations.push(searchThis);
+                  search();
                 }
               });
           });
@@ -491,7 +496,7 @@ function geocodeAddress(locations, i) {
         lat: locations[i][4],
         lng: locations[i][5]
       }
-      console.log(aCenter + 'check1')
+      // console.log(aCenter + 'check1')
 
 
       geocoder.geocode({
