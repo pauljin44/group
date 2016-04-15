@@ -54,13 +54,29 @@ $(document).ready(function(){
             });
         });
         $("#exPlaces li p").on("click", function(){
-          console.log(this.innerHTML);
+          debugger;
+          console.log(this.innerHTML + "clickedtogohere");
           var goHere = this.innerHTML;
           firebasePlacesValue.once('value', function(snapshot){
               snapshot.forEach(function(childSnapshot){
                 if(childSnapshot.val()[0] == goHere.replace(/&amp;/g, '&')){
-                  var searchThis = childSnapshot.val()[1];
-                  console.log(searchThis)
+                  var searchThis = [
+                    childSnapshot.val()[0],
+                    childSnapshot.val()[1],
+                    childSnapshot.val()[2],
+                    childSnapshot.val()[3],
+                    childSnapshot.val()[4].lat,
+                    childSnapshot.val()[4].lng,
+                  ];
+                  console.log(searchThis);
+                  console.log(locations);
+                  locations.length= 0;
+                  console.log(locations.length);
+                  locations.push(searchThis);
+                  newCenter = {lat: searchThis[4], lng: searchThis[5]}
+                  clearMarkers();
+                  search();
+                  // map.panTo(newCenter);
                 }
               });
           });
@@ -281,11 +297,12 @@ $('#modalNew').ready(function(){
 
 
 //****************************************** Yelp ******************************************************
-
+var  locations = [];
+var activeMarkers = [];
 function runYelp() {
 
-    locations = [];
-    activeMarkers = [];
+
+
     if (activeMarkers.length > 0){clearMarkers()};
 
 
@@ -477,9 +494,15 @@ function geocodeAddress(locations, i) {
       var address = locations[i][1];
       var rating = locations[i][2];
       var phone = locations[i][3];
-      center = {};
-      center.lat = locations[i][4];
-            center.lng = locations[i][5];
+      // // var center = {};
+      // center.lat = locations[i][4];
+      // center.lng = locations[i][5];
+      center = {
+        lat: locations[i][4],
+        lng: locations[i][5]
+      }
+      // console.log(aCenter + 'check1')
+
 
       geocoder.geocode({
         'address': locations[i][1]
@@ -498,7 +521,7 @@ function geocodeAddress(locations, i) {
                 center: center
             });
             activeMarkers.push(marker);
-            infoWindow(marker, map, title, address, rating, phone);
+            infoWindow(marker, map, title, address, rating, phone, aCenter);
             map.fitBounds(bounds);
             bounds.extend(marker.getPosition());
             // map.setCenter(center);
@@ -514,13 +537,15 @@ var thisPlace;
 function updatePlaced(){
 
 
-        var addPlaces = {
+        var addaPlaces = {
 
             places: {
                 0: {
                   0: checkedPlaces[0].title,
                   1: checkedPlaces[0].address,
-                  2: checkedPlaces[0].phone
+                  2: checkedPlaces[0].rating,
+                  3: checkedPlaces[0].phone,
+                  4: checkedPlaces[0].center,
                 }
             }
 
@@ -528,18 +553,21 @@ function updatePlaced(){
         var firebasePlaceUp = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+currentUser);
 
         firebasePlaceUp.once('value', function(snapshot){
-            // debugger;
+            debugger;
             if (snapshot.val().places == undefined){
-                firebasePlaceUp.update(addPlaces)
+                firebasePlaceUp.update(addaPlaces)
 
             }else{
-                for(i=0;i<snapshot.val().places.length;i++){
+                i = snapshot.val().places.length;
+
                     addPlaces = {
 
                             [i+1]: {
                               0: checkedPlaces[0].title,
                               1: checkedPlaces[0].address,
-                              2: checkedPlaces[0].phone
+                              2: checkedPlaces[0].rating,
+                              3: checkedPlaces[0].phone,
+                              4: checkedPlaces[0].center
                         }
                     }
 
@@ -547,7 +575,7 @@ function updatePlaced(){
 
 
                     firebasePlaceDown.update(addPlaces)
-                }
+
             }
 
 
@@ -567,7 +595,7 @@ var infoBubble = null;
 
 
 
-function infoWindow(marker, map, title, address, rating, phone){
+function infoWindow(marker, map, title, address, rating, phone, aCenter){
     checkedPlaces = [];
     google.maps.event.addListener(marker, 'click', function(){
         if (infoBubble) {
@@ -595,9 +623,11 @@ function infoWindow(marker, map, title, address, rating, phone){
                 thisPlace = {
                         title: title,
                         address: address,
-                        phone: phone
+                        rating: rating,
+                        phone: phone,
+                        center: aCenter
                   };
-                  console.log(thisPlace);
+                  console.log(thisPlace + 'check2');
                 checkedPlaces.unshift(thisPlace);
                 console.log(checkedPlaces);
                 updatePlaced();
