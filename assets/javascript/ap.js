@@ -534,7 +534,7 @@ var thisPlace;
 function updatePlaced(){
 
 
-        var addPlaces = {
+        var addaPlaces = {
 
             places: {
                 0: {
@@ -552,7 +552,7 @@ function updatePlaced(){
         firebasePlaceUp.once('value', function(snapshot){
             // debugger;
             if (snapshot.val().places == undefined){
-                firebasePlaceUp.update(addPlaces)
+                firebasePlaceUp.update(addaPlaces)
 
             }else{
                 for(i=0;i<snapshot.val().places.length;i++){
