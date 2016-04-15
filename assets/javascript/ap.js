@@ -76,7 +76,7 @@ $(document).ready(function(){
                   newCenter = {lat: searchThis[4], lng: searchThis[5]}
                   clearMarkers();
                   search();
-                  map.panTo(newCenter);
+                  // map.panTo(newCenter);
                 }
               });
           });
@@ -494,10 +494,10 @@ function geocodeAddress(locations, i) {
       var address = locations[i][1];
       var rating = locations[i][2];
       var phone = locations[i][3];
-      var center = {};
+      // var center = {};
       center.lat = locations[i][4];
       center.lng = locations[i][5];
-      var aCenter = {
+      center = {
         lat: locations[i][4],
         lng: locations[i][5]
       }
