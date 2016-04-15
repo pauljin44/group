@@ -555,7 +555,8 @@ function updatePlaced(){
                 firebasePlaceUp.update(addaPlaces)
 
             }else{
-                for(i=0;i<snapshot.val().places.length;i++){
+                i = snapshot.val().places.length;
+                
                     addPlaces = {
 
                             [i+1]: {
@@ -571,7 +572,7 @@ function updatePlaced(){
 
 
                     firebasePlaceDown.update(addPlaces)
-                }
+
             }
 
 
