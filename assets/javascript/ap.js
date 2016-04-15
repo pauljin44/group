@@ -54,7 +54,8 @@ $(document).ready(function(){
             });
         });
         $("#exPlaces li p").on("click", function(){
-          console.log(this.innerHTML);
+          debugger;
+          console.log(this.innerHTML + "clickedtogohere");
           var goHere = this.innerHTML;
           firebasePlacesValue.once('value', function(snapshot){
               snapshot.forEach(function(childSnapshot){
@@ -556,7 +557,7 @@ function updatePlaced(){
 
             }else{
                 i = snapshot.val().places.length;
-                
+
                     addPlaces = {
 
                             [i+1]: {
