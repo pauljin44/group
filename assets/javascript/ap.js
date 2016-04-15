@@ -73,8 +73,10 @@ $(document).ready(function(){
                   locations.length= 0;
                   console.log(locations.length);
                   locations.push(searchThis);
+                  newCenter = {lat: searchThis[4], lng: searchThis[5]}
                   clearMarkers();
                   search();
+                  map.panTo(newCenter);
                 }
               });
           });
