@@ -49,7 +49,7 @@ $(document).ready(function(){
             $("#exPlaces").empty();
             snapshot.forEach(function(childSnapshot){
                 var key = childSnapshot.key();
-                var childData = childSnapshot.val()[0];
+                var childData = childSnapshot.val();
                 $("#exPlaces").append('<li><p>'+childData[0]+'</p></li>') //childData[1]: address, childData[2]: phone#
             });
         });
