@@ -521,7 +521,7 @@ function geocodeAddress(locations, i) {
                 center: center
             });
             activeMarkers.push(marker);
-            infoWindow(marker, map, title, address, rating, phone, aCenter);
+            infoWindow(marker, map, title, address, rating, phone, center);
             map.fitBounds(bounds);
             bounds.extend(marker.getPosition());
             // map.setCenter(center);
