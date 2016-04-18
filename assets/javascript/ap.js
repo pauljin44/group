@@ -93,7 +93,7 @@ $(document).ready(function(){
       snapshot.forEach(function(childSnapshot){
         // scorecard = scorecard.push(childSnapshot.key())
         // console.log(scorecard)
-        $('#scoreboard').append('<tr><td>'+childSnapshot.key()+'</td></tr>')
+        $('#scoreboard').append('<tr><td>'+childSnapshot.key()+'</td><td>'+childSnapshot.val().count+'</td></tr>')
       });
     });
 
