@@ -91,12 +91,14 @@ $(document).ready(function(){
     firebaseCountUp.once('value', function(snapshot){
       console.log(snapshot.val())
       snapshot.forEach(function(childSnapshot){
+        var user = childSnapshot.key();
+        var score = childSnapshot.val().count;
         if (childSnapshot.val().count == undefined){
           scorecard.push({
-            childSnapshot.key():0
+            user:0
           });
         }else{
-          childSnapshot.key():childSnapshot.val().count
+          user:score
         }
         console.log(scorecard)
         // $('#scoreboard').append('<tr><td>'+childSnapshot.key()+'</td><td>'+childSnapshot.val().count+'</td></tr>');
