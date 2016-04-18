@@ -87,11 +87,14 @@ $(document).ready(function(){
 
     $('#scorecard').append('<tr><td>'+'Username'+'</td><td>'+'Points'+'</td></tr>');
     console.log('this is scorecard')
+    // var scorecard = [];
     firebaseValueCheck.once('value', function(snapshot){
       console.log(snapshot.val())
-      // snapshot.forEach(function(childSnapshot){
-      //   $('#scorecard').append('<tr><td>'+childSnapshot.val()+'</td></tr>')
-      // });
+      snapshot.forEach(function(childSnapshot){
+        // scorecard = scorecard.push(childSnapshot.key())
+        // console.log(scorecard)
+        $('#scorecard').append('<tr><td>'+childSnapshot.key()+'</td></tr>')
+      });
     });
 
     $(".well.well-lg").hide();
