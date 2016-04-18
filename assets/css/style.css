@@ -33,9 +33,14 @@ nav {
 
 
 ul.nav.navbar-nav.navbar-full {
-	    width: 100%;
+	  width: 100%;
     margin-top: 5px;
     margin-bottom: 5px;
+}
+
+div.panel.panel-default {
+  width: 15%;
+  float: left;
 }
 
 #topnav {
@@ -124,7 +129,7 @@ div #map h3 {
 
 div #map #test {
 	text-align: center;
-	
+
 }
 
 
@@ -140,7 +145,7 @@ div #map button:hover{
 
 li #points {
 	text-align: center;
-	
+
 }
 
 li #points p {
@@ -152,36 +157,12 @@ li #points p {
 
 li #exPlaces {
 	text-align: center;
-	
+
 }
 
 li #exPlaces p {
 	display:inline-block;
 	font-size: 14pt;
 
-	
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

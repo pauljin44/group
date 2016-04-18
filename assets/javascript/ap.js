@@ -34,6 +34,7 @@ $(document).ready(function(){
 
 
     $('.dropdown').on('show.bs.dropdown', function(){
+      console.log('this is points not scorecard.')
         var firebasePointsValue = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+currentUser+"/count");
         firebasePointsValue.on('value', function(snapshot){
             $('#points').empty();
@@ -53,6 +54,7 @@ $(document).ready(function(){
                 $("#exPlaces").append('<li><p>'+childData[0]+'</p></li>') //childData[1]: address, childData[2]: phone#
             });
         });
+
         $("#exPlaces li p").on("click", function(){
           debugger;
           console.log(this.innerHTML + "clickedtogohere");
@@ -83,14 +85,58 @@ $(document).ready(function(){
         });
     });
 
+    $('#scoreboard').append('<tr><td>'+'Username'+'</td><td>'+'Points'+'</td></tr>');
+    console.log('this is scorecard')
+    var scorecard = {};
+    // var userScore = [];
+    // var users = []
+    firebaseCountUp.once('value', function(snapshot){
+      console.log(snapshot.val())
+      snapshot.forEach(function(childSnapshot){
+        var newUser = childSnapshot.key();
+        var newScore = childSnapshot.val().count;
+        if (childSnapshot.val().count == undefined){
+          newScore = 0;
+        }
+        scorecard[newUser] = newScore;
+
+        // scorecard.sort(function(a, b) {
+        //   return (a.newUser) - (b.newUser);
+        // });
+
+      });
+      //
+      //
+      //
+      // $.each(scorecard, function(key, value){
+      //
+      // })
+
+      $.each(scorecard, function(key, value){
+        console.log(scorecard)
+      $('#scoreboard').append('<tr><td>'+key+'</td><td>'+value+'</td></tr>');
+      });
+
+    });
+
+      // for (i=0;i<scorecard.length;i++){
+      //
+      //   for (var index in scorecard) {
+      //       var arrayScore = scorecard[i].index;
+
+      //   }
+
+
+    // });
+
     $(".well.well-lg").hide();
     $('#yelpSearches').hide();
 });
 
-    function loadYelpDiv(){
-        console.log("makinitbigger")
-        $(".well.well-lg").show();
-    }
+function loadYelpDiv(){
+    console.log("makinitbigger")
+    $(".well.well-lg").show();
+}
 
 
 $('#modalOld').ready(function(){
@@ -158,6 +204,8 @@ $('#modalNew').ready(function(){
         currentUser = newUser
     });
 });
+
+$()
 
 
 
@@ -521,7 +569,7 @@ function geocodeAddress(locations, i) {
                 center: center
             });
             activeMarkers.push(marker);
-            infoWindow(marker, map, title, address, rating, phone, center);
+            infoWindow(marker, map, title, address, rating, phone, aCenter);
             map.fitBounds(bounds);
             bounds.extend(marker.getPosition());
             // map.setCenter(center);
