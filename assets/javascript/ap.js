@@ -85,7 +85,7 @@ $(document).ready(function(){
         });
     });
 
-    $('#scoreboard').append('<tr><td>'+'Username'+'</td><td>'+'Points'+'</td></tr>');
+    
     console.log('this is scorecard')
     var scorecard = {};
     // var userScore = [];
@@ -99,18 +99,7 @@ $(document).ready(function(){
           newScore = 0;
         }
         scorecard[newUser] = newScore;
-
-        // scorecard.sort(function(a, b) {
-        //   return (a.newUser) - (b.newUser);
-        // });
-
       });
-      //
-      //
-      //
-      // $.each(scorecard, function(key, value){
-      //
-      // })
 
       $.each(scorecard, function(key, value){
         console.log(scorecard)
@@ -118,16 +107,6 @@ $(document).ready(function(){
       });
 
     });
-
-      // for (i=0;i<scorecard.length;i++){
-      //
-      //   for (var index in scorecard) {
-      //       var arrayScore = scorecard[i].index;
-
-      //   }
-
-
-    // });
 
     $(".well.well-lg").hide();
     $('#yelpSearches').hide();
