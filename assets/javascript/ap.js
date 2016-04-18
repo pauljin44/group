@@ -96,7 +96,7 @@ $(document).ready(function(){
         if (childSnapshot.val().count == undefined){
           score = 0;
         }
-        scorecard.user = score;
+        scorecard[user] = score;
         console.log(scorecard)
       });
 
