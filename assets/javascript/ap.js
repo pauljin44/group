@@ -87,7 +87,7 @@ $(document).ready(function(){
 
     $('#scoreboard').append('<tr><td>'+'Username'+'</td><td>'+'Points'+'</td></tr>');
     console.log('this is scorecard')
-    var scorecard = {};
+    var scorecard = [];
     var userScore = [];
     var users = []
     firebaseCountUp.once('value', function(snapshot){
@@ -100,9 +100,9 @@ $(document).ready(function(){
         }
         scorecard.newUser = newScore;
 
-        scorecard.sort(function(a, b) {
-          return (a.newUser) - (b.newUser);
-        });
+        // scorecard.sort(function(a, b) {
+        //   return (a.newUser) - (b.newUser);
+        // });
 
       });
 
