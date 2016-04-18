@@ -43,6 +43,16 @@ $(document).ready(function(){
                 $('#points').append('<li><p>You have '+snapshot.val()+' LocalePoints!</p></li>')
             }
         });
+        $('.dropdown').on('show.bs.dropdown', function(){
+            var firebasePointsValue = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+currentUser+"/count");
+            firebasePointsValue.on('value', function(snapshot){
+                $('#points').empty();
+                if (snapshot.val()===null)
+                    {$('#points').append('<li><p>Make an account or log in to track your LocalePoints!</p></li>');
+                } else{
+                    $('#points').append('<li><p>You have '+snapshot.val()+' LocalePoints!</p></li>')
+                }
+            });
 
         var firebasePlacesValue = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+currentUser+"/places");
         firebasePlacesValue.once('value', function(snapshot){
@@ -87,10 +97,10 @@ $(document).ready(function(){
     $('#yelpSearches').hide();
 });
 
-    function loadYelpDiv(){
-        console.log("makinitbigger")
-        $(".well.well-lg").show();
-    }
+function loadYelpDiv(){
+    console.log("makinitbigger")
+    $(".well.well-lg").show();
+}
 
 
 $('#modalOld').ready(function(){
@@ -158,6 +168,8 @@ $('#modalNew').ready(function(){
         currentUser = newUser
     });
 });
+
+$()
 
 
 
@@ -521,7 +533,7 @@ function geocodeAddress(locations, i) {
                 center: center
             });
             activeMarkers.push(marker);
-            infoWindow(marker, map, title, address, rating, phone, center);
+            infoWindow(marker, map, title, address, rating, phone, aCenter);
             map.fitBounds(bounds);
             bounds.extend(marker.getPosition());
             // map.setCenter(center);
