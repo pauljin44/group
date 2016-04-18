@@ -101,8 +101,10 @@ $(document).ready(function(){
         }
         scorecard.push(newScore)
         console.log(scorecard)
-        // $('#scoreboard').append('<tr><td>'+childSnapshot.key()+'</td><td>'+childSnapshot.val().count+'</td></tr>');
       });
+      for (i=0;i<scorecard.length;i++){
+        $('#scoreboard').append('<tr><td>'+childSnapshot.key()+'</td><td>'+childSnapshot.val().count+'</td></tr>');
+      }
     });
 
     $(".well.well-lg").hide();
