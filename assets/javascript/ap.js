@@ -86,6 +86,7 @@ $(document).ready(function(){
         });
     });
 
+//*************************** SCORECARD ***************************
     firebaseCountUp.once('value', function(snapshot){
       console.log(snapshot.val())
       var users = [];
@@ -128,6 +129,7 @@ $(document).ready(function(){
     $(".well.well-lg").hide();
     $('#yelpSearches').hide();
 });
+//*************************** END DOC.READY ***************************
 
 function loadYelpDiv(){
     console.log("makinitbigger")
