@@ -111,7 +111,7 @@ $(document).ready(function(){
               }
           }
           arr.sort(function(a, b) {
-              return a.value - b.value;
+              return b.value - a.value;
           });
           return arr; // returns array
       }
@@ -119,7 +119,7 @@ $(document).ready(function(){
       var allSorted = sortObject(scorecard);
       console.log(allSorted);
       for (i=0;i<userLength;i++){
-        $('#scoreboard').append('<tr><td>'+[i].key+'</td><td>'+[i].value+'</td></tr>');
+        $('#scoreboard').append('<tr><td>'+allSorted[i].key+'</td><td>'+[i].value+'</td></tr>');
       }
 
     });
