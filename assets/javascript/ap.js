@@ -88,9 +88,10 @@ $(document).ready(function(){
     $('#scorecard').append('<tr><td>'+'Username'+'</td><td>'+'Points'+'</td></tr>');
     console.log('this is scorecard')
     firebaseValueCheck.once('value', function(snapshot){
-      snapshot.forEach(function(childSnapshot){
-        $('#scorecard').append('<tr><td>'+childSnapshot.val()+'</td></tr>')
-      });
+      console.log(snapshot.val())
+      // snapshot.forEach(function(childSnapshot){
+      //   $('#scorecard').append('<tr><td>'+childSnapshot.val()+'</td></tr>')
+      // });
     });
 
     $(".well.well-lg").hide();
