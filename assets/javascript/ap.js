@@ -102,8 +102,14 @@ $(document).ready(function(){
         scorecard.push(newScore)
         console.log(scorecard)
       });
+
       for (i=0;i<scorecard.length;i++){
-        $('#scoreboard').append('<tr><td>'+childSnapshot.key()+'</td><td>'+childSnapshot.val().count+'</td></tr>');
+
+        for (var index in scorecard) {
+            var arrayScore = scorecard.index;
+            $('#scoreboard').append('<tr><td>'+index+'</td><td>'+arrayScore+'</td></tr>');
+        }
+
       }
     });
 
