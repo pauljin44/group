@@ -85,7 +85,7 @@ $(document).ready(function(){
           });
         });
     });
-    
+
     firebaseCountUp.once('value', function(snapshot){
       console.log(snapshot.val())
       snapshot.forEach(function(childSnapshot){
@@ -96,6 +96,25 @@ $(document).ready(function(){
         }
         scorecard[newUser] = newScore;
       });
+      function sortObject(obj) {
+          var arr = [];
+          var prop;
+          for (prop in obj) {
+              if (obj.hasOwnProperty(prop)) {
+                  arr.push({
+                      'key': prop,
+                      'value': obj[prop]
+                  });
+              }
+          }
+          arr.sort(function(a, b) {
+              return a.value - b.value;
+          });
+          return arr; // returns array
+      }
+
+      var allSorted = sortObject(scorecard);
+      console.log(allSorted);
 
       $.each(scorecard, function(key, value){
         console.log(scorecard)
