@@ -87,13 +87,19 @@ $(document).ready(function(){
 
     $('#scoreboard').append('<tr><td>'+'Username'+'</td><td>'+'Points'+'</td></tr>');
     console.log('this is scorecard')
-    // var scorecard = [];
+    var scorecard = {};
     firebaseCountUp.once('value', function(snapshot){
       console.log(snapshot.val())
       snapshot.forEach(function(childSnapshot){
-        // scorecard = scorecard.push(childSnapshot.key())
-        // console.log(scorecard)
-        $('#scoreboard').append('<tr><td>'+childSnapshot.key()+'</td><td>'+childSnapshot.val().count+'</td></tr>')
+        if (childSnapshot.val().count == undefined){
+          scorecard.push({
+            childSnapshot.key():0
+          });
+        }else{
+          childSnapshot.key():childSnapshot.val().count
+        }
+        console.log(scorecard)
+        // $('#scoreboard').append('<tr><td>'+childSnapshot.key()+'</td><td>'+childSnapshot.val().count+'</td></tr>');
       });
     });
 
