@@ -88,6 +88,7 @@ $(document).ready(function(){
 
     firebaseCountUp.once('value', function(snapshot){
       console.log(snapshot.val())
+      var userLength;
       snapshot.forEach(function(childSnapshot){
         var newUser = childSnapshot.key();
         var newScore = childSnapshot.val().count;
@@ -95,7 +96,9 @@ $(document).ready(function(){
           newScore = 0;
         }
         scorecard[newUser] = newScore;
+        userLength = newUser.length;
       });
+
       function sortObject(obj) {
           var arr = [];
           var prop;
@@ -115,10 +118,9 @@ $(document).ready(function(){
 
       var allSorted = sortObject(scorecard);
       console.log(allSorted);
-
-      $.each(allSorted, function(key, value){
-        $('#scoreboard').append('<tr><td>'+key+'</td><td>'+value+'</td></tr>');
-      });
+      for (i=0;i<userLength;i++){
+        $('#scoreboard').append('<tr><td>'+[i].key+'</td><td>'+[i].value+'</td></tr>');
+      }
 
     });
 
