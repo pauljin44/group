@@ -88,17 +88,32 @@ $(document).ready(function(){
     $('#scoreboard').append('<tr><td>'+'Username'+'</td><td>'+'Points'+'</td></tr>');
     console.log('this is scorecard')
     var scorecard = {};
+    var user = [];
+    var score = [];
     firebaseCountUp.once('value', function(snapshot){
       console.log(snapshot.val())
       snapshot.forEach(function(childSnapshot){
-        var user = childSnapshot.key()
-        var score = childSnapshot.val().count;
+        var newUser = childSnapshot.key();
+        user.push(newUser)
+
+        var newScore = childSnapshot.val().count;
         if (childSnapshot.val().count == undefined){
-          score = 0;
+          newScore = 0;
         }
-        scorecard[user] = score;
+
+        if(scorecard.length > 0){
+          for(i=0;i<scorecard.length;i++){
+            if(newScore > score[i] || newscore == score[i]){
+              score.unshift(newScore)
+            }
+          }
+        }
+        scorecard[newUser] = newScore;
         console.log(scorecard)
       });
+      $.each(scorecard, function(key, value){
+
+      })
 
       $.each(scorecard, function(key, value){
         console.log(scorecard)
