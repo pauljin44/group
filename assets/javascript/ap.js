@@ -17,6 +17,7 @@ var allFriendImg = [];
 var fbPaging;
 var facebookUserProfile = {};
 var currentUser;
+var scorecard = {}
 
 
 $(document).ready(function(){
@@ -85,49 +86,44 @@ $(document).ready(function(){
         });
     });
 
-    $('#scoreboard').append('<tr><td>'+'Username'+'</td><td>'+'Points'+'</td></tr>');
-    console.log('this is scorecard')
-    var scorecard = {};
-    // var userScore = [];
-    // var users = []
     firebaseCountUp.once('value', function(snapshot){
       console.log(snapshot.val())
+      var users = [];
       snapshot.forEach(function(childSnapshot){
         var newUser = childSnapshot.key();
+        users.push(newUser);
         var newScore = childSnapshot.val().count;
         if (childSnapshot.val().count == undefined){
           newScore = 0;
         }
         scorecard[newUser] = newScore;
 
-        // scorecard.sort(function(a, b) {
-        //   return (a.newUser) - (b.newUser);
-        // });
-
       });
-      //
-      //
-      //
-      // $.each(scorecard, function(key, value){
-      //
-      // })
 
-      $.each(scorecard, function(key, value){
-        console.log(scorecard)
-      $('#scoreboard').append('<tr><td>'+key+'</td><td>'+value+'</td></tr>');
-      });
+      function sortObject(obj) {
+          var arr = [];
+          var prop;
+          for (prop in obj) {
+              if (obj.hasOwnProperty(prop)) {
+                  arr.push({
+                      'key': prop,
+                      'value': obj[prop]
+                  });
+              }
+          }
+          arr.sort(function(a, b) {
+              return b.value - a.value;
+          });
+          return arr; // returns array
+      }
+      var userLength = users.length;
+      var allSorted = sortObject(scorecard);
+      console.log(allSorted);
+      for (i=0;i<userLength;i++){
+        $('#scoreboard').append('<tr><td>'+allSorted[i].key+'</td><td>'+allSorted[i].value+'</td></tr>');
+      }
 
     });
-
-      // for (i=0;i<scorecard.length;i++){
-      //
-      //   for (var index in scorecard) {
-      //       var arrayScore = scorecard[i].index;
-
-      //   }
-
-
-    // });
 
     $(".well.well-lg").hide();
     $('#yelpSearches').hide();
