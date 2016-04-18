@@ -44,7 +44,9 @@ div.panel.panel-default {
   height: 500px;
   overflow: scroll;
 }
-
+div.panel-heading {
+  text-align: center;
+}
 #topnav {
 	margin-top: 15px;
 }
