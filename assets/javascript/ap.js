@@ -105,7 +105,7 @@ $(document).ready(function(){
 
         if(score.length > 0){
           for(i=0;i<score.length;i++){
-            if(newScore > score[i] || newscore == score[i]){
+            if(newScore > score[i] || newScore == score[i]){
               score.unshift(newScore)
             }
           }
