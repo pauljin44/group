@@ -33,7 +33,7 @@ $(document).ready(function(){
     });
 
 
-    $('#drop2').on('show.bs.dropdown', function(){
+    $('#drop2 .dropdown').on('show.bs.dropdown', function(){
         var firebasePointsValue = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+currentUser+"/count");
         firebasePointsValue.on('value', function(snapshot){
             $('#points').empty();
@@ -84,7 +84,7 @@ $(document).ready(function(){
         });
     });
 
-    $('#scorecard').on('show.bs.dropdown', function(){
+    $('#scorecard .dropdown').on('show.bs.dropdown', function(){
         var firebasePointsValue = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+currentUser+"/count");
         firebasePointsValue.on('value', function(snapshot){
             $('#points').empty();
