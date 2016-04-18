@@ -87,9 +87,9 @@ $(document).ready(function(){
 
     $('#scorecard').append('<tr><td>'+'Username'+'</td><td>'+'Points'+'</td></tr>');
     console.log('this is scorecard')
-    firebaseCountUp.once('value', function(snapshot){
+    firebaseValueCheck.once('value', function(snapshot){
       snapshot.forEach(function(childSnapshot){
-        $('#scorecard').append('<tr><td>'+childSnapshot+'</td></tr>')
+        $('#scorecard').append('<tr><td>'+childSnapshot.val()+'</td></tr>')
       });
     });
 
