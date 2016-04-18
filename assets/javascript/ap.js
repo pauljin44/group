@@ -100,9 +100,9 @@ $(document).ready(function(){
         }else{
           score.push(newScore);
         }
-        userScore.newUser = newScore;
+        scorecard.newUser = newScore;
 
-        userScore.sort(function(a, b) {
+        scorecard.sort(function(a, b) {
           return (a.newUser) - (b.newUser);
         });
 
