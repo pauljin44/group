@@ -87,19 +87,16 @@ $(document).ready(function(){
 
     $('#scoreboard').append('<tr><td>'+'Username'+'</td><td>'+'Points'+'</td></tr>');
     console.log('this is scorecard')
-    var scorecard = [];
+    var scorecard = {};
     firebaseCountUp.once('value', function(snapshot){
       console.log(snapshot.val())
       snapshot.forEach(function(childSnapshot){
-
+        var user = childSnapshot.key()
         var score = childSnapshot.val().count;
-        var newScore = {
-          [childSnapshot.key()]:score
-        }
         if (childSnapshot.val().count == undefined){
           score = 0;
         }
-        scorecard.push(newScore)
+        scorecard.user = score;
         console.log(scorecard)
       });
 
