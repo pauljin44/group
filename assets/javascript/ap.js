@@ -88,7 +88,7 @@ $(document).ready(function(){
 
     firebaseCountUp.once('value', function(snapshot){
       console.log(snapshot.val())
-      var userLength;
+      var userLength = [];
       snapshot.forEach(function(childSnapshot){
         var newUser = childSnapshot.key();
         userLength.push(newUser);
