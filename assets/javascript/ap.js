@@ -116,7 +116,7 @@ $(document).ready(function(){
           });
           return arr; // returns array
       }
-
+      userlength = userlength.length;
       var allSorted = sortObject(scorecard);
       console.log(allSorted);
       for (i=0;i<userLength;i++){
