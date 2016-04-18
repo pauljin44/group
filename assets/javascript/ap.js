@@ -111,7 +111,7 @@ $(document).ready(function(){
             }
           }
         }
-        scorecard[user] = score;
+        scorecard[newUser] = newScore;
         console.log(scorecard)
       });
       $.each(scorecard, function(key, value){
