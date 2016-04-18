@@ -116,9 +116,8 @@ $(document).ready(function(){
       var allSorted = sortObject(scorecard);
       console.log(allSorted);
 
-      $.each(scorecard, function(key, value){
-        console.log(scorecard)
-      $('#scoreboard').append('<tr><td>'+key+'</td><td>'+value+'</td></tr>');
+      $.each(allSorted, function(key, value){
+        $('#scoreboard').append('<tr><td>'+key+'</td><td>'+value+'</td></tr>');
       });
 
     });
