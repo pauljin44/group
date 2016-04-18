@@ -88,10 +88,10 @@ $(document).ready(function(){
 
     firebaseCountUp.once('value', function(snapshot){
       console.log(snapshot.val())
-      var userLength = [];
+      var users = [];
       snapshot.forEach(function(childSnapshot){
         var newUser = childSnapshot.key();
-        userLength.push(newUser);
+        users.push(newUser);
         var newScore = childSnapshot.val().count;
         if (childSnapshot.val().count == undefined){
           newScore = 0;
@@ -116,7 +116,7 @@ $(document).ready(function(){
           });
           return arr; // returns array
       }
-      userlength = userlength.length;
+      userlength = users.length;
       var allSorted = sortObject(scorecard);
       console.log(allSorted);
       for (i=0;i<userLength;i++){
