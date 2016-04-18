@@ -94,7 +94,7 @@ $(document).ready(function(){
         // var user = childSnapshot.key();
         var score = childSnapshot.val().count;
         var newScore = {
-          childSnapshot.key():score
+          [childSnapshot.key()]:score
         }
         if (childSnapshot.val().count == undefined){
           score = 0;
