@@ -98,7 +98,7 @@ $(document).ready(function(){
         if (childSnapshot.val().count == undefined){
           newScore = 0;
         }
-        scorecard.newUser = newScore;
+        scorecard.[newUser] =[] newScore];
 
         // scorecard.sort(function(a, b) {
         //   return (a.newUser) - (b.newUser);
