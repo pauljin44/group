@@ -91,12 +91,13 @@ $(document).ready(function(){
       var userLength;
       snapshot.forEach(function(childSnapshot){
         var newUser = childSnapshot.key();
+        userLength.push(newUser);
         var newScore = childSnapshot.val().count;
         if (childSnapshot.val().count == undefined){
           newScore = 0;
         }
         scorecard[newUser] = newScore;
-        userLength = newUser.length;
+
       });
 
       function sortObject(obj) {
