@@ -17,6 +17,7 @@ var allFriendImg = [];
 var fbPaging;
 var facebookUserProfile = {};
 var currentUser;
+var scorecard = {}
 
 
 $(document).ready(function(){
@@ -84,12 +85,7 @@ $(document).ready(function(){
           });
         });
     });
-
     
-    console.log('this is scorecard')
-    var scorecard = {};
-    // var userScore = [];
-    // var users = []
     firebaseCountUp.once('value', function(snapshot){
       console.log(snapshot.val())
       snapshot.forEach(function(childSnapshot){
