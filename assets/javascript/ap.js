@@ -85,7 +85,7 @@ $(document).ready(function(){
         });
     });
 
-    $('#scorecard').append('<tr><td>'+'Username'+'</td><td>'+'Points'+'</td></tr>');
+    $('#scoreboard').append('<tr><td>'+'Username'+'</td><td>'+'Points'+'</td></tr>');
     console.log('this is scorecard')
     // var scorecard = [];
     firebaseCountUp.once('value', function(snapshot){
@@ -93,7 +93,7 @@ $(document).ready(function(){
       snapshot.forEach(function(childSnapshot){
         // scorecard = scorecard.push(childSnapshot.key())
         // console.log(scorecard)
-        $('#scorecard').append('<tr><td>'+childSnapshot.key()+'</td></tr>')
+        $('#scoreboard').append('<tr><td>'+childSnapshot.key()+'</td></tr>')
       });
     });
 
