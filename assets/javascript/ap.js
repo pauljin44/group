@@ -91,7 +91,7 @@ $(document).ready(function(){
     firebaseCountUp.once('value', function(snapshot){
       console.log(snapshot.val())
       snapshot.forEach(function(childSnapshot){
-        // var user = childSnapshot.key();
+        
         var score = childSnapshot.val().count;
         var newScore = {
           [childSnapshot.key()]:score
@@ -102,9 +102,12 @@ $(document).ready(function(){
         scorecard.push(newScore)
         console.log(scorecard)
       });
+
       $.each(scorecard, function(key, value){
-      $('#scoreboard').append('<tr><td>'+key+'</td><td>'+value+'</td></tr>');  
-      })
+      $('#scoreboard').append('<tr><td>'+key+'</td><td>'+value+'</td></tr>');
+      });
+
+    });
 
       // for (i=0;i<scorecard.length;i++){
       //
@@ -113,8 +116,8 @@ $(document).ready(function(){
 
       //   }
 
-      }
-    });
+
+    // });
 
     $(".well.well-lg").hide();
     $('#yelpSearches').hide();
