@@ -99,16 +99,18 @@ $(document).ready(function(){
         var newScore = childSnapshot.val().count;
         if (childSnapshot.val().count == undefined){
           newScore = 0;
+        }else{
+          score.push(newScore);
         }
 
-        if(scorecard.length > 0){
-          for(i=0;i<scorecard.length;i++){
+        if(score.length > 0){
+          for(i=0;i<score.length;i++){
             if(newScore > score[i] || newscore == score[i]){
               score.unshift(newScore)
             }
           }
         }
-        scorecard[newUser] = newScore;
+        scorecard[user] = score;
         console.log(scorecard)
       });
       $.each(scorecard, function(key, value){
