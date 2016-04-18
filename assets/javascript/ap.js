@@ -103,7 +103,7 @@ $(document).ready(function(){
           score.push(newScore);
         }
 
-        if(score.length > 0){
+        if(score.length > 1){
           for(i=0;i<score.length;i++){
             if(newScore > score[i] || newScore == score[i]){
               score.unshift(newScore)
