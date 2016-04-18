@@ -33,7 +33,7 @@ $(document).ready(function(){
     });
 
 
-    $('.dropdown').on('show.bs.dropdown', function(){
+    $('#drop2').on('show.bs.dropdown', function(){
         var firebasePointsValue = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+currentUser+"/count");
         firebasePointsValue.on('value', function(snapshot){
             $('#points').empty();
@@ -43,16 +43,6 @@ $(document).ready(function(){
                 $('#points').append('<li><p>You have '+snapshot.val()+' LocalePoints!</p></li>')
             }
         });
-        $('.dropdown').on('show.bs.dropdown', function(){
-            var firebasePointsValue = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+currentUser+"/count");
-            firebasePointsValue.on('value', function(snapshot){
-                $('#points').empty();
-                if (snapshot.val()===null)
-                    {$('#points').append('<li><p>Make an account or log in to track your LocalePoints!</p></li>');
-                } else{
-                    $('#points').append('<li><p>You have '+snapshot.val()+' LocalePoints!</p></li>')
-                }
-            });
 
         var firebasePlacesValue = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+currentUser+"/places");
         firebasePlacesValue.once('value', function(snapshot){
@@ -63,6 +53,7 @@ $(document).ready(function(){
                 $("#exPlaces").append('<li><p>'+childData[0]+'</p></li>') //childData[1]: address, childData[2]: phone#
             });
         });
+
         $("#exPlaces li p").on("click", function(){
           debugger;
           console.log(this.innerHTML + "clickedtogohere");
@@ -92,6 +83,28 @@ $(document).ready(function(){
           });
         });
     });
+
+    $('#scorecard').on('show.bs.dropdown', function(){
+        var firebasePointsValue = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+currentUser+"/count");
+        firebasePointsValue.on('value', function(snapshot){
+            $('#points').empty();
+            if (snapshot.val()===null)
+                {$('#points').append('<li><p>Make an account or log in to track your LocalePoints!</p></li>');
+            } else{
+                $('#points').append('<li><p>You have '+snapshot.val()+' LocalePoints!</p></li>')
+            }
+        });
+
+        var firebasePlacesValue = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+currentUser+"/places");
+        firebasePlacesValue.once('value', function(snapshot){
+            $("#exPlaces").empty();
+            snapshot.forEach(function(childSnapshot){
+                var key = childSnapshot.key();
+                var childData = childSnapshot.val();
+                $("#exPlaces").append('<li><p>'+childData[0]+'</p></li>') //childData[1]: address, childData[2]: phone#
+            });
+        });
+      });
 
     $(".well.well-lg").hide();
     $('#yelpSearches').hide();
