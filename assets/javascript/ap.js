@@ -102,13 +102,16 @@ $(document).ready(function(){
         scorecard.push(newScore)
         console.log(scorecard)
       });
+      $.each(scorecard, function(key, value){
+      $('#scoreboard').append('<tr><td>'+key+'</td><td>'+value+'</td></tr>');  
+      })
 
-      for (i=0;i<scorecard.length;i++){
+      // for (i=0;i<scorecard.length;i++){
+      //
+      //   for (var index in scorecard) {
+      //       var arrayScore = scorecard[i].index;
 
-        for (var index in scorecard) {
-            var arrayScore = scorecard.index;
-            $('#scoreboard').append('<tr><td>'+index+'</td><td>'+arrayScore+'</td></tr>');
-        }
+      //   }
 
       }
     });
