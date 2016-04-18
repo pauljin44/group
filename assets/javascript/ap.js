@@ -107,6 +107,7 @@ $(document).ready(function(){
           for(i=0;i<score.length;i++){
             if(newScore > score[i] || newScore == score[i]){
               score.unshift(newScore)
+              score.pop();
             }
           }
         }
