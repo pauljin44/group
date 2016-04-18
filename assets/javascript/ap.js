@@ -86,12 +86,12 @@ $(document).ready(function(){
     });
 
     $('#scorecard').append('<tr><td>'+'Username'+'</td><td>'+'Points'+'</td></tr>');
-      console.log('this is scorecard')
-        firebaseCountUp.on('value', function(snapshot){
-          snapshot.forEach(function(childSnapshot){
-            $('#scorecard').append('<tr><td>'+childSnapshot+'</td></tr>')
-          });
-        });
+    console.log('this is scorecard')
+    firebaseCountUp.once('value', function(snapshot){
+      snapshot.forEach(function(childSnapshot){
+        $('#scorecard').append('<tr><td>'+childSnapshot+'</td></tr>')
+      });
+    });
 
     $(".well.well-lg").hide();
     $('#yelpSearches').hide();
