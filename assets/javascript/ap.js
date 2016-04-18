@@ -91,7 +91,7 @@ $(document).ready(function(){
     firebaseCountUp.once('value', function(snapshot){
       console.log(snapshot.val())
       snapshot.forEach(function(childSnapshot){
-        
+
         var score = childSnapshot.val().count;
         var newScore = {
           [childSnapshot.key()]:score
@@ -104,6 +104,7 @@ $(document).ready(function(){
       });
 
       $.each(scorecard, function(key, value){
+        console.log(scorecard)
       $('#scoreboard').append('<tr><td>'+key+'</td><td>'+value+'</td></tr>');
       });
 
