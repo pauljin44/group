@@ -35,7 +35,6 @@ $(document).ready(function(){
 
 
     $('.dropdown').on('show.bs.dropdown', function(){
-      console.log('this is points not scorecard.')
         var firebasePointsValue = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+currentUser+"/count");
         firebasePointsValue.on('value', function(snapshot){
             $('#points').empty();
@@ -71,10 +70,7 @@ $(document).ready(function(){
                     childSnapshot.val()[4].lat,
                     childSnapshot.val()[4].lng,
                   ];
-                  console.log(searchThis);
-                  console.log(locations);
                   locations.length= 0;
-                  console.log(locations.length);
                   locations.push(searchThis);
                   newCenter = {lat: searchThis[4], lng: searchThis[5]}
                   clearMarkers();
@@ -90,7 +86,6 @@ $(document).ready(function(){
     firebaseCountUp.on('value', function(snapshot){
       $('#scoreboard').empty();
       $('#scoreboard').append('<tr><td>Users</td><td>Points</td></tr>');
-      console.log(snapshot.val())
       var users = [];
       snapshot.forEach(function(childSnapshot){
         var newUser = childSnapshot.key();
@@ -121,7 +116,7 @@ $(document).ready(function(){
       }
       var userLength = users.length;
       var allSorted = sortObject(scorecard);
-      console.log(allSorted);
+
       for (i=0;i<userLength;i++){
         $('#scoreboard').append('<tr><td>'+allSorted[i].key+'</td><td>'+allSorted[i].value+'</td></tr>');
       }
@@ -134,14 +129,12 @@ $(document).ready(function(){
 //*************************** END DOC.READY ***************************
 
 function loadYelpDiv(){
-    console.log("makinitbigger")
     $(".well.well-lg").show();
 }
 
 
 $('#modalOld').ready(function(){
     $('#oldUserSubmit').on('click', function() {
-        console.log('working');
 
 
         var test = $('#oldUser').val()
@@ -188,7 +181,6 @@ $('#modalOld').ready(function(){
 
 $('#modalNew').ready(function(){
     $('#newUserSubmit').on('click', function(){
-        console.log('also working');
         $('#newUserSubmit').hide();
         newUser = $('#newUser').val();
         var firebaseNewUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+newUser)
@@ -198,7 +190,6 @@ $('#modalNew').ready(function(){
         }
         firebaseNewUser.update(added);
         firebaseValueCheck.once('value', function(snapshot) {
-            console.log(snapshot.val().users.newUser)
         })
 
         currentUser = newUser
@@ -250,7 +241,7 @@ $()
         FB.getLoginStatus(function(response) {
             if (response.status === 'connected') {
                 var accessToken = response.authResponse.accessToken;
-                console.log('you are logged in')
+                console.log('you are logged in to facebook')
 
             }
             statusChangeCallback(response);
@@ -265,7 +256,6 @@ $()
     function testAPI() {
 
         FB.api('/me','GET', {"fields":"id,name,email,likes,friends,invitable_friends{id,picture,name},location"},function(response) {
-                    console.log('This is FB Graph API response: ', response);
 
             fbPaging = response.invitable_friends.paging.next
                 // fbFriendImg = response.invitable_friends.data.picture.data.url
@@ -275,7 +265,6 @@ $()
 
 
             FB.api(fbAllFriendsList, function(response) {
-                console.log(response);
 
                 for (x=0;x<response.data.length;x++) {
                     allFriends.push(response.data[x].name);
@@ -400,7 +389,6 @@ function runYelp() {
 
         var parameterMap = OAuth.getParameterMap(message.parameters);
         parameterMap.oauth_signature = OAuth.percentEncode(parameterMap.oauth_signature)
-        console.log(parameterMap);
 
         var bestRestaurant = "Some random restaurant";
 
@@ -411,7 +399,6 @@ function runYelp() {
             'dataType': 'jsonp',
             'jsonpCallback': 'cb',
             'success': function(data, textStats, XMLHttpRequest) {
-            console.log(data);
 
 
                 $('.panel-title').text('The best '+what+' spots in '+where+' are listed below').css('text-align', 'center');
@@ -485,7 +472,6 @@ function updateCounter(){
 if (navigator.geolocation) {
 
         navigator.geolocation.getCurrentPosition(getCoordinates);
-        console.log("got it");
     } else {
         console.log("Geolocation is not supported by this browser.");
     };
@@ -495,9 +481,9 @@ if (navigator.geolocation) {
 
 
 function getCoordinates(position) {
-    console.log("caught it");
-    console.log(position.coords.latitude);
-    console.log(position.coords.longitude);
+    // console.log("caught it");
+    // console.log(position.coords.latitude);
+    // console.log(position.coords.longitude);
 };
 
 var map;
@@ -664,9 +650,7 @@ function infoWindow(marker, map, title, address, rating, phone, aCenter){
 
 
         google.maps.event.addDomListener(checkBtn, "click", function(event) {
-                console.log("hi!");
                 localCounter++;
-                console.log(localCounter);
                 updateCounter();
                 thisPlace = {
                         title: title,
@@ -675,9 +659,7 @@ function infoWindow(marker, map, title, address, rating, phone, aCenter){
                         phone: phone,
                         center: aCenter
                   };
-                  console.log(thisPlace + 'check2');
                 checkedPlaces.unshift(thisPlace);
-                console.log(checkedPlaces);
                 updatePlaced();
         });
 
