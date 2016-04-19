@@ -87,7 +87,9 @@ $(document).ready(function(){
     });
 
 //*************************** SCORECARD ***************************
-    firebaseCountUp.once('value', function(snapshot){
+    firebaseCountUp.on('value', function(snapshot){
+      $('#scoreboard').empty();
+      $('#scoreboard').append('<tr><td>Users</td><td>Points</td></tr>');
       console.log(snapshot.val())
       var users = [];
       snapshot.forEach(function(childSnapshot){
