@@ -57,7 +57,7 @@ $(document).ready(function(){
 
         $("#exPlaces li p").on("click", function(){
           debugger;
-          console.log(this.innerHTML + "clickedtogohere");
+
           var goHere = this.innerHTML;
           firebasePlacesValue.once('value', function(snapshot){
               snapshot.forEach(function(childSnapshot){
