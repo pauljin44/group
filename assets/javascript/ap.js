@@ -550,8 +550,8 @@ function geocodeAddress(locations, i) {
             });
             activeMarkers.push(marker);
             infoWindow(marker, map, title, address, rating, phone, center);
-            map.fitBounds(bounds);
-            bounds.extend(marker.getPosition());
+            // map.fitBounds(bounds);
+            // bounds.extend(marker.getPosition());
             // map.setCenter(center);
             // map.panTo(center);
 
