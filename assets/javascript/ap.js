@@ -50,7 +50,7 @@ $(document).ready(function(){
         });
 
         $("#exPlaces li p").on("click", function(){
-          debugger;
+          // debugger;
 
           var goHere = this.innerHTML;
           firebasePlacesValue.once('value', function(snapshot){
@@ -581,7 +581,7 @@ function updatePlaced(){
         var firebasePlaceUp = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+currentUser);
 
         firebasePlaceUp.once('value', function(snapshot){
-            debugger;
+            // debugger;
             if (snapshot.val().places == undefined){
                 firebasePlaceUp.update(addaPlaces)
 
