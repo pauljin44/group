@@ -27,6 +27,18 @@ $(document).ready(function(){
 
     });
 
+    $(document).on('click', '#hide', function(){
+      $('#yelpSearches').hide();
+      $('#hide').attr('id','show');
+      $('#show').text('show');
+    });
+
+    $(document).on('click', '#show', function(){
+      $('#yelpSearches').show();
+      $('#show').attr('id','hide');
+      $('#hide').text('hide');
+    });
+
 
     $('.dropdown').on('show.bs.dropdown', function(){
         var firebasePointsValue = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+currentUser+"/count");
