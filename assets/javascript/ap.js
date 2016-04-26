@@ -143,34 +143,35 @@ $('#modalOld').ready(function(){
     $('#oldUserSubmit').on('click', function() {
 
 
-        var test = $('#oldUser').val()
+        var test = $('#oldUser').val();
 
         var firebaseOldUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+test);
 
         firebaseOldUser.on('value', function(snapshot){
 
+          var pass = snapshot.val().password;
 
-            if (snapshot.val() != undefined) {
+          if (snapshot.val() != undefined && snapshot.val().password == pass) {
 
-             currentUser = $('#oldUser').val();
-                console.log('currentUser is: ', currentUser);
-            }else{
-                console.log('currentUser login unsucessful')
-            }
-            currentUserFirebase = firebaseCountUp.child(currentUser);
-            currentUserFirebase.on('value', function(snapshot){
+           currentUser = $('#oldUser').val();
+              console.log('currentUser is: ', currentUser);
+          }else{
+              console.log('currentUser login unsucessful')
+          }
+          currentUserFirebase = firebaseCountUp.child(currentUser);
+          currentUserFirebase.on('value', function(snapshot){
 
-                if (snapshot.val().count != undefined) {
-                    localCounter = snapshot.val().count
-                }
+              if (snapshot.val().count != undefined) {
+                  localCounter = snapshot.val().count
+              }
 
-                if (snapshot.val().places != undefined){
-                    checkedPlaces = snapshot.val().places
-                }
+              if (snapshot.val().places != undefined){
+                  checkedPlaces = snapshot.val().places
+              }
 
-                updateCounter();
+              updateCounter();
 
-            });
+          });
 
 
 });
@@ -189,10 +190,13 @@ $('#modalNew').ready(function(){
     $('#newUserSubmit').on('click', function(){
         $('#newUserSubmit').hide();
         newUser = $('#newUser').val();
+        newPass = $('#newPassword').val();
+        newEmail = $('#newEmail').val();
         var firebaseNewUser = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+newUser)
         added = {
             dateAdded : Date.now(),
-
+            email: newEmail,
+            password: newPass
         }
         firebaseNewUser.update(added);
         firebaseValueCheck.once('value', function(snapshot) {
