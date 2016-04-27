@@ -22,20 +22,26 @@ nav {
   background-color: #333;
 }
 
+.navbar-ex1-collapse {
+  margin-top: 50px;
+}
+
 .navbar-brand strong {
 	color: #92ACC5;
     font-size: 52px;
 }
 
-/*.well .well-lg {
-	display:none;
-}*/
+.form-signin-heading-right {
+  text-align: center;
+}
+
 
 
 ul.nav.navbar-nav.navbar-full {
 	  width: 100%;
     margin-top: 5px;
     margin-bottom: 5px;
+    margin-left: 15px;
 }
 
 div.panel.panel-default {
@@ -72,8 +78,7 @@ div.panel-heading {
 }
 
 .btn.btn-primary.btn-xs{
-	margin-top: 14px;
-    margin-left: 12px;
+	margin-bottom: 14px;
 }
 
 nav.navbar-nav.navbar-right {
@@ -168,5 +173,16 @@ li #exPlaces p {
 	display:inline-block;
 	font-size: 14pt;
 
+}
 
+#hide, #show, #close{
+  margin-top: 5px;
+}
+
+#close {
+  float: right;
+}
+
+#signIn {
+  margin-bottom: 50px;
 }

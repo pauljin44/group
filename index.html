@@ -35,12 +35,6 @@
 					<div class="container-fluid">
 						<!-- Brand and toggle get grouped for better mobile display -->
 						<div class="navbar-header">
-							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-								<span class="sr-only">Toggle navigation</span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-							</button>
 							<a class="navbar-brand" href="#"><strong>Locale</strong></a>
 						</div>
 
@@ -74,10 +68,10 @@
 								</div>
 									<!-- ************* Returning user login ************* -->
 									    		<!-- Button trigger modal -->
-									<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modalOld">Log in with us!</button>
+									<!-- <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modalOld">Log in with us!</button> -->
 
 															<!-- Modal -->
-									<div class="modal fade" id="modalOld" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+									<!-- <div class="modal fade" id="modalOld" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 									  <div class="modal-dialog" role="document">
 									    <div class="modal-content">
 									      <div class="modal-header">
@@ -86,8 +80,8 @@
 									      </div>
 									      <div class="modal-body">
 									        <h1>You've done this before...</h1>
-									        <p>Username: </p><input type="text" id="oldUser" class="form-control" placeholder="Think hard!"><br />
-									        <p>Password: </p><input type="text" id="oldPassword" class="form-control" placeholder="Same as all the others..">
+									        <p>Username: </p><input type="text" class="form-control" placeholder="Think hard!"><br />
+									        <p>Password: </p><input type="password" class="form-control" placeholder="Same as all the others..amiright?">
 
 									      </div>
 									      <div class="modal-footer">
@@ -96,10 +90,10 @@
 									      </div>
 									    </div>
 									  </div>
-									</div>
+									</div> -->
 
 									<!-- ************* New user login ************* -->
-									<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modalNew">New User?</button>
+
 
 									<div class="modal fade" id="modalNew" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 									  <div class="modal-dialog" role="document">
@@ -110,8 +104,10 @@
 									      </div>
 									      <div class="modal-body">
 									        <h1>Please create a user name a password</h1>
-									        <p>Username: </p><input type="text" id="newUser" class="form-control" placeholder="Think hard!"><br />
-									        <p>Password: </p><input type="text" id="newPassword" class="form-control" placeholder="Same as all the others..">
+									        <p>Username: </p><input type="text" id="newUser" class="form-control" placeholder="This is what will display"><br />
+									        <p>Password: </p><input type="password" id="newPassword" class="form-control" placeholder="Same as all the others..amiright?">
+													<p>Email: </p><input type="text" id="newEmail" class="form-control" placeholder="Use this to log in!">
+
 
 									      </div>
 									      <div class="modal-footer">
@@ -121,7 +117,24 @@
 									    </div>
 									  </div>
 									</div>
-								<!-- ****************** This is points ****************** -->
+
+									<div id="signIn" class="container">
+										<form class="form-signin">
+											<h2 class="form-signin-heading-right">Please sign in</h2>
+											<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modalNew">New User?</button>
+											<label for="inputUser" class="sr-only">User Name</label>
+											<input type="text" id="oldUser" class="form-control" placeholder="User name" required="" autofocus="">
+											<label for="inputPassword" class="sr-only">Password</label>
+											<input type="password" id="oldPassword" class="form-control" placeholder="Password" required="">
+											<div class="checkbox">
+												<label>
+													<input type="checkbox" value="remember-me"> Remember me
+												</label>
+											</div>
+											<button id="oldUserSubmit" class="btn btn-lg btn-primary btn-block">Sign in</button>
+										</form>
+									</div>
+								<!-- ****************** This is account and points ****************** -->
 								<ul class="nav navbar-nav navbar-full">
 								<li id="drop2" class="dropdown">
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown">Your Account <b class="caret"></b></a>
@@ -147,12 +160,18 @@
 							</div>
 						</div>
 						<button id='hide' type="button" class="btn btn-default" aria-label="Right Align">Hide
+						<button id='close' type="button" class="btn btn-default" aria-label="Left Align">X
 					</div>
 			</div>
 			<div id="counter">
 
 			</div>
 			<div id="lastplace"></div>
+
+			<div class="container-fluid">
+
+			</div>
+<!-- *********************** This is Map and scoreboard ************************* -->
 			<div class="container-fluid">
 				<div class="panel panel-default">
 			  <!-- Default panel contents -->
@@ -168,5 +187,6 @@
 			</div>
 				<div id="map"></div>
 			</div>
+
 	</body>
 </html>

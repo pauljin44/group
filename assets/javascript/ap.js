@@ -39,6 +39,9 @@ $(document).ready(function(){
       $('#hide').text('hide');
     });
 
+    $(document).on('click', '#close', function(){
+      $('.well').hide();
+    });
 
     $('.dropdown').on('show.bs.dropdown', function(){
         var firebasePointsValue = new Firebase("https://sizzling-heat-1076.firebaseio.com/users/"+currentUser+"/count");
@@ -131,6 +134,8 @@ $(document).ready(function(){
 
     $(".well.well-lg").hide();
     $('#yelpSearches').hide();
+    $('.navbar-left').hide();//what/where searches
+    $('.navbar-full').hide();//account details
 });
 //*************************** END DOC.READY ***************************
 
@@ -173,15 +178,12 @@ $('#modalOld').ready(function(){
 
           });
 
-
-});
-
-
-
-
+        });
+        $('#signIn').hide();
+        $('.navbar-left').show();//what/where searches
+        $('.navbar-full').show();//account details
         $('#oldUserSubmit').hide();
-
-
+        return false
     });
 });
 
@@ -206,7 +208,7 @@ $('#modalNew').ready(function(){
     });
 });
 
-$()
+
 
 
 
