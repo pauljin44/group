@@ -48,24 +48,6 @@
 								<button type="submit" id="submit" class="btn btn-default">Submit</button>
 							</form>
 
-
-
-
-									<div id="fbWrapper">
-									<div id="fb-root"></div>
-									<script>(function(d, s, id) {
-									var js, fjs = d.getElementsByTagName(s)[0];
-									if (d.getElementById(id)) return;
-									js = d.createElement(s); js.id = id;
-									js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=1518819868427496";
-									 fjs.parentNode.insertBefore(js, fjs);
-									}(document, 'script', 'facebook-jssdk'));</script>
-
-									<fb:login-button scope="public_profile,email,user_likes,friends,invitable_friends{name}?limit=5000" onlogin="checkLoginState();">
-									</fb:login-button>
-									<div class="fb-login-button" data-max-rows="1" data-size="small" data-show-faces="false" data-auto-logout-link="true">
-									</div>
-								</div>
 									<!-- ************* Returning user login ************* -->
 									    		<!-- Button trigger modal -->
 									<!-- <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modalOld">Log in with us!</button> -->
@@ -122,6 +104,21 @@
 										<form class="form-signin">
 											<h2 class="form-signin-heading-right">Please sign in</h2>
 											<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modalNew">New User?</button>
+											<div id="fbWrapper">
+												<div id="fb-root"></div>
+												<script>(function(d, s, id) {
+												var js, fjs = d.getElementsByTagName(s)[0];
+												if (d.getElementById(id)) return;
+												js = d.createElement(s); js.id = id;
+												js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=1518819868427496";
+												 fjs.parentNode.insertBefore(js, fjs);
+												}(document, 'script', 'facebook-jssdk'));</script>
+
+												<fb:login-button scope="public_profile,email,user_likes,friends,invitable_friends{name}?limit=5000" onlogin="checkLoginState();">
+												</fb:login-button>
+												<div class="fb-login-button" data-max-rows="1" data-size="small" data-show-faces="false" data-auto-logout-link="true">
+												</div>
+											</div>
 											<label for="inputUser" class="sr-only">User Name</label>
 											<input type="text" id="oldUser" class="form-control" placeholder="User name" required="" autofocus="">
 											<label for="inputPassword" class="sr-only">Password</label>
