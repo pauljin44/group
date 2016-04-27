@@ -13,6 +13,10 @@ var facebookUserProfile = {};
 var currentUser;
 var scorecard = {}
 
+$('#fbWrapper').hide();
+$('#fbWrapper').ready(function(){
+  $('#fbWrapper').show();
+})
 
 $(document).ready(function(){
 

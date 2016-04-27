@@ -72,9 +72,10 @@ div.panel-heading {
 }
 
 #fbWrapper {
-	margin-top: 10px;
-    float: left;
-    padding: 5px;
+  margin-top: 58px;
+  margin-left: 60px;
+  float: left;
+  padding: 5px;
 }
 
 .btn.btn-primary.btn-xs{
