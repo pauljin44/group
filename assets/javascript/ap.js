@@ -182,6 +182,7 @@ $('#modalOld').ready(function(){
         $('#signIn').hide();
         $('#oldUserSubmit').hide();
         $('.jumbotron').hide();
+        $('#fbWrapper').hide()
         $('.navbar-left').show();//what/where searches
         $('.navbar-full').show();//account details
         $('#mapAndScore').show();
