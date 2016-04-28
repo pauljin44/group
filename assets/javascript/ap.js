@@ -140,6 +140,7 @@ $(document).ready(function(){
     $('#yelpSearches').hide();
     $('.navbar-left').hide();//what/where searches
     $('.navbar-full').hide();//account details
+    $('#mapAndScore').hide();
 });
 //*************************** END DOC.READY ***************************
 
@@ -150,7 +151,6 @@ function loadYelpDiv(){
 
 $('#modalOld').ready(function(){
     $('#oldUserSubmit').on('click', function() {
-
 
         var test = $('#oldUser').val();
 
@@ -169,24 +169,23 @@ $('#modalOld').ready(function(){
           }
           currentUserFirebase = firebaseCountUp.child(currentUser);
           currentUserFirebase.on('value', function(snapshot){
-
               if (snapshot.val().count != undefined) {
                   localCounter = snapshot.val().count
               }
-
               if (snapshot.val().places != undefined){
                   checkedPlaces = snapshot.val().places
               }
-
               updateCounter();
-
           });
 
         });
         $('#signIn').hide();
+        $('#oldUserSubmit').hide();
+        $('.jumbotron').hide();
         $('.navbar-left').show();//what/where searches
         $('.navbar-full').show();//account details
-        $('#oldUserSubmit').hide();
+        $('#mapAndScore').show();
+        initMap();
         return false
     });
 });
