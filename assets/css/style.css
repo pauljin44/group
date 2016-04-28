@@ -14,6 +14,14 @@ ul {
     background-color: #f3f3f3;
 }
 
+div.jumbotron h1 {
+  margin-left: 20px;
+}
+
+div.jumbotron p {
+  margin: 0px 20px 0px 20px;
+}
+
 li a {
     color: #666;
 }
