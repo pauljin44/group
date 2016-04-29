@@ -234,10 +234,6 @@ $('#modalNew').ready(function(){
             version    : 'v2.5' // use graph api version 2.5
         });
 
-
-
-
-
         // The response object is returned with a status field that lets the app know the current login status of the person.
 
         function checkLoginState() {
@@ -246,12 +242,12 @@ $('#modalNew').ready(function(){
             });
         }
 
-
         function statusChangeCallback(response) {
 
             if (response.status === 'connected') {
-
+              console.log('got this far');
                 testAPI();
+
 
             } else if (response.status === 'not_authorized') {
 
