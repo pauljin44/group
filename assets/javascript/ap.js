@@ -346,17 +346,16 @@ $('#modalNew').ready(function(){
             }
 
             // where.push(response.location.name); //where your location is
-
+            $('#signIn').hide();
+            $('#oldUserSubmit').hide();
+            $('.jumbotron').hide();
+            $('#fbWrapper').hide()
+            $('.navbar-left').show();//what/where searches
+            $('.navbar-full').show();//account details
+            $('#mapAndScore').show();
+            initMap();
+            return false
         });
-        $('#signIn').hide();
-        $('#oldUserSubmit').hide();
-        $('.jumbotron').hide();
-        $('#fbWrapper').hide()
-        $('.navbar-left').show();//what/where searches
-        $('.navbar-full').show();//account details
-        $('#mapAndScore').show();
-        initMap();
-        return false
 
     } //end Test api
 
